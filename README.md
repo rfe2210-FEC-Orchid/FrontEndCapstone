@@ -1,7 +1,7 @@
 # silver-chainsaw
 
 
-Create a new-branch
+# Create a new-branch
 Use a separate branch for each feature or issue you work on. After creating a branch, check it out locally so that any changes you make will be on that branch.
 
 git checkout -b new-feature
