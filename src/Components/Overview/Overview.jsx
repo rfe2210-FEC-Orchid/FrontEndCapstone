@@ -5,8 +5,7 @@ import styled from 'styled-components';
 const Overview = (props) => {
   return (
     <div>
-      Overview
-    </div>
+      Overview!
   );
 };
 
