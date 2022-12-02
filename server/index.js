@@ -13,11 +13,8 @@ app.use(express.json());
 
 // routes
 app.all('/*', (req, res) => {
-  // console.log('request method:', req.method);
-  // console.log('request url:', req.url);
-  // console.log('request params:', req.params);
-  console.log('request body:', req.body);
-  console.log('full url:', process.env.API_URL + req.url);
+  // console.log('request body:', req.body);
+  // console.log('full url:', process.env.API_URL + req.url);
 
   return axios({
     method: req.method,
@@ -35,8 +32,6 @@ app.all('/*', (req, res) => {
       console.log('response from API:', response.data);
       res.sendStatus(200);
     });
-
-  // next();
 });
 
 app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
