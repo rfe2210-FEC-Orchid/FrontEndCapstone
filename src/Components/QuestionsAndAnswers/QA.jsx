@@ -6,6 +6,7 @@ const QA = (props) => {
   return (
     <div>
       <h1>Q and A bby</h1>
+      <h2> can u push it </h2>
     </div>
   );
 };
