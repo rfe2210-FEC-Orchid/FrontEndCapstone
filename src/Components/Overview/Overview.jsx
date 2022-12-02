@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Overview = (props) => {
   return (
     <div>
-      Overview!
+      this is the overview widget
   );
 };
 
