@@ -4,7 +4,7 @@ import axios from 'axios';
 const RnR = () => {
 
   return (
-    <div>Leave your ratings and reviews</div>
+    <div>I MADE A CHANGE</div>
   )
 }
 
