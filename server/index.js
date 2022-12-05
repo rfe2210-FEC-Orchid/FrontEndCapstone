@@ -29,7 +29,7 @@ app.all('/*', (req, res) => {
       res.sendStatus(500);
     })
     .then((response) => {
-      console.log('response from API:', response.data);
+      console.log('response from API:', response.data.results[0]); //.skus);
       res.sendStatus(200);
     });
 });

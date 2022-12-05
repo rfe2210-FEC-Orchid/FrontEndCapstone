@@ -6,6 +6,7 @@ const Overview = (props) => {
   return (
     <div>
       this is the overview widget
+    </div>
   );
 };
 
