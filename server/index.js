@@ -13,6 +13,7 @@ app.use(express.json());
 
 // routes
 app.all('/*', (req, res) => {
+  console.log('dev server received request');
   // console.log('request body:', req.body);
   // console.log('full url:', process.env.API_URL + req.url);
 
@@ -29,7 +30,7 @@ app.all('/*', (req, res) => {
       res.sendStatus(500);
     })
     .then((response) => {
-      console.log('API returned data:', response.data);
+      // console.log('API returned data:', response.data);
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Credentials", "true");
       res.status(200).send(response.data);
