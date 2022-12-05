@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 require('dotenv').config();
 
 const app = express();
@@ -29,8 +29,10 @@ app.all('/*', (req, res) => {
       res.sendStatus(500);
     })
     .then((response) => {
-      console.log('response from API:', response.data.results[0]); //.skus);
-      res.sendStatus(200);
+      console.log('API returned data:', response.data);
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.status(200).send(response.data);
     });
 });
 
