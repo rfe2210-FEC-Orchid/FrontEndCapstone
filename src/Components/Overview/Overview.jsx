@@ -8,7 +8,7 @@ import ProductDescription from './ProductDescription.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const staticData = {product_id: 37311};
+const staticData = {product_id: 37315};
 
 const Overview = (props) => {
 
@@ -27,8 +27,6 @@ const Overview = (props) => {
       })
       .then(axios.spread((styles, info) => {
         console.log('received data from API');
-        // console.log('styles:', styles.data);
-        // console.log('info:', info.data);
         setSelectedStyle(styles.data.results[0]);
         setAllStyles(styles.data.results);
         setProductInfo(info.data);
@@ -38,8 +36,8 @@ const Overview = (props) => {
   // functions
 
   // pass to product style, allows a new style to be selected, updates selectedStyle
-  const handleSelectStyle = () => {
-
+  const handleSelectStyle = (style) => {
+    setSelectedStyle(style);
   };
 
   return (

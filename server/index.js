@@ -14,7 +14,7 @@ app.use(express.json());
 // routes
 app.all('/*', (req, res) => {
   console.log('dev server received request');
-  // console.log('request body:', req.body);
+  console.log('request body:', req.body);
   // console.log('full url:', process.env.API_URL + req.url);
 
   return axios({
@@ -31,8 +31,13 @@ app.all('/*', (req, res) => {
     })
     .then((response) => {
       // console.log('API returned data:', response.data);
+      // res.setHeader("Access-Control-Allow-Origin", "*");
+      // res.setHeader("Access-Control-Allow-Credentials", "true");
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+      res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+
       res.status(200).send(response.data);
     });
 });
