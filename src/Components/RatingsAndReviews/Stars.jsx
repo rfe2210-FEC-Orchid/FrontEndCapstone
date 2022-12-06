@@ -21,8 +21,8 @@ const Stars = ({number}) => {
   }, [number])
 
   const StarRatings = styled.div`
-  display: inline-flex;
-  position: relative;
+    display: inline-flex;
+    position: relative;
   `;
 
   return (
