@@ -8,7 +8,7 @@ import ProductDescription from './ProductDescription.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const staticData = {product_id: 37315};
+const staticData = {product_id: 37316};
 
 const Overview = (props) => {
 
@@ -16,6 +16,7 @@ const Overview = (props) => {
   const [selectedStyle, setSelectedStyle] = useState({});
   const [allStyles, setAllStyles] = useState([]);
   const [productInfo, setProductInfo] = useState({});
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   useEffect(() => {
     axios.all([
@@ -34,8 +35,6 @@ const Overview = (props) => {
   }, []);
 
   // functions
-
-  // pass to product style, allows a new style to be selected, updates selectedStyle
   const handleSelectStyle = (style) => {
     setSelectedStyle(style);
   };
@@ -44,7 +43,7 @@ const Overview = (props) => {
     <div>
       this is the overview widget!
       <div>
-        <ImageGallery photos={selectedStyle.photos}/>
+        {selectedStyle.photos && <ImageGallery photos={selectedStyle.photos} index={photoIndex} handleChangeIndex={setPhotoIndex}/>}
         <div>
           <ProductRating productID={staticData.product_id}/>
           <ProductInfo name={productInfo.name} category={productInfo.category}/>

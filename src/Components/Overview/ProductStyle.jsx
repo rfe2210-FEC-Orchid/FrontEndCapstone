@@ -38,6 +38,15 @@ const ProductStyle = (props) => {
   };
 
   const handleChangeStyle = (style) => {
+    // console.log('new style:', style);
+    // // find a way to update sku when style is changed after size is selected (i.e. retain size/qty selection)
+    // let currentSelectedSize = options.selectedSize;
+    // let newSku;
+
+    // if (currentSelectedSize) {
+    //   // iterate through the style object, looking for the same size
+    // }
+
     props.handleSelectStyle(style);
     setOptions({
       sku_id: null,
@@ -57,7 +66,7 @@ const ProductStyle = (props) => {
         <p><b>Style > </b>{props.selectedStyle.name}</p>
       </div>
       <StyleSelector styles={props.allStyles} handleChangeStyle={handleChangeStyle}/>
-      <SizeSelector skus={props.selectedStyle.skus} handleSelectSize={handleSelectSize}/>
+      <SizeSelector skus={props.selectedStyle.skus} options={options} handleSelectSize={handleSelectSize}/>
       <AddToCart options={options} handleChangeQuantity={handleChangeQuantity}/>
     </div>
   );

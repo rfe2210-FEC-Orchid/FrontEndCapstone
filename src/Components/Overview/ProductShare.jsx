@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { AiFillFacebook, AiFillInstagram, AiFillTwitterCircle } from 'react-icons/ai';
 
 const ProductShare = (props) => {
 
   return (
-    <div>
-      Product Share
-    </div>
+    <span>
+      <AiFillFacebook id="facebook"/>
+      <AiFillInstagram id="instagram"/>
+      <AiFillTwitterCircle id="twitter"/>
+  </span>
   );
 };
 
