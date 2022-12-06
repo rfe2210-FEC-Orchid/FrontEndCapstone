@@ -11,6 +11,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
+
 // routes
 app.all('/*', (req, res) => {
   // console.log('request body:', req.body);
@@ -29,8 +30,11 @@ app.all('/*', (req, res) => {
       res.sendStatus(500);
     })
     .then((response) => {
-      console.log('response from API:', response.data);
-      res.sendStatus(200);
+      // console.log('response from API:', response.data);
+      res.setHeader("Access-Control-Allow-Origin", "*");
+		  res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.json(response.data);
+      res.end();
     });
 });
 

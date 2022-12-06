@@ -4,9 +4,8 @@ import styled from 'styled-components';
 
 const Overview = (props) => {
   return (
-    <div>
-      Overview!
-  );
+    <div>something</div>
+  )
 };
 
 export default Overview;

@@ -17,8 +17,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --mode=development",
     "build": "webpack --mode=production",
-    "client-dev": "webpack serve --open",
-    "server-dev": "nodemon server/index.js --watch"
+    "server-dev": "npx nodemon --watch server server/index.js",
+    "client-dev": "npx webpack --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
