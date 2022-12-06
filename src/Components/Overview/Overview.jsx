@@ -16,7 +16,6 @@ const Overview = (props) => {
   const [selectedStyle, setSelectedStyle] = useState({});
   const [allStyles, setAllStyles] = useState([]);
   const [productInfo, setProductInfo] = useState({});
-  const [photoIndex, setPhotoIndex] = useState(0);
 
   useEffect(() => {
     axios.all([
@@ -43,7 +42,7 @@ const Overview = (props) => {
     <div>
       this is the overview widget!
       <div>
-        {selectedStyle.photos && <ImageGallery photos={selectedStyle.photos} index={photoIndex} handleChangeIndex={setPhotoIndex}/>}
+        {selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}
         <div>
           <ProductRating productID={staticData.product_id}/>
           <ProductInfo name={productInfo.name} category={productInfo.category}/>
