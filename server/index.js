@@ -14,8 +14,8 @@ app.use(express.json());
 
 // routes
 app.all('/*', (req, res) => {
-  // console.log('request body:', req.body);
-  // console.log('full url:', process.env.API_URL + req.url);
+  console.log('request body:', req.body);
+  console.log('full url:', process.env.API_URL + req.url);
 
   return axios({
     method: req.method,
