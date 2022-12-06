@@ -3,37 +3,8 @@ import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
 import WriteAReview from './WriteAReview.jsx';
 
-const ReviewsList = ({productID}) => {
-
-  const [reviews, setReviews] = useState([]);
-  const [reviewCount, setReviewCount] = useState(0);
-  const [renderCount, setRenderCount] = useState(2);
+const ReviewsList = ({productID, reviews, reviewCount, renderCount, handleMoreReviews}) => {
   const [isWritingReview, setIsWritingReview] = useState(false); //for Modal
-
-  useEffect(()=>{
-    axios.get(`http://localhost:3000/reviews?product_id=${productID}`, {header: {'Access-Control-Allow-Origin': '*'}})
-      .then((data) => {
-        console.log(data.data); //data.data.count has how many reviews
-        setReviews(data.data.results);
-        setReviewCount(data.data.count);
-        if (data.data.count < 2) {
-          setRenderCount(data.data.count);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-  },[]);
-
-  const handleMoreReviews = () => {
-    if ((reviewCount - renderCount) >= 2) {
-      setRenderCount(renderCount + 2);
-    } else if ((reviewCount - renderCount) >= 0 ) {
-      setRenderCount(reviewCount);
-    } else {
-      setRenderCount(renderCount);
-    }
-  };
 
   return (
     <div>
