@@ -8,7 +8,7 @@ import ProductDescription from './ProductDescription.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const staticData = {product_id: 37316};
+const staticData = {product_id: 37315};
 
 const Overview = (props) => {
 
@@ -40,7 +40,6 @@ const Overview = (props) => {
 
   return (
     <div>
-      this is the overview widget!
       <div>
         {selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}
         <div>

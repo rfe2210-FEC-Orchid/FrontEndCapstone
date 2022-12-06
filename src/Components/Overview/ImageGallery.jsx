@@ -11,23 +11,62 @@ const ImageGallery = (props) => {
   const [photos, setPhotos] = useState([]);
 
   useEffect(() => {
-    setPhotos(props.photos.slice(0, 7));
-    console.log('useEffect running in gallery');
+    setPhotos(props.photos.slice(sliderLimits.min, sliderLimits.max + 1));
   }, [props.photos]);
 
+  useEffect(() => {
+    setPhotos(props.photos.slice(sliderLimits.min, sliderLimits.max + 1));
+  }, [sliderLimits]);
+
   // functions
-  const sliderUp = () => {
-    setSliderLimits
+  const sliderDown = () => {
+    setSliderLimits({
+      min: sliderLimits.min + 1,
+      max: sliderLimits.max + 1
+    });
+
+    if (photoIndex > 0) {
+      setPhotoIndex(photoIndex - 1);
+    }
   };
 
-  const sliderDown = () => {
+  const sliderUp = () => {
+    setSliderLimits({
+      min: sliderLimits.min - 1,
+      max: sliderLimits.max - 1
+    });
 
+    if (photoIndex < 6) {
+      setPhotoIndex(photoIndex + 1);
+    }
+  };
+
+  const decrementPhotoIndex = () => {
+    if (photoIndex > 0) {
+      setPhotoIndex(photoIndex - 1);
+    } else if ((photoIndex === 0) && (sliderLimits.min > 0)) {
+      setSliderLimits({
+        min: sliderLimits.min - 1,
+        max: sliderLimits.max - 1
+      });
+    }
+  };
+
+  const incrementPhotoIndex = () => {
+    if (photoIndex < photos.length - 1) {
+      setPhotoIndex(photoIndex + 1);
+    } else if ((photoIndex === (photos.length - 1)) && (sliderLimits.max < (props.photos.length - 1))) {
+      setSliderLimits({
+        min: sliderLimits.min + 1,
+        max: sliderLimits.max + 1
+      });
+    }
   };
 
   return (
     <div>
       <div>
-        {props.photos.length > 7 && <AiOutlineArrowUp onClick={sliderUp}/>}
+        {(props.photos.length > 7) && (sliderLimits.min > 0) && <AiOutlineArrowUp onClick={sliderUp}/>}
           <div>
             {photos.map((photo, index) =>
               <img
@@ -38,11 +77,11 @@ const ImageGallery = (props) => {
               />
             )}
           </div>
-        <AiOutlineArrowDown onClick={sliderDown}/>
+        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1) && <AiOutlineArrowDown onClick={sliderDown}/>}
       </div>
-      {photoIndex > 0 && <AiOutlineArrowLeft onClick={() => setPhotoIndex(photoIndex - 1)}/>}
+      {(sliderLimits.min > 0 || photoIndex > 0) && <AiOutlineArrowLeft onClick={decrementPhotoIndex}/>}
       <SelectedImage photo={photos[photoIndex]}/>
-      {photoIndex < props.photos.length - 1 && <AiOutlineArrowRight onClick={() => setPhotoIndex(photoIndex + 1)}/>}
+      {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) && <AiOutlineArrowRight onClick={incrementPhotoIndex}/>}
     </div>
   );
 };
