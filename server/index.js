@@ -3,6 +3,7 @@ const axios = require('axios');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
+
 require('dotenv').config();
 
 const app = express();
@@ -31,7 +32,11 @@ app.all('/*', (req, res) => {
     .then((response) => {
       console.log('response from API:', response.data);
       res.sendStatus(200);
-    });
+    })
+    .catch((err) => {
+      console.log('response from API error:', err);
+      res.sendStatus(500);
+    })
 });
 
 app.listen(PORT, () => console.log(`app listening on port ${PORT}`));
