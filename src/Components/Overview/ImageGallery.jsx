@@ -3,7 +3,7 @@ import SelectedImage from'./SelectedImage.jsx';
 import ExpandedImage from './ExpandedImage.jsx';
 
 import styled from 'styled-components';
-import { AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp } from 'react-icons/ai';
+import { AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineClose } from 'react-icons/ai';
 
 // styles
 const Gallery = styled.div`
@@ -40,10 +40,22 @@ const SelectedImageContainer = styled.div`
 
 const ExpandedImageContainer = styled.div`
   position: fixed;
-
-
-  background: #000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CloseButton = styled.i`
+  postion: absolute;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
 `;
 
 const ImageGallery = (props) => {
@@ -135,11 +147,14 @@ const ImageGallery = (props) => {
 
       {showExpandedImage &&
       <ExpandedImageContainer>
+        <CloseButton onClick={() => setShowExpandedImage(false)}><AiOutlineClose /></CloseButton>
         <ExpandedImage
           photo={photos[photoIndex]}
-          setShowExpandedImage={setShowExpandedImage}
         />
-        <button onClick={() => setShowExpandedImage(false)}>X</button>
+        <div>
+          {(sliderLimits.min > 0 || photoIndex > 0) && <AiOutlineArrowLeft onClick={decrementPhotoIndex}/>}
+          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) && <AiOutlineArrowRight onClick={incrementPhotoIndex}/>}
+        </div>
       </ExpandedImageContainer>}
     </Gallery>
   );
