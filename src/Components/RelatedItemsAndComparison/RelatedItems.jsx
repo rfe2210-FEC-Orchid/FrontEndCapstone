@@ -9,8 +9,8 @@ import RelatedProductsList from './RelatedProductsList.jsx';
   // returns a list of product ids related to the product specified
   // create a state for product ID
 
-const RelatedItems = () => {
-  const [productID, setproductID] = useState(37312); // Ben uses this as well
+const RelatedItems = ({productId, productInfo}) => {
+  const [relatedProducts, setrelatedProducts] = useState([]);
 
   useEffect(() => {
     GetRelatedProductsList();
@@ -20,15 +20,16 @@ const RelatedItems = () => {
   let GetRelatedProductsList = () => {
     axios.get('/products/:product_id/related', {
       params: {
-        product_id: productID
+        product_id: productId
       }
     })
     .then((res) => {
       console.log('related product IDs: ', res);
       // pass result to <RelatedProductsList /> so it can map through the array
+      setrelatedProducts(res.data);
     })
     .catch((err) => {
-      console.log('failed to receive related product IDs: ', err);
+      console.log('failed to retrieve related product IDs: ', err);
     })
   }
 
@@ -44,7 +45,7 @@ const RelatedItems = () => {
 
   return (
     <div>
-      <RelatedProductsList setproductID={setproductID} GetRelatedProductsList={GetRelatedProductsList}/>
+      <RelatedProductsList relatedProducts={relatedProducts}GetRelatedProductsList={GetRelatedProductsList} productInfo={productInfo}/>
       <OutfitList GetCart={GetCart}/>
     </div>
   )
