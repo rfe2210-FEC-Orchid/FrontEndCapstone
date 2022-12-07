@@ -1,7 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import SelectedImage from'./SelectedImage.jsx';
 import ExpandedImage from './ExpandedImage.jsx';
+
+import styled from 'styled-components';
 import { AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp } from 'react-icons/ai';
+
+// styles
+const Gallery = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+const SliderContainer = styled.div`
+  position: relative;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const SliderImage = styled.img`
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  padding: 2.5px;
+  margin: 2.5px;
+  border: ${props => props.selected ? "2px solid black" : "2px solid white"};
+`;
+
+const SelectedImageContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+const ExpandedImageContainer = styled.div`
+  position: fixed;
+
+
+  background: #000;
+  z-index: 10;
+`;
 
 const ImageGallery = (props) => {
 
@@ -9,6 +52,7 @@ const ImageGallery = (props) => {
   const [photoIndex, setPhotoIndex] = useState(0);
   const [sliderLimits, setSliderLimits] = useState({min:0, max: 6});
   const [photos, setPhotos] = useState([]);
+  const [showExpandedImage, setShowExpandedImage] = useState(false);
 
   useEffect(() => {
     setPhotos(props.photos.slice(sliderLimits.min, sliderLimits.max + 1));
@@ -64,25 +108,40 @@ const ImageGallery = (props) => {
   };
 
   return (
-    <div>
-      <div>
+    <Gallery>
+      <SliderContainer>
         {(props.photos.length > 7) && (sliderLimits.min > 0) && <AiOutlineArrowUp onClick={sliderUp}/>}
-          <div>
             {photos.map((photo, index) =>
-              <img
-                src={photo.url}
+              <SliderImage
+                src={photo.thumbnail_url}
+                selected={index === photoIndex}
                 key={index}
-                height={100}
                 onClick={() => setPhotoIndex(index)}
               />
             )}
-          </div>
         {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1) && <AiOutlineArrowDown onClick={sliderDown}/>}
-      </div>
-      {(sliderLimits.min > 0 || photoIndex > 0) && <AiOutlineArrowLeft onClick={decrementPhotoIndex}/>}
-      <SelectedImage photo={photos[photoIndex]}/>
-      {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) && <AiOutlineArrowRight onClick={incrementPhotoIndex}/>}
-    </div>
+      </SliderContainer>
+      <SelectedImageContainer>
+        <SelectedImage
+          photo={photos[photoIndex]}
+          setShowExpandedImage={setShowExpandedImage}
+        />
+        <div>
+          {(sliderLimits.min > 0 || photoIndex > 0) && <AiOutlineArrowLeft onClick={decrementPhotoIndex}/>}
+          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) && <AiOutlineArrowRight
+          onClick={incrementPhotoIndex}/>}
+        </div>
+      </SelectedImageContainer>
+
+      {showExpandedImage &&
+      <ExpandedImageContainer>
+        <ExpandedImage
+          photo={photos[photoIndex]}
+          setShowExpandedImage={setShowExpandedImage}
+        />
+        <button onClick={() => setShowExpandedImage(false)}>X</button>
+      </ExpandedImageContainer>}
+    </Gallery>
   );
 };
 
