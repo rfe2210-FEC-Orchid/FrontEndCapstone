@@ -8,18 +8,24 @@ import ProductDescription from './ProductDescription.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const staticData = {product_id: 37311};
+const staticData = {product_id: 37315};
 
 const UpperContentContainer = styled.div`
   position: relative;
-  margin: 20px 10%;
+  margin: 20px 20px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 `;
 
-const UpperColumnContainer = styled.div`
+const UpperColumnContainerLeft = styled.div`
   margin: 10px;
+`;
+
+const UpperColumnContainerRight = styled.div`
+  margin: 10px;
+  width: 315px;
+  min-width: 200px;
 `;
 
 const Overview = (props) => {
@@ -53,13 +59,13 @@ const Overview = (props) => {
   return (
     <div>
       <UpperContentContainer>
-        <UpperColumnContainer>{selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}</UpperColumnContainer>
-        <UpperColumnContainer>
+        <UpperColumnContainerLeft>{selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}</UpperColumnContainerLeft>
+        <UpperColumnContainerRight>
           <ProductRating productID={staticData.product_id}/>
           <ProductInfo name={productInfo.name} category={productInfo.category}/>
           <ProductStyle selectedStyle={selectedStyle} allStyles={allStyles} handleSelectStyle={handleSelectStyle}/>
           <ProductShare />
-        </UpperColumnContainer>
+        </UpperColumnContainerRight>
       </UpperContentContainer>
       <ProductDescription slogan={productInfo.slogan} description={productInfo.description} features={productInfo.features}/>
     </div>

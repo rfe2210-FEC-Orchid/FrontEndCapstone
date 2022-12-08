@@ -43,14 +43,6 @@ const ProductStyle = (props) => {
   };
 
   const handleChangeStyle = (style) => {
-    // console.log('new style:', style);
-    // // find a way to update sku when style is changed after size is selected (i.e. retain size/qty selection)
-    // let currentSelectedSize = options.selectedSize;
-    // let newSku;
-
-    // if (currentSelectedSize) {
-    //   // iterate through the style object, looking for the same size
-    // }
 
     props.handleSelectStyle(style);
     setOptions({
@@ -65,7 +57,7 @@ const ProductStyle = (props) => {
     <div>
       <PriceContainer>
         {props.selectedStyle.sale_price
-        ? <p>$<s>{props.selectedStyle.original_price}</s> {props.selectedStyle.sale_price}</p>
+        ? <p><s style={{color: 'red'}}>${props.selectedStyle.original_price}</s> ${props.selectedStyle.sale_price}</p>
         : <p>${props.selectedStyle.original_price}</p>
         }
       </PriceContainer>

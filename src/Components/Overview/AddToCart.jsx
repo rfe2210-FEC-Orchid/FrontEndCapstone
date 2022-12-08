@@ -12,6 +12,7 @@ const QuantityDropdown = styled.select`
   width: 30%;
   margin-right: 3px;
   text-align: center;
+  border: 1.5px solid black;
 
   &:hover {
     cursor: pointer;
@@ -25,7 +26,7 @@ const QuantityOption = styled.option`
 const CartButton = styled.button`
   height: 40px;
   width: 65%;
-  border: 1px solid black;
+  border: 1.5px solid black;
 
   &:hover {
     cursor: pointer;

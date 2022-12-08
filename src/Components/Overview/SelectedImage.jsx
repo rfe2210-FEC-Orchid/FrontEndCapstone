@@ -3,8 +3,8 @@ import ExpandedImage from './ExpandedImage.jsx';
 import styled from 'styled-components';
 
 const MainImage = styled.img`
-  height: 800px;
-  width: 800px;
+  width: 100%;
+  height: 645px;
   object-fit: contain;
 
   &:hover {
@@ -15,14 +15,13 @@ const MainImage = styled.img`
 const SelectedImage = (props) => {
 
   return (
-    <div>
+    <>
       {props.photo &&
       <MainImage
         src={props.photo.url}
         onClick={() => props.setShowExpandedImage(true)}
       />}
-
-    </div>
+    </>
   );
 };
 

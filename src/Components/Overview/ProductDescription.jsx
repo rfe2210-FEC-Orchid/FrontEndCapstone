@@ -33,6 +33,7 @@ const ProductDescription = (props) => {
         <p>{props.description}</p>
       </LeftColumn>
       <RightColumn>
+        <h3>Features:</h3>
         {props.features && props.features.filter(feature => feature.value).map((feature, index) =>
           <p key={index}>{feature.feature}: {feature.value}</p>
         )}

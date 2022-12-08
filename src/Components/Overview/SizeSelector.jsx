@@ -7,7 +7,7 @@ const SizeOption = styled.div`
   width: 40px;
   text-align: center;
   line-height: 40px;
-  border: 2px solid black;
+  border: 1.5px solid black;
   margin: 5px;
   background-color: ${props => props.selected ? 'black' : 'white'};
   color: ${props => props.selected ? 'white' : 'black'};

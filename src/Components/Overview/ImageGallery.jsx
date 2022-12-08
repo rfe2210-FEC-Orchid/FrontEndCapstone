@@ -12,6 +12,7 @@ const Gallery = styled.div`
   flex-direction: row;
   justify-content: flex-start;
 `;
+
 const SliderContainer = styled.div`
   position: relative;
   width: 100px;
@@ -32,6 +33,8 @@ const SliderImage = styled.img`
 
 const SelectedImageContainer = styled.div`
   position: relative;
+  // width: 80%;
+  width: 600px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -64,6 +67,12 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`;
+
+const Placeholder = styled.div`
+  display: inline-block;
+  height: 25px;
+  width: 25px;
 `;
 
 const ImageGallery = (props) => {
@@ -130,7 +139,7 @@ const ImageGallery = (props) => {
   return (
     <Gallery>
       <SliderContainer>
-        {(props.photos.length > 7) && (sliderLimits.min > 0) && <AiOutlineArrowUp onClick={sliderUp} size={25}/>}
+        {(props.photos.length > 7) && (sliderLimits.min > 0) ? <AiOutlineArrowUp onClick={sliderUp} size={25}/> : <Placeholder></Placeholder>}
             {photos.map((photo, index) =>
               <SliderImage
                 src={photo.thumbnail_url}
@@ -139,7 +148,7 @@ const ImageGallery = (props) => {
                 onClick={() => setPhotoIndex(index)}
               />
             )}
-        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1) && <AiOutlineArrowDown onClick={sliderDown} size={25}/>}
+        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1) ? <AiOutlineArrowDown onClick={sliderDown} size={25}/> : <Placeholder></Placeholder>}
       </SliderContainer>
       <SelectedImageContainer>
         <SelectedImage
