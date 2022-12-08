@@ -3,12 +3,15 @@ import axios from 'axios';
 import RelatedProductsList from './RelatedProductsList.jsx';
 
 const RelatedProductCards = ({product, setproductId}) => {
-  console.log('product category: ', product.category);
   return (
     <div>
+      {product.image ? (
+        <img src={product.image[0].url} alt={product.name} width='250' height='250' />
+      ) : 'image not available'
+      }
       <h4>{product.category}</h4>
       <h4>{product.name}</h4>
-      <h5>{product.default_price}</h5>
+      <h5>${product.price}</h5>
       <p>★★★★★</p>
     </div>
   )

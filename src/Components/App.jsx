@@ -28,7 +28,7 @@ const App = () => {
   return (
     <div>
       <Overview />
-      <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo}/>
+      <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo} />
       <QA />
       <RnR />
     </div>
