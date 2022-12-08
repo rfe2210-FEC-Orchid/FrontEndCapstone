@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 require('dotenv').config();
 
@@ -31,11 +31,12 @@ app.all('/*', (req, res) => {
     })
     .then((response) => {
       console.log('response from API:', response.data);
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.log('response from API error:', err);
-      res.sendStatus(500);
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+      res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+
+      res.status(200).send(response.data);
     })
 });
 

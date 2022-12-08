@@ -4,49 +4,54 @@ import axios from 'axios';
 import OutfitList from './OutfitList.jsx';
 import RelatedProductsList from './RelatedProductsList.jsx';
 
-// GET /products/:product_id/related
-  // send a required product id for GET req
-  // returns a list of product ids related to the product specified
-  // create a state for product ID
-
-const RelatedItems = ({productId, productInfo}) => {
+const RelatedItems = ({productId, setproductId, productInfo, setproductInfo}) => {
   const [relatedProducts, setrelatedProducts] = useState([]);
 
   useEffect(() => {
     GetRelatedProductsList();
-    GetCart();
+    // GetCart();
   }, [])
 
   let GetRelatedProductsList = () => {
-    axios.get('/products/:product_id/related', {
-      params: {
-        product_id: productId
-      }
-    })
+    axios.get(`http://localhost:3001/products/${productId}/related`)
     .then((res) => {
-      console.log('related product IDs: ', res);
-      // pass result to <RelatedProductsList /> so it can map through the array
-      setrelatedProducts(res.data);
+      console.log('related product IDs: ', res.data);
+      let relatedProductsInfo = res.data.map((id) => {
+        return axios.get(`http://localhost:3001/products/${id}`)
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => {
+          console.log('failed to retrieve related product info: ', err);
+        })
+      })
+      // console.log(Promise.all(relatedProductsInfo));
+      // return Promise.all(relatedProductsInfo);
+      Promise.all(relatedProductsInfo)
+      .then((result) => {
+        setrelatedProducts(result);
+      })
     })
     .catch((err) => {
-      console.log('failed to retrieve related product IDs: ', err);
+      console.log('failed to retrieve related product IDs info: ', err);
     })
   }
 
-  let GetCart = () => {
-    axios.get('/cart')
-    .then((res) => {
-      console.log('products added to the cart: ', res);
-    })
-    .catch((err) => {
-      console.log('failed to retrieve cart: ', err);
-    })
-  }
-
+  // console.log('final related products info: ', relatedProductsInfo);
+  // return Promise.all(relatedProductsInfo);
+  // let GetCart = () => {
+  //   axios.get('/cart')
+  //   .then((res) => {
+  //     console.log('products added to the cart: ', res);
+  //   })
+  //   .catch((err) => {
+  //     console.log('failed to retrieve cart: ', err);
+  //   })
+  // }
   return (
     <div>
-      <RelatedProductsList relatedProducts={relatedProducts}GetRelatedProductsList={GetRelatedProductsList} productInfo={productInfo}/>
-      <OutfitList GetCart={GetCart}/>
+      <RelatedProductsList relatedProducts={relatedProducts} setproductId={setproductId}/>
+      {/* <OutfitList GetCart={GetCart}/> */}
     </div>
   )
 }

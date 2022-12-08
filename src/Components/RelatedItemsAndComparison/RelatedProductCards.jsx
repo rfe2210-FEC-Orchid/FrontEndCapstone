@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedProductsList from './RelatedProductsList.jsx';
 
-const RelatedProductCards = ({productID, setproductID, GetRelatedProductsList}) => {
+const RelatedProductCards = ({product, setproductId}) => {
+  console.log('product category: ', product.category);
   return (
     <div>
-
+      <h4>{product.category}</h4>
+      <h4>{product.name}</h4>
+      <h5>{product.default_price}</h5>
+      <p>★★★★★</p>
     </div>
   )
 }

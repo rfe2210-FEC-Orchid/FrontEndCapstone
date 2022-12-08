@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedProductCards from './RelatedProductCards.jsx';
 
-// displays products which have been associated with the current product
-// map through the array of related product IDs to create card
-// how do you initially get the related product IDs?
-//
-const RelatedProductsList = ({setproductID, GetRelatedProductsList, relatedProducts}) => {
-  return (
-    <div>
-      <h3>RELATED PRODUCTS</h3>
-    </div>
-  )
+const RelatedProductsList = ({relatedProducts, setproductId}) => {
+  console.log('related products info array', relatedProducts);
+  // return (
+  //   <div>
+  //     <h3>RELATED PRODUCTS</h3>
+  //     {relatedProducts.map((product) => {return <RelatedProductCards key={product.id} product={product} setproductId={setproductId} />})}
+  //   </div>
+  // )
 }
 
 export default RelatedProductsList;

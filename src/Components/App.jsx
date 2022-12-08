@@ -7,26 +7,28 @@ import RelatedItems from './RelatedItemsAndComparison/RelatedItems.jsx';
 import QA from './QuestionsAndAnswers/QA.jsx';
 
 const App = () => {
-  const [productId, setproductId] = useState(37312);
+  const [productId, setproductId] = useState(37313);
   const [productInfo, setproductInfo] = useState({});
 
-  // axios.get('/products/:product_id', {
-  //   params: {
-  //     product_id: productId
-  //   }
-  // })
-  // .then((res) => {
-  //   console.log('product info: ', res);
-  //   setproductInfo(res.data);
-  // })
-  // .catch((err) => {
-  //   console.log('failed to retrieve product info', err);
-  // })
+  useEffect(() => {
+    getProductInfo();
+  }, [])
+
+  let getProductInfo = () => {
+    axios.get(`http://localhost:3001/products/${productId}`)
+    .then((res) => {
+      console.log('product info: ', res.data);
+      setproductInfo(res.data);
+    })
+    .catch((err) => {
+      console.log('failed to retrieve product info', err);
+    })
+  }
 
   return (
     <div>
       <Overview />
-      {/* <RelatedItems productId={productId} productInfo={productInfo}/> */}
+      <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo}/>
       <QA />
       <RnR />
     </div>
