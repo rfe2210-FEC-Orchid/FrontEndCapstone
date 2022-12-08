@@ -51,11 +51,13 @@ const ExpandedImageContainer = styled.div`
   z-index: 10;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
 `;
 
 const CloseButton = styled.i`
   postion: absolute;
+  // top: 0;
   margin: 5px;
   align-self: flex-end;
 `;
@@ -69,10 +71,25 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
 `;
 
+const ExpandedButtonContainer = styled.div`
+  bottom: 0;
+  width: 100%;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+// const Placeholder = styled.div`
+//   display: inline-block;
+//   height: 25px;
+//   width: 25px;
+// `;
+
 const Placeholder = styled.div`
   display: inline-block;
-  height: 25px;
-  width: 25px;
+  height: ${props => props.size}px;
+  width: ${props => props.size}px;
 `;
 
 const ImageGallery = (props) => {
@@ -139,7 +156,7 @@ const ImageGallery = (props) => {
   return (
     <Gallery>
       <SliderContainer>
-        {(props.photos.length > 7) && (sliderLimits.min > 0) ? <AiOutlineArrowUp onClick={sliderUp} size={25}/> : <Placeholder></Placeholder>}
+        {(props.photos.length > 7) && (sliderLimits.min > 0) ? <AiOutlineArrowUp onClick={sliderUp} size={25}/> : <Placeholder size={25}></Placeholder>}
             {photos.map((photo, index) =>
               <SliderImage
                 src={photo.thumbnail_url}
@@ -148,8 +165,9 @@ const ImageGallery = (props) => {
                 onClick={() => setPhotoIndex(index)}
               />
             )}
-        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1) ? <AiOutlineArrowDown onClick={sliderDown} size={25}/> : <Placeholder></Placeholder>}
+        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1) ? <AiOutlineArrowDown onClick={sliderDown} size={25}/> : <Placeholder size={25}></Placeholder>}
       </SliderContainer>
+
       <SelectedImageContainer>
         <SelectedImage
           photo={photos[photoIndex]}
@@ -168,10 +186,10 @@ const ImageGallery = (props) => {
         <ExpandedImage
           photo={photos[photoIndex]}
         />
-        <div>
-          {(sliderLimits.min > 0 || photoIndex > 0) && <AiOutlineArrowLeft onClick={decrementPhotoIndex} color={'white'} size={40}/>}
-          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) && <AiOutlineArrowRight onClick={incrementPhotoIndex} color={'white'} size={40}/>}
-        </div>
+        <ExpandedButtonContainer>
+          {(sliderLimits.min > 0 || photoIndex > 0) ? <AiOutlineArrowLeft onClick={decrementPhotoIndex} color={'white'} size={40}/> : <Placeholder size={40}></Placeholder>}
+          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) ? <AiOutlineArrowRight onClick={incrementPhotoIndex} color={'white'} size={40}/> : <Placeholder size={40}></Placeholder>}
+        </ExpandedButtonContainer>
       </ExpandedImageContainer>}
     </Gallery>
   );

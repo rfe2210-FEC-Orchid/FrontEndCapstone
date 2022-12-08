@@ -24,7 +24,7 @@ const UpperColumnContainerLeft = styled.div`
 
 const UpperColumnContainerRight = styled.div`
   margin: 10px;
-  width: 315px;
+  width: 320px;
   min-width: 200px;
 `;
 

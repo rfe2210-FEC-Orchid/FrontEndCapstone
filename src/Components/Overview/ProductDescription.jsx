@@ -4,17 +4,18 @@ import styled from 'styled-components';
 const DescriptionContainer = styled.div`
   position: relative;
   margin: 20px 10%;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
 `;
 
 const LeftColumn = styled.div`
-  display: inline-block;
+  // display: inline-block;
   margin: 0 10px;
   padding: 0 30px;
   width: 65%;
-  height: 150px;
+  height: 100%;
   border-right: 2px solid black;
 `;
 
@@ -22,6 +23,7 @@ const RightColumn = styled.div`
   margin: 0 10px;
   padding: 0 30px;
   width: 35%;
+  height: 100%;
 `;
 
 const ProductDescription = (props) => {
