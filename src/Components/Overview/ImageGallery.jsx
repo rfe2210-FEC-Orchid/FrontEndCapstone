@@ -17,7 +17,7 @@ const SliderContainer = styled.div`
   width: 100px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -44,7 +44,7 @@ const ExpandedImageContainer = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   z-index: 10;
   display: flex;
   flex-direction: column;
@@ -53,9 +53,17 @@ const ExpandedImageContainer = styled.div`
 
 const CloseButton = styled.i`
   postion: absolute;
-  width: 20px;
-  height: 20px;
   margin: 5px;
+  align-self: flex-end;
+`;
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const ImageGallery = (props) => {
@@ -122,7 +130,7 @@ const ImageGallery = (props) => {
   return (
     <Gallery>
       <SliderContainer>
-        {(props.photos.length > 7) && (sliderLimits.min > 0) && <AiOutlineArrowUp onClick={sliderUp}/>}
+        {(props.photos.length > 7) && (sliderLimits.min > 0) && <AiOutlineArrowUp onClick={sliderUp} size={25}/>}
             {photos.map((photo, index) =>
               <SliderImage
                 src={photo.thumbnail_url}
@@ -131,29 +139,29 @@ const ImageGallery = (props) => {
                 onClick={() => setPhotoIndex(index)}
               />
             )}
-        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1) && <AiOutlineArrowDown onClick={sliderDown}/>}
+        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1) && <AiOutlineArrowDown onClick={sliderDown} size={25}/>}
       </SliderContainer>
       <SelectedImageContainer>
         <SelectedImage
           photo={photos[photoIndex]}
           setShowExpandedImage={setShowExpandedImage}
         />
-        <div>
-          {(sliderLimits.min > 0 || photoIndex > 0) && <AiOutlineArrowLeft onClick={decrementPhotoIndex}/>}
-          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) && <AiOutlineArrowRight
-          onClick={incrementPhotoIndex}/>}
-        </div>
+        <ButtonContainer>
+          {(sliderLimits.min > 0 || photoIndex > 0) ? <AiOutlineArrowLeft onClick={decrementPhotoIndex} size={40}/> : <div></div>}
+          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) ? <AiOutlineArrowRight
+          onClick={incrementPhotoIndex} size={40}/> : <div></div>}
+        </ButtonContainer>
       </SelectedImageContainer>
 
       {showExpandedImage &&
       <ExpandedImageContainer>
-        <CloseButton onClick={() => setShowExpandedImage(false)}><AiOutlineClose /></CloseButton>
+        <CloseButton onClick={() => setShowExpandedImage(false)}><AiOutlineClose color={'white'} size={40}/></CloseButton>
         <ExpandedImage
           photo={photos[photoIndex]}
         />
         <div>
-          {(sliderLimits.min > 0 || photoIndex > 0) && <AiOutlineArrowLeft onClick={decrementPhotoIndex}/>}
-          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) && <AiOutlineArrowRight onClick={incrementPhotoIndex}/>}
+          {(sliderLimits.min > 0 || photoIndex > 0) && <AiOutlineArrowLeft onClick={decrementPhotoIndex} color={'white'} size={40}/>}
+          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) && <AiOutlineArrowRight onClick={incrementPhotoIndex} color={'white'} size={40}/>}
         </div>
       </ExpandedImageContainer>}
     </Gallery>

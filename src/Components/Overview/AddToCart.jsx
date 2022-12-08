@@ -1,10 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
+
+const CartContainer = styled.div`
+  margin: 10px 5px;
+`;
+
+const QuantityDropdown = styled.select`
+  display: inline-block;
+  height: 40px;
+  width: 30%;
+  margin-right: 3px;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const QuantityOption = styled.option`
+
+`;
+
+const CartButton = styled.button`
+  height: 40px;
+  width: 65%;
+  border: 1px solid black;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 
 const AddToCart = (props) => {
 
   // functions
-  const handleAddToCart = () => {
+  const handleAddToCart = (e) => {
+    e.preventDefault();
     let quantity = props.options.selectedQuantity;
     let sku_id = props.options.sku_id;
 
@@ -26,17 +59,17 @@ const AddToCart = (props) => {
   }
 
   return (
-    <div>
-      <select onChange={(e) => props.handleChangeQuantity(e.target.value)}>
+    <CartContainer>
+      <QuantityDropdown onChange={(e) => props.handleChangeQuantity(e.target.value)}>
         {props.options.selectedSize
         ? quantityArray(props.options.availableQuantity).map((num) =>
-            <option key={num} value={num}>{num}</option>
+            <QuantityOption key={num} value={num}>{num}</QuantityOption>
           )
         : <option> -- </option>
         }
-      </select>
-      <button onClick={handleAddToCart}>Add To Cart</button>
-    </div>
+      </QuantityDropdown>
+      <CartButton onClick={handleAddToCart}>Add To Cart</CartButton>
+    </CartContainer>
   );
 };
 

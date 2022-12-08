@@ -3,7 +3,12 @@ import axios from 'axios';
 import StyleSelector from './StyleSelector.jsx';
 import SizeSelector from './SizeSelector.jsx';
 import AddToCart from './AddToCart.jsx';
+import styled from 'styled-components';
 
+const PriceContainer = styled.div`
+  width: 100%;
+  border-bottom: 2px solid black;
+`;
 
 const ProductStyle = (props) => {
 
@@ -58,14 +63,14 @@ const ProductStyle = (props) => {
 
   return (
     <div>
-      <div>
+      <PriceContainer>
         {props.selectedStyle.sale_price
         ? <p>$<s>{props.selectedStyle.original_price}</s> {props.selectedStyle.sale_price}</p>
         : <p>${props.selectedStyle.original_price}</p>
         }
-        <p><b>Style > </b>{props.selectedStyle.name}</p>
-      </div>
-      <StyleSelector styles={props.allStyles} handleChangeStyle={handleChangeStyle}/>
+      </PriceContainer>
+      <p><b>Style > </b>{props.selectedStyle.name}</p>
+      <StyleSelector styles={props.allStyles} selectedStyleID={props.selectedStyle.style_id} handleChangeStyle={handleChangeStyle}/>
       <SizeSelector skus={props.selectedStyle.skus} options={options} handleSelectSize={handleSelectSize}/>
       <AddToCart options={options} handleChangeQuantity={handleChangeQuantity}/>
     </div>

@@ -8,7 +8,19 @@ import ProductDescription from './ProductDescription.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const staticData = {product_id: 37315};
+const staticData = {product_id: 37311};
+
+const UpperContentContainer = styled.div`
+  position: relative;
+  margin: 20px 10%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const UpperColumnContainer = styled.div`
+  margin: 10px;
+`;
 
 const Overview = (props) => {
 
@@ -40,15 +52,15 @@ const Overview = (props) => {
 
   return (
     <div>
-      <div>
-        {selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}
-        <div>
+      <UpperContentContainer>
+        <UpperColumnContainer>{selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}</UpperColumnContainer>
+        <UpperColumnContainer>
           <ProductRating productID={staticData.product_id}/>
           <ProductInfo name={productInfo.name} category={productInfo.category}/>
           <ProductStyle selectedStyle={selectedStyle} allStyles={allStyles} handleSelectStyle={handleSelectStyle}/>
           <ProductShare />
-        </div>
-      </div>
+        </UpperColumnContainer>
+      </UpperContentContainer>
       <ProductDescription slogan={productInfo.slogan} description={productInfo.description} features={productInfo.features}/>
     </div>
   );

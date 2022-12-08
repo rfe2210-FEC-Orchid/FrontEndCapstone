@@ -1,19 +1,43 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const DescriptionContainer = styled.div`
+  position: relative;
+  margin: 20px 10%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const LeftColumn = styled.div`
+  display: inline-block;
+  margin: 0 10px;
+  padding: 0 30px;
+  width: 65%;
+  height: 150px;
+  border-right: 2px solid black;
+`;
+
+const RightColumn = styled.div`
+  margin: 0 10px;
+  padding: 0 30px;
+  width: 35%;
+`;
 
 const ProductDescription = (props) => {
 
   return (
-    <div>
-      <div>
+    <DescriptionContainer>
+      <LeftColumn>
         <h3>{props.slogan}</h3>
         <p>{props.description}</p>
-      </div>
-      <ul>
+      </LeftColumn>
+      <RightColumn>
         {props.features && props.features.filter(feature => feature.value).map((feature, index) =>
-          <li key={index}>{feature.feature}: {feature.value}</li>
+          <p key={index}>{feature.feature}: {feature.value}</p>
         )}
-      </ul>
-    </div>
+      </RightColumn>
+    </DescriptionContainer>
   );
 };
 

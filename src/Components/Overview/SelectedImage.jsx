@@ -3,8 +3,8 @@ import ExpandedImage from './ExpandedImage.jsx';
 import styled from 'styled-components';
 
 const MainImage = styled.img`
-  height: 600px;
-  width: 600px;
+  height: 800px;
+  width: 800px;
   object-fit: contain;
 
   &:hover {
