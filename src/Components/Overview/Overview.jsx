@@ -8,7 +8,7 @@ import ProductDescription from './ProductDescription.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const staticData = {product_id: 37315};
+const staticData = {product_id: 37311};
 
 const UpperContentContainer = styled.div`
   position: relative;

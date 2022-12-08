@@ -102,6 +102,9 @@ const ImageGallery = (props) => {
 
   useEffect(() => {
     setPhotos(props.photos.slice(sliderLimits.min, sliderLimits.max + 1));
+    if (!props.photos[photoIndex]) {
+      setPhotoIndex(0);
+    }
   }, [props.photos]);
 
   useEffect(() => {
