@@ -20,6 +20,7 @@ const UpperContentContainer = styled.div`
 
 const UpperColumnContainerLeft = styled.div`
   margin: 10px;
+  width: 70%;
 `;
 
 const UpperColumnContainerRight = styled.div`

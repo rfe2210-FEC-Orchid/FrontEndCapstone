@@ -20,12 +20,17 @@ const ProductStyle = (props) => {
     availableQuantity: null
   });
 
+  const [displayError, setDisplayError] = useState(false);
+
   useEffect(() => {
-    console.log('options updated:', options);
   }, [options]);
 
   // functions
   const handleSelectSize = (sku_id, selectedSize, availableQuantity) => {
+    if (displayError) {
+      setDisplayError(false);
+    }
+
     setOptions({
       sku_id,
       selectedSize,
@@ -35,7 +40,6 @@ const ProductStyle = (props) => {
   };
 
   const handleChangeQuantity = (selectedQuantity) => {
-    console.log('changing quantity');
     setOptions({
       ...options,
       selectedQuantity
@@ -64,7 +68,7 @@ const ProductStyle = (props) => {
       <p><b>Style > </b>{props.selectedStyle.name}</p>
       <StyleSelector styles={props.allStyles} selectedStyleID={props.selectedStyle.style_id} handleChangeStyle={handleChangeStyle}/>
       <SizeSelector skus={props.selectedStyle.skus} options={options} handleSelectSize={handleSelectSize}/>
-      <AddToCart options={options} handleChangeQuantity={handleChangeQuantity}/>
+      <AddToCart options={options} handleChangeQuantity={handleChangeQuantity} displayError={displayError} setDisplayError={setDisplayError}/>
     </div>
   );
 };

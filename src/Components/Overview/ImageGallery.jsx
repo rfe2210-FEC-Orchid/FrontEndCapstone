@@ -33,9 +33,13 @@ const SliderImage = styled.img`
 `;
 
 const SelectedImageContainer = styled.div`
+  display: inline-block;
   position: relative;
-  // width: 80%;
-  width: 600px;
+  // width: 600px;
+
+  width: calc(100% - 100px);
+
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -86,11 +90,6 @@ const Placeholder = styled.div`
   height: ${props => props.size}px;
   width: ${props => props.size}px;
 `;
-
-const dotStyle = {
-  size: '40px',
-  color: 'white'
-}
 
 const ImageGallery = (props) => {
 
@@ -164,7 +163,10 @@ const ImageGallery = (props) => {
   return (
     <Gallery>
       <SliderContainer>
-        {(props.photos.length > 7) && (sliderLimits.min > 0) ? <AiOutlineArrowUp onClick={sliderUp} size={25}/> : <Placeholder size={25}></Placeholder>}
+        {(props.photos.length > 7) && (sliderLimits.min > 0)
+          ? <AiOutlineArrowUp onClick={sliderUp} size={25}/>
+          : <Placeholder size={25}></Placeholder>}
+
             {photos.map((photo, index) =>
               <SliderImage
                 src={photo.thumbnail_url}
@@ -173,7 +175,10 @@ const ImageGallery = (props) => {
                 onClick={() => setPhotoIndex(index)}
               />
             )}
-        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1) ? <AiOutlineArrowDown onClick={sliderDown} size={25}/> : <Placeholder size={25}></Placeholder>}
+
+        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1)
+          ? <AiOutlineArrowDown onClick={sliderDown} size={25}/>
+          : <Placeholder size={25}></Placeholder>}
       </SliderContainer>
 
       <SelectedImageContainer>
@@ -181,16 +186,21 @@ const ImageGallery = (props) => {
           photo={photos[photoIndex]}
           setShowExpandedImage={setShowExpandedImage}
         />
+
         <ButtonContainer>
-          {(sliderLimits.min > 0 || photoIndex > 0) ? <AiOutlineArrowLeft onClick={decrementPhotoIndex} size={40}/> : <div></div>}
-          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) ? <AiOutlineArrowRight
-          onClick={incrementPhotoIndex} size={40}/> : <div></div>}
+          {(sliderLimits.min > 0 || photoIndex > 0)
+            ? <AiOutlineArrowLeft onClick={decrementPhotoIndex} size={40}/>
+            : <Placeholder size={40}></Placeholder>}
+          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1)
+            ? <AiOutlineArrowRight onClick={incrementPhotoIndex} size={40}/>
+            : <Placeholder size={40}></Placeholder>}
         </ButtonContainer>
       </SelectedImageContainer>
 
-      {showExpandedImage &&
-      <ExpandedImageContainer>
-        {!hoverEnabled ? <CloseButton onClick={() => setShowExpandedImage(false)}><AiOutlineClose color={'white'} size={40}/></CloseButton> : <Placeholder size={40}></Placeholder>}
+      {showExpandedImage && <ExpandedImageContainer>
+        {!hoverEnabled
+          ? <CloseButton onClick={() => setShowExpandedImage(false)}><AiOutlineClose color={'white'} size={40}/></CloseButton>
+          : <Placeholder size={40}></Placeholder>}
 
         <ExpandedImage
           toggleHoverZoom={toggleHoverZoom}
@@ -198,15 +208,22 @@ const ImageGallery = (props) => {
           photo={photos[photoIndex]}
         />
 
-        {!hoverEnabled ? <ExpandedButtonContainer>
-          {(sliderLimits.min > 0 || photoIndex > 0) ? <AiOutlineArrowLeft onClick={decrementPhotoIndex} color={'white'} size={40}/> : <Placeholder size={40}></Placeholder>}
+        {!hoverEnabled
+        ? <ExpandedButtonContainer>
+            {(sliderLimits.min > 0 || photoIndex > 0)
+              ? <AiOutlineArrowLeft onClick={decrementPhotoIndex} color={'white'} size={40}/>
+              : <Placeholder size={40}></Placeholder>}
 
-          {photos.map((photo, index) => (
-            index === photoIndex ? <RxDotFilled color={'white'} size={40} key={index} onClick={() => setPhotoIndex(index)}/> : <RxDot color={'white'} size={40} key={index} onClick={() => setPhotoIndex(index)}/>
-          ))}
+            {photos.map((photo, index) => (
+              index === photoIndex
+                ? <RxDotFilled color={'white'} size={40} key={index} onClick={() => setPhotoIndex(index)}/>
+                : <RxDot color={'white'} size={40} key={index} onClick={() => setPhotoIndex(index)}/>
+            ))}
 
-          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) ? <AiOutlineArrowRight onClick={incrementPhotoIndex} color={'white'} size={40}/> : <Placeholder size={40}></Placeholder>}
-        </ExpandedButtonContainer>
+            {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1)
+              ? <AiOutlineArrowRight onClick={incrementPhotoIndex} color={'white'} size={40}/>
+              : <Placeholder size={40}></Placeholder>}
+          </ExpandedButtonContainer>
         : <Placeholder size={40}></Placeholder>}
       </ExpandedImageContainer>}
 

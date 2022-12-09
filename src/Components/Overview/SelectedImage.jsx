@@ -5,8 +5,8 @@ import styled from 'styled-components';
 const MainImage = styled.img`
   width: 100%;
   height: 645px;
-  object-fit: contain;
-
+  object-fit: cover;
+  // object-fit: contain;
   &:hover {
     cursor: zoom-in;
   }
@@ -20,7 +20,8 @@ const SelectedImage = (props) => {
       <MainImage
         src={props.photo.url}
         onClick={() => props.setShowExpandedImage(true)}
-      />}
+      />
+      }
     </>
   );
 };

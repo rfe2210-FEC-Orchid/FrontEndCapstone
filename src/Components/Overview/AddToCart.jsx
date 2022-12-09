@@ -33,18 +33,33 @@ const CartButton = styled.button`
   }
 `;
 
+const ErrorContainer = styled.div`
+  display: inline-block;
+  height: 40px;
+  margin: 5px 0;
+  width: calc(95%);
+  background-color: red;
+  border: 1.5px solid black;
+  line-height: 40px;
+  text-align: center;
+`;
 
 const AddToCart = (props) => {
 
   // functions
   const handleAddToCart = (e) => {
     e.preventDefault();
-    let quantity = props.options.selectedQuantity;
-    let sku_id = props.options.sku_id;
+    if (!props.options.sku_id) {
+      props.setDisplayError(true);
+      console.log('displayError', props.displayError)
+    } else {
+      let quantity = props.options.selectedQuantity;
+      let sku_id = props.options.sku_id;
 
-    for (let i = 0; i < quantity; i++) {
-      console.log('sending post to cart:', i);
-      axios.post(`http://localhost:3001/cart`, { sku_id });
+      for (let i = 0; i < quantity; i++) {
+        console.log('sending post to cart:', i);
+        axios.post(`http://localhost:3001/cart`, { sku_id });
+    }
     }
   };
 
@@ -61,6 +76,7 @@ const AddToCart = (props) => {
 
   return (
     <CartContainer>
+      {props.displayError && <ErrorContainer>please select a size</ErrorContainer>}
       <QuantityDropdown onChange={(e) => props.handleChangeQuantity(e.target.value)}>
         {props.options.selectedSize
         ? quantityArray(props.options.availableQuantity).map((num) =>
