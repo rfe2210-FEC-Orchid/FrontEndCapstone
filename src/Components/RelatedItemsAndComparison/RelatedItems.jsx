@@ -53,7 +53,7 @@ const RelatedItems = ({productId, setproductId, productInfo, setproductInfo, pro
   let GetCart = () => {
     axios.get(`http://localhost:3001/cart`)
     .then((res) => {
-      console.log('products added to the cart: ', res.data);
+      console.log('cart: ', res.data);
       setCart(res.data);
     })
     .catch((err) => {

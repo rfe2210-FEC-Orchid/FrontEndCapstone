@@ -54,7 +54,7 @@
   opacity: 0.2;
   box-shadow: 2px 2px 2px 2px #0000001f;
 }
-.left-arrow:hover, .right-arrow:hover {
+.left-arrow:hover, .right-arrow:hover, #add-outfit:hover {
   opacity: 0.5;
   cursor: pointer;
 }
@@ -91,6 +91,7 @@
 #add-outfit {
   align-items: center;
   padding-top: 20%;
+  opacity: 0.2;
 }
 
 /* .left-arrow, .right-arrow {
