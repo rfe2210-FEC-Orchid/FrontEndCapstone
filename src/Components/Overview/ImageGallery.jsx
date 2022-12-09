@@ -99,6 +99,7 @@ const ImageGallery = (props) => {
   const [sliderLimits, setSliderLimits] = useState({min:0, max: 6});
   const [photos, setPhotos] = useState([]);
   const [showExpandedImage, setShowExpandedImage] = useState(false);
+  const [hoverEnabled, setHoverEnabled] = useState(false);
 
   useEffect(() => {
     setPhotos(props.photos.slice(sliderLimits.min, sliderLimits.max + 1));
@@ -156,6 +157,10 @@ const ImageGallery = (props) => {
     }
   };
 
+  const toggleHoverZoom = () => {
+    setHoverEnabled(!hoverEnabled);
+  }
+
   return (
     <Gallery>
       <SliderContainer>
@@ -185,12 +190,15 @@ const ImageGallery = (props) => {
 
       {showExpandedImage &&
       <ExpandedImageContainer>
-        <CloseButton onClick={() => setShowExpandedImage(false)}><AiOutlineClose color={'white'} size={40}/></CloseButton>
+        {!hoverEnabled ? <CloseButton onClick={() => setShowExpandedImage(false)}><AiOutlineClose color={'white'} size={40}/></CloseButton> : <Placeholder size={40}></Placeholder>}
+
         <ExpandedImage
+          toggleHoverZoom={toggleHoverZoom}
+          hoverEnabled={hoverEnabled}
           photo={photos[photoIndex]}
         />
 
-        <ExpandedButtonContainer>
+        {!hoverEnabled ? <ExpandedButtonContainer>
           {(sliderLimits.min > 0 || photoIndex > 0) ? <AiOutlineArrowLeft onClick={decrementPhotoIndex} color={'white'} size={40}/> : <Placeholder size={40}></Placeholder>}
 
           {photos.map((photo, index) => (
@@ -199,6 +207,7 @@ const ImageGallery = (props) => {
 
           {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) ? <AiOutlineArrowRight onClick={incrementPhotoIndex} color={'white'} size={40}/> : <Placeholder size={40}></Placeholder>}
         </ExpandedButtonContainer>
+        : <Placeholder size={40}></Placeholder>}
       </ExpandedImageContainer>}
 
     </Gallery>

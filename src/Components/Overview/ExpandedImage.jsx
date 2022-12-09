@@ -23,12 +23,9 @@ const ExpandedViewImage = styled.img`
 const ExpandedImage = (props) => {
 
   // state
-  const [hoverEnabled, setHoverEnabled] = useState(false);
   const [imagePosition, setImagePosition] = useState('');
 
-  const toggleHoverZoom = () => {
-    setHoverEnabled(!hoverEnabled);
-  }
+
 
   const handleMouseMove = (e) => {
     const {left, top, width, height} = e.target.getBoundingClientRect();
@@ -40,14 +37,14 @@ const ExpandedImage = (props) => {
   return (
     <Wrapper
       src={props.photo.url}
-      hoverEnabled={hoverEnabled}
+      hoverEnabled={props.hoverEnabled}
       imagePosition={imagePosition}
     >
       <ExpandedViewImage
         src={props.photo.url}
-        onClick={toggleHoverZoom}
-        hoverEnabled={hoverEnabled}
-        onMouseMove={hoverEnabled ? handleMouseMove : undefined}
+        onClick={() => props.toggleHoverZoom()}
+        hoverEnabled={props.hoverEnabled}
+        onMouseMove={props.hoverEnabled ? handleMouseMove : undefined}
       />
     </Wrapper>
   );
