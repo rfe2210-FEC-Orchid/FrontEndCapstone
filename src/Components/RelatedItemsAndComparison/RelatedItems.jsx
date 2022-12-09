@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Carousel from './Carousel.jsx';
+import RelatedProductsList from './RelatedProductsList.jsx';
+import OutfitList from './OutfitList.jsx';
 
-const RelatedItems = ({productId, setproductId, productInfo, setproductInfo, productStyle}) => {
+const RelatedItems = ({productId, setproductId, productInfo, setproductInfo}) => {
   const [relatedProducts, setrelatedProducts] = useState([]);
   const [cart, setCart] = useState([]);
 
@@ -51,19 +52,53 @@ const RelatedItems = ({productId, setproductId, productInfo, setproductInfo, pro
     }
 
   let GetCart = () => {
-    axios.get(`http://localhost:3001/cart`)
+    axios.get('http://localhost:3001/cart')
     .then((res) => {
-      console.log('cart: ', res.data);
-      setCart(res.data);
+      console.log('cart: ', res.data); // res.data = [{sku_id, count}]
+      GetCartInfo(res.data);
     })
     .catch((err) => {
       console.log('failed to retrieve cart: ', err);
     })
   }
+  // get product info based on sku_id - product info needs product id
+  // match sku_id to a product id
+  // get product info based on product id
+  // get style info based on product id
+  let GetCartInfo = (req) => {
+    let cartInfo = req.map((id) => {
+      let skuId = id.sku_id;
+      if (skuId)
+      return axios.get(`http://localhost:3001/products/${id}`)
+        .then((res) => {
+          return axios.get(`http://localhost:3001/products/${id}/styles`)
+          .then((result) => {
+            let product = {id: res.data.id, category: res.data.category, name: res.data.name, price: res.data.default_price, image: result.data.results[0].photos};
+            return product;
+          })
+          .catch((err) => {
+            console.log('failed to retrieve product style', err);
+          })
+          // return res.data;
+        })
+        .catch((err) => {
+          console.log('failed to retrieve product info: ', err);
+        })
+      })
+      Promise.all(cartInfo)
+      .then((result) => {
+        console.log('array of outfit info: ', result);
+        setCart(result);
+      })
+      .catch((err) => {
+        console.log('failed to get an array of outfit info: ', err);
+      })
+  }
 
   return (
     <div>
-      <Carousel relatedProducts={relatedProducts} setproductId={setproductId} cart={cart}/>
+      <RelatedProductsList relatedProducts={relatedProducts} setproductId={setproductId} />
+      <OutfitList cart={cart} setproductId={setproductId} />
     </div>
   )
 }
