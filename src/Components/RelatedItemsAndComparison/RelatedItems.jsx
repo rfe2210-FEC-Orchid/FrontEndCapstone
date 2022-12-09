@@ -1,15 +1,14 @@
-// MAIN APP
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import OutfitList from './OutfitList.jsx';
-import RelatedProductsList from './RelatedProductsList.jsx';
+import Carousel from './Carousel.jsx';
 
 const RelatedItems = ({productId, setproductId, productInfo, setproductInfo, productStyle}) => {
   const [relatedProducts, setrelatedProducts] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     GetRelatedProductsList();
-    // GetCart();
+    GetCart();
   }, [])
 
   let GetRelatedProductsList = () => {
@@ -51,21 +50,20 @@ const RelatedItems = ({productId, setproductId, productInfo, setproductInfo, pro
       })
     }
 
-  // console.log('final related products info: ', relatedProductsInfo);
-  // return Promise.all(relatedProductsInfo);
-  // let GetCart = () => {
-  //   axios.get('/cart')
-  //   .then((res) => {
-  //     console.log('products added to the cart: ', res);
-  //   })
-  //   .catch((err) => {
-  //     console.log('failed to retrieve cart: ', err);
-  //   })
-  // }
+  let GetCart = () => {
+    axios.get(`http://localhost:3001/cart`)
+    .then((res) => {
+      console.log('products added to the cart: ', res.data);
+      setCart(res.data);
+    })
+    .catch((err) => {
+      console.log('failed to retrieve cart: ', err);
+    })
+  }
+
   return (
     <div>
-      <RelatedProductsList relatedProducts={relatedProducts} setproductId={setproductId} />
-      {/* <OutfitList GetCart={GetCart}/> */}
+      <Carousel relatedProducts={relatedProducts} setproductId={setproductId} cart={cart}/>
     </div>
   )
 }
