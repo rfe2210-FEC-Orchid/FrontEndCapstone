@@ -8,7 +8,7 @@ import ProductDescription from './ProductDescription.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const staticData = {product_id: 37311};
+// const staticData = {product_id: 37311};
 
 const UpperContentContainer = styled.div`
   position: relative;
@@ -37,8 +37,8 @@ const Overview = (props) => {
 
   useEffect(() => {
     axios.all([
-      axios.get(`http://localhost:3001/products/${staticData.product_id}/styles`),
-      axios.get(`http://localhost:3001/products/${staticData.product_id}`)
+      axios.get(`http://localhost:3001/products/${props.product_id}/styles`),
+      axios.get(`http://localhost:3001/products/${props.product_id}`)
     ])
       .catch((err) => {
         console.log('error fetching data from API:', err);
@@ -61,7 +61,7 @@ const Overview = (props) => {
       <UpperContentContainer>
         <UpperColumnContainerLeft>{selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}</UpperColumnContainerLeft>
         <UpperColumnContainerRight>
-          <ProductRating productID={staticData.product_id}/>
+          <ProductRating productID={props.product_id}/>
           <ProductInfo name={productInfo.name} category={productInfo.category}/>
           <ProductStyle selectedStyle={selectedStyle} allStyles={allStyles} handleSelectStyle={handleSelectStyle}/>
           <ProductShare />

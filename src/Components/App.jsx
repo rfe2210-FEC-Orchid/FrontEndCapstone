@@ -6,10 +6,13 @@ import RnR from './RatingsAndReviews/RnR.jsx';
 import RelatedItems from './RelatedItemsAndComparison/RelatedItems.jsx';
 import QA from './QuestionsAndAnswers/QA.jsx';
 
-const App = (props) => {
+const App = () => {
+
+  const [productID, setProductID] = useState(37315);
+
   return (
     <div>
-      <Overview />
+      <Overview product_id={productID}/>
       {/* <RelatedItems />
       <QA />
       <RnR /> */}

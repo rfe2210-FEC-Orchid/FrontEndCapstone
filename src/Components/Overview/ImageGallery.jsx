@@ -4,6 +4,7 @@ import ExpandedImage from './ExpandedImage.jsx';
 
 import styled from 'styled-components';
 import { AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineClose } from 'react-icons/ai';
+import { RxDot, RxDotFilled } from 'react-icons/rx';
 
 // styles
 const Gallery = styled.div`
@@ -80,17 +81,16 @@ const ExpandedButtonContainer = styled.div`
   justify-content: center;
 `;
 
-// const Placeholder = styled.div`
-//   display: inline-block;
-//   height: 25px;
-//   width: 25px;
-// `;
-
 const Placeholder = styled.div`
   display: inline-block;
   height: ${props => props.size}px;
   width: ${props => props.size}px;
 `;
+
+const dotStyle = {
+  size: '40px',
+  color: 'white'
+}
 
 const ImageGallery = (props) => {
 
@@ -189,11 +189,18 @@ const ImageGallery = (props) => {
         <ExpandedImage
           photo={photos[photoIndex]}
         />
+
         <ExpandedButtonContainer>
           {(sliderLimits.min > 0 || photoIndex > 0) ? <AiOutlineArrowLeft onClick={decrementPhotoIndex} color={'white'} size={40}/> : <Placeholder size={40}></Placeholder>}
+
+          {photos.map((photo, index) => (
+            index === photoIndex ? <RxDotFilled color={'white'} size={40} key={index} onClick={() => setPhotoIndex(index)}/> : <RxDot color={'white'} size={40} key={index} onClick={() => setPhotoIndex(index)}/>
+          ))}
+
           {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1) ? <AiOutlineArrowRight onClick={incrementPhotoIndex} color={'white'} size={40}/> : <Placeholder size={40}></Placeholder>}
         </ExpandedButtonContainer>
       </ExpandedImageContainer>}
+
     </Gallery>
   );
 };
