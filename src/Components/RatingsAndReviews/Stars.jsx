@@ -20,14 +20,15 @@ const Stars = ({number}) => {
     setStarMap(baseStarMap);
   }, [number])
 
-  const StarRatings = styled.div`
+  const StarRatings = styled.span`
     display: inline-flex;
     position: relative;
+    width: 50px;
   `;
 
   return (
     <StarRatings>
-      {starMap.map((rating, index) => <Star key={" " + index}rating={rating}/>)}
+      {starMap.map((rating, index) => <Star key={" " + index} rating={rating}/>)}
     </StarRatings>
   )
 }

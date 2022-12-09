@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 
-const Star = ({rating}) => {
+const Star = ({rating, value, handleSetOverallRating}) => {
 
   const Container = styled.div`
     position: relative;
@@ -19,7 +19,7 @@ const Star = ({rating}) => {
   `;
 
   return (
-    <Container>
+    <Container onClick={()=> {handleSetOverallRating(value)}}>
       <FullStars>
         <img src="../src/assets/fullStar.png" width="15" height="15"/>
       </FullStars>

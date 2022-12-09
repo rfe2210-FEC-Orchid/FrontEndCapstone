@@ -6,9 +6,9 @@ const BarGraph = ({ratings, percentages, handleBarFilter, renderList}) => {
   const BackgroundBar = styled.div`
     display: inline-flex;
     position: relative;
-    background-color: grey;
+    background-color: #C4C4C4;
     height: 10px;
-    width: 50px;
+    width: 80px;
     margin: 0px 5px;
   `;
 
@@ -27,7 +27,7 @@ const BarGraph = ({ratings, percentages, handleBarFilter, renderList}) => {
 
   const BarContainer = styled.div`
     cursor: pointer;
-    width: 180px;
+    width: 215px;
     &:hover {
       border-bottom: 1px solid black;
     }
@@ -38,42 +38,42 @@ const BarGraph = ({ratings, percentages, handleBarFilter, renderList}) => {
       <BarContainer onClick={(evt) => {
         evt.preventDefault();
         handleBarFilter(5);
-      }} style={{backgroundColor: renderList.indexOf(5) > -1 ? "#90EE90" : null}}>
-        <span>5 Star</span>
+      }} style={{backgroundColor: renderList.indexOf(5) > -1 ? "#C3FCD5" : null}}>
+        <span>5 star</span>
         <BackgroundBar><Bar style={{width: percentages[5]}}></Bar></BackgroundBar>
-        <span>{ratings[5] + " reviews"}</span>
+        <span>{(ratings[5] || "0") + " reviews"}</span>
       </BarContainer>
       <BarContainer onClick={(evt) => {
         evt.preventDefault();
         handleBarFilter(4);
-      }} style={{backgroundColor: renderList.indexOf(4) > -1 ? "#90EE90" : null}}>
+      }} style={{backgroundColor: renderList.indexOf(4) > -1 ? "#C3FCD5" : null}}>
         <span>4 star</span>
         <BackgroundBar><Bar style={{width: percentages[4]}}></Bar></BackgroundBar>
-        <span>{ratings[4] + " reviews"}</span>
+        <span>{(ratings[4] || "0") + " reviews"}</span>
       </BarContainer>
       <BarContainer onClick={(evt) => {
         evt.preventDefault();
         handleBarFilter(3);
-      }} style={{backgroundColor: renderList.indexOf(3) > -1 ? "#90EE90" : null}}>
+      }} style={{backgroundColor: renderList.indexOf(3) > -1 ? "#C3FCD5" : null}}>
         <span>3 star</span>
         <BackgroundBar><Bar style={{width: percentages[3]}}></Bar></BackgroundBar>
-        <span>{ratings[3] + " reviews"}</span>
+        <span>{(ratings[3] || "0") + " reviews"}</span>
       </BarContainer>
       <BarContainer onClick={(evt) => {
         evt.preventDefault();
         handleBarFilter(2);
-      }} style={{backgroundColor: renderList.indexOf(2) > -1 ? "#90EE90" : null}}>
+      }} style={{backgroundColor: renderList.indexOf(2) > -1 ? "#C3FCD5" : null}}>
         <span>2 star</span>
         <BackgroundBar><Bar style={{width: percentages[2]}}></Bar></BackgroundBar>
-        <span>{ratings[2] + " reviews"}</span>
+        <span>{(ratings[2] || "0") + " reviews"}</span>
       </BarContainer>
       <BarContainer onClick={(evt) => {
         evt.preventDefault();
         handleBarFilter(1);
-      }} style={{backgroundColor: renderList.indexOf(1) > -1 ? "#90EE90" : null}}>
+      }} style={{backgroundColor: renderList.indexOf(1) > -1 ? "#C3FCD5" : null}}>
         <span>1 star</span>
         <BackgroundBar><Bar style={{width: percentages[1]}}></Bar></BackgroundBar>
-        <span>{ratings[1] + " reviews"}</span>
+        <span>{(ratings[1] || "0") + " reviews"}</span>
       </BarContainer>
     </div>
 
