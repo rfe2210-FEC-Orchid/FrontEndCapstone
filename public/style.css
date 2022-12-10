@@ -1,0 +1,17 @@
+.number {
+  background: #800F67;
+	color: #fff;
+	height: 25px;
+	width: 25px;
+	display: inline-block;
+	font-size: 0.8em;
+	margin-right: 4px;
+	line-height: 25px;
+	text-align: center;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+	border-radius: 15px 15px 15px 0px;
+}
+
+.clickable-stars {
+  margin: 5px 20px;
+}
