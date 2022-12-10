@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 require('dotenv').config();
 
 const app = express();
@@ -14,11 +14,17 @@ app.use(express.json());
 
 // routes
 app.all('/*', (req, res) => {
+<<<<<<< HEAD
   // console.log('request body:', req.body);
   // console.log(req.method);
   // console.log('url:', req.url);
 
 
+=======
+  console.log('dev server received request');
+  console.log('request body:', req.body);
+  // console.log('full url:', process.env.API_URL + req.url);
+>>>>>>> feature-overview
 
   return axios({
     method: req.method,
