@@ -8,8 +8,6 @@ import ProductDescription from './ProductDescription.jsx';
 import axios from 'axios';
 import styled from 'styled-components';
 
-// const staticData = {product_id: 37311};
-
 const UpperContentContainer = styled.div`
   position: relative;
   top: 80px;
@@ -58,10 +56,6 @@ const Overview = (props) => {
   };
 
   return (
-<<<<<<< HEAD
-    <div>something</div>
-  )
-=======
     <div>
       <UpperContentContainer>
         <UpperColumnContainerLeft>{selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}</UpperColumnContainerLeft>
@@ -75,7 +69,6 @@ const Overview = (props) => {
       <ProductDescription slogan={productInfo.slogan} description={productInfo.description} features={productInfo.features}/>
     </div>
   );
->>>>>>> feature-overview
 };
 
 export default Overview;

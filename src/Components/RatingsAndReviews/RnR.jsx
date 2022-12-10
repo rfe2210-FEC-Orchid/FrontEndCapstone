@@ -21,7 +21,7 @@ const RnR = () => {
   const [isWritingReview, setIsWritingReview] = useState(false); //for Modal
 
   useEffect(()=>{
-    axios.get(`http://localhost:3000/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
+    axios.get(`http://localhost:3001/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
       .then((data) => {
         console.log(data.data); //data.data.count has how many reviews
         setReviewLibrary(data.data.results);
@@ -90,7 +90,7 @@ const RnR = () => {
 
   //for reviews.meta
   useEffect(()=>{
-    axios.get(`http://localhost:3000/reviews/meta?product_id=${productID}`)
+    axios.get(`http://localhost:3001/reviews/meta?product_id=${productID}`)
       .then((data) => {
         console.log(data.data); //data.data.count has how many reviews
         setRatings(data.data.ratings);
