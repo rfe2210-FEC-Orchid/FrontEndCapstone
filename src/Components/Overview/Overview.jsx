@@ -57,6 +57,7 @@ const Overview = (props) => {
 
   return (
     <div>
+        <UpperContentContainer>
         <UpperColumnContainerLeft>{selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}</UpperColumnContainerLeft>
         <UpperColumnContainerRight>
           <ProductRating productID={props.product_id}/>
