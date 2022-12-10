@@ -3,20 +3,20 @@ import styled from 'styled-components';
 
 const DescriptionContainer = styled.div`
   position: relative;
-  margin: 20px 10%;
-  height: 200px;
+  margin: 50px 10%;
+  background-color: #f2f2f2;
+  padding: 20px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: stretch;
 `;
 
 const LeftColumn = styled.div`
-  // display: inline-block;
+  display: inline-block;
   margin: 0 10px;
   padding: 0 30px;
   width: 65%;
-  height: 100%;
-  border-right: 2px solid black;
+  border-right: 2px solid #4F0B40;
 `;
 
 const RightColumn = styled.div`

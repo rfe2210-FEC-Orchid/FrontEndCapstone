@@ -12,7 +12,8 @@ import styled from 'styled-components';
 
 const UpperContentContainer = styled.div`
   position: relative;
-  margin: 20px 20px;
+  top: 80px;
+  // margin: 50px 20px 20px 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -24,7 +25,7 @@ const UpperColumnContainerLeft = styled.div`
 `;
 
 const UpperColumnContainerRight = styled.div`
-  margin: 10px;
+  margin: 45px 10px;
   width: 320px;
   min-width: 200px;
 `;

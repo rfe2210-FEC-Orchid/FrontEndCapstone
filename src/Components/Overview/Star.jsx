@@ -4,6 +4,8 @@ import styled from 'styled-components';
 // import emptyStar from './stars/emptyStar.png';
 
 import { IoStarOutline, IoStar } from 'react-icons/io5';
+import { FaStar, FaRegStar } from 'react-icons/fa';
+
 
 const Star = ({rating}) => {
 
@@ -23,10 +25,10 @@ const Star = ({rating}) => {
   return (
     <Container>
       <FullStars>
-        <IoStar width="15" height="15"/>
+        <FaStar width="15" height="15"/>
       </FullStars>
       <EmptyStars>
-        <IoStarOutline width="15" height="15"/>
+        <FaRegStar width="15" height="15"/>
       </EmptyStars>
     </Container>
   )

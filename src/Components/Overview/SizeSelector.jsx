@@ -7,13 +7,15 @@ const SizeOption = styled.div`
   width: 40px;
   text-align: center;
   line-height: 40px;
-  border: 1.5px solid black;
   margin: 5px;
-  background-color: ${props => props.selected ? 'black' : 'white'};
-  color: ${props => props.selected ? 'white' : 'black'};
+  padding: 2px;
+  background-color: #f2f2f2;
+  border: ${props => props.selected ? '1.5px solid black' : '1.5px solid white'};
 
   &:hover {
     cursor: pointer;
+    border: 1.5px solid black;
+    background-color: #f2f2f2;
   }
 `;
 

@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 const PriceContainer = styled.div`
   width: 100%;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #4F0B40;
 `;
 
 const ProductStyle = (props) => {
@@ -61,7 +61,7 @@ const ProductStyle = (props) => {
     <div>
       <PriceContainer>
         {props.selectedStyle.sale_price
-        ? <p><s style={{color: 'red'}}>${props.selectedStyle.original_price}</s> ${props.selectedStyle.sale_price}</p>
+        ? <p><s style={{color: '#9c0303'}}>${props.selectedStyle.original_price}</s> ${props.selectedStyle.sale_price}</p>
         : <p>${props.selectedStyle.original_price}</p>
         }
       </PriceContainer>

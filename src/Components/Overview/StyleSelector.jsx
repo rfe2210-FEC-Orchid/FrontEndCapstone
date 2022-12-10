@@ -7,11 +7,12 @@ const StyleImage = styled.img`
   padding: 2px;
   margin: 5px;
   object-fit: cover;
-  border: ${props => props.selected ? '2px solid black' : '2px solid white'};
+  border: ${props => props.selected ? '2px solid #4F0B40' : '2px solid white'};
   border-radius: 50%;
 
   &:hover {
     cursor: pointer;
+    border: 2px solid #4F0B40;
   }
 `;
 

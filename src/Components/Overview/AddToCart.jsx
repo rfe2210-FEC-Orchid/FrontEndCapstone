@@ -15,6 +15,7 @@ const QuantityDropdown = styled.select`
   border: 1.5px solid black;
 
   &:hover {
+    background-color: #f2f2f2;
     cursor: pointer;
   }
 `;
@@ -26,9 +27,13 @@ const QuantityOption = styled.option`
 const CartButton = styled.button`
   height: 40px;
   width: 65%;
+  border: none;
+  background-color: #4f0b40;
+  color: white;
   border: 1.5px solid black;
 
   &:hover {
+    background-color: #800f67;
     cursor: pointer;
   }
 `;
@@ -37,9 +42,9 @@ const ErrorContainer = styled.div`
   display: inline-block;
   height: 40px;
   margin: 5px 0;
-  width: calc(95%);
-  background-color: red;
-  border: 1.5px solid black;
+  width: calc(95% + 3px);
+  color: white;
+  background-color: #9c0303;
   line-height: 40px;
   text-align: center;
 `;
