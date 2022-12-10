@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {FaArrowAltCircleRight, FaArrowAltCircleLeft, FaPlusCircle} from 'react-icons/fa';
+import {FaAngleRight, FaAngleLeft, FaPlusCircle} from 'react-icons/fa';
 import './RelatedItems.css';
 import postCart from './Helpers.jsx';
 import OutfitCards from './OutfitCards.jsx';
@@ -22,7 +22,7 @@ const OutfitList = ({cart, setproductId}) => {
       <div className='outfit-list'>
         <h3>YOUR OUTFIT</h3>
         <div className='carousel-container'>
-          <FaArrowAltCircleLeft size={40} className='left-arrow' onClick={slideLeft}/>
+          <FaAngleLeft size={40} className='left-arrow' onClick={slideLeft}/>
            <div id='outfit-list-slider'>
              <div id='add-outfit'>
                <h2>Add to Outfit</h2>
@@ -32,7 +32,7 @@ const OutfitList = ({cart, setproductId}) => {
                return ( <OutfitCards key={product.id} product={product} setproductId={setproductId} /> )
              })}
            </div>
-          <FaArrowAltCircleRight size={40} className='right-arrow' onClick={slideRight}/>
+          <FaAngleRight size={40} className='right-arrow' onClick={slideRight}/>
         </div>
       </div>
     </div>

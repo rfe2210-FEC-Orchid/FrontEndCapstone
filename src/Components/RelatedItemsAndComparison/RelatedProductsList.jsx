@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa';
+import {FaAngleRight, FaAngleLeft} from 'react-icons/fa';
 import './RelatedItems.css';
 import OutfitList from './OutfitList.jsx';
 import RelatedProductCards from './RelatedProductCards.jsx';
 
-const RelatedProductsList = ({relatedProducts,  setproductId, cart}) => {
+const RelatedProductsList = ({relatedProducts,  setproductId}) => {
 
   const slideLeft = () => {
     const slider = document.getElementById('related-products-slider');
@@ -21,13 +21,13 @@ const RelatedProductsList = ({relatedProducts,  setproductId, cart}) => {
       <div className='related-product-list'>
         <h3>RELATED PRODUCTS</h3>
         <div className='carousel-container'>
-          <FaArrowAltCircleLeft size={40} className='left-arrow' onClick={slideLeft}/>
+          <FaAngleLeft size={40} className='left-arrow' onClick={slideLeft}/>
           <div id='related-products-slider'>
             {relatedProducts.map((product) => {
               return ( <RelatedProductCards key={product.id} product={product} setproductId={setproductId} />)
             })}
           </div>
-          <FaArrowAltCircleRight size={40} className='right-arrow' onClick={slideRight}/>
+          <FaAngleRight size={40} className='right-arrow' onClick={slideRight}/>
         </div>
       </div>
     </div>
