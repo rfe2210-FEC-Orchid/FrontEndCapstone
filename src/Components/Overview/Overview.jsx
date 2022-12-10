@@ -57,7 +57,6 @@ const Overview = (props) => {
 
   return (
     <div>
-      <UpperContentContainer>
         <UpperColumnContainerLeft>{selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}</UpperColumnContainerLeft>
         <UpperColumnContainerRight>
           <ProductRating productID={props.product_id}/>
@@ -68,7 +67,6 @@ const Overview = (props) => {
       </UpperContentContainer>
       <ProductDescription slogan={productInfo.slogan} description={productInfo.description} features={productInfo.features}/>
     </div>
-  );
-};
+  )}
 
 export default Overview;
