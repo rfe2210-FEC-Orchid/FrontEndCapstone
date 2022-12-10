@@ -14,8 +14,11 @@ app.use(express.json());
 
 // routes
 app.all('/*', (req, res) => {
-  console.log('request body:', req.body);
-  console.log('full url:', process.env.API_URL + req.url);
+  // console.log('request body:', req.body);
+  console.log(req.method);
+  console.log('url:', req.url);
+
+
 
   return axios({
     method: req.method,
@@ -25,18 +28,18 @@ app.all('/*', (req, res) => {
     },
     data: req.body
   })
-    .catch((err) => {
-      console.log('API request error:', err);
-      res.sendStatus(500);
-    })
     .then((response) => {
-      // console.log('response from API:', response.data);
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-      res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Authorization");
-		  res.setHeader("Access-Control-Allow-Credentials", "true");
-      res.json(response.data);
+      // console.log('response from API:', response);
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+      res.header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,Authorization");
+		  res.header("Access-Control-Allow-Credentials", "true");
+      res.send(response.data);
       res.end();
+    })
+    .catch((err) => {
+      // console.log('API request error:', err);
+      res.sendStatus(500);
     });
 });
 

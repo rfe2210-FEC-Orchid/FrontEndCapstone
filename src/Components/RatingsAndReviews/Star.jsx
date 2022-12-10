@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import {FaRegStar, FaStar} from 'react-icons/fa'
 
 
 
@@ -21,10 +22,10 @@ const Star = ({rating, value, handleSetOverallRating}) => {
   return (
     <Container onClick={()=> {handleSetOverallRating(value)}}>
       <FullStars>
-        <img src="../src/assets/fullStar.png" width="15" height="15"/>
+        <FaStar style={{color: "#FFD31A"}}/>
       </FullStars>
       <EmptyStars>
-      <img src="../src/assets/emptyStar.png" width="15" height="15"/>
+        <FaRegStar />
       </EmptyStars>
     </Container>
   )

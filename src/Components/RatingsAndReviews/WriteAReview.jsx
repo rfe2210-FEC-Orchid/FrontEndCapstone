@@ -5,7 +5,7 @@ import Form from './Form.jsx';
 const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) => {
 
   const Overlay = styled.div`
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(128, 15, 103, 0.7);
     position: fixed;
     display: flex;
     width: 100%;
@@ -23,7 +23,6 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) =>
        opacity: 1;
        visibility: visible;
        transform: scale(1);
-       transition: opacity 0.8s visibility 0.8s transform 0.8s;
     ` }
   `;
 
@@ -37,7 +36,7 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) =>
      height:  80%;
      top: 15px;
      display: flex;
-     background: yellow;
+     background: white;
      position: relative;
      justify-content: center;
      overflow-y: auto;

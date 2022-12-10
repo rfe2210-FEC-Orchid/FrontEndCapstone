@@ -15,15 +15,6 @@ const Form = ({characteristics, productID}) => {
   const [characteristicsChosen, setCharacteristicsChosen] = useState({});
   const [imageURLS, setImageURLS] = useState([]);
 
-  const FormContainer = styled.section`
-    background-color: white;
-    width: 100%;
-  `;
-
-  const FormSubContainer = styled.form`
-    background-color: white;
-    width: 100%;
-  `;
 
   const handleChoosingCharacteristics = (evt)=>  {
     const {name, value} = evt.target;
@@ -43,39 +34,41 @@ const Form = ({characteristics, productID}) => {
     setOverallRating(num);
   }
 
-  const handleSubmit = () => {
-    axios.post(`http://localhost:3000/reviews`, {
-      product_id : productID,
-      rating : overallRating,
-      summary: summary,
-      body: body,
-      recommend: ifRecommend,
-      name: nickname
+  // const handleSubmit = () => {
+  //   axios.post(`http://localhost:3000/reviews`, {
+  //     product_id : productID,
+  //     rating : overallRating,
+  //     summary: summary,
+  //     body: body,
+  //     recommend: ifRecommend,
+  //     name: nickname
 
-    })
-  }
+  //   })
+  // }
 
   return (
-  <FormContainer>
+  <section>
   <header>
     <h2>Write a Review</h2>
     <h4>About the Product Name Here</h4>
   </header>
 
-  <FormSubContainer>
+  <form>
     <div>
-      <label>Overall Rating*</label><br/>
-      <ClickableStars overallRating={overallRating} handleSetOverallRating={handleSetOverallRating}/>
+      <label><span className="number">1</span>Overall Rating*</label><br/>
+      <div className="clickable-stars">
+        <ClickableStars overallRating={overallRating} handleSetOverallRating={handleSetOverallRating}/>
+      </div>
     </div>
 
     <div>
-      <label>Do you recommend this product?*</label><br/>
+      <label><span className="number">2</span>Do you recommend this product?*</label><br/>
       <input required checked type="radio" value={true} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/>Yes
       <input required type="radio" value={false} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/> No
     </div>
 
     <div>
-      <label>Characteristics*</label>
+      <label><span className="number">3</span>Characteristics*</label>
       {/* <label>{characteristicsChosen}</label> */}
       <div>
         {Object.keys(characteristics).map((key) => <CharacteristicQuestion key={key} characteristic={characteristics[key]} category={key}
@@ -84,46 +77,43 @@ const Form = ({characteristics, productID}) => {
     </div>
 
     <div>
-      <label>Review Summary</label><br/>
+      <label><span className="number">4</span>Review Summary</label><br/>
       <textarea required maxLength="60" rows="2" cols="50" placeholder="Example: Best purchase ever!" value={summary} onChange={(evt) => {
-        evt.preventDefault();
+
         console.log(summary);
         setSummary(evt.target.value);
       }}/>
     </div>
 
-    <label>Review Body*</label><br/>
+    <label><span className="number">5</span>Review Body*</label><br/>
       <textarea required minLength="50" maxLength="1000" rows="4" cols="50" placeholder="Why did you like the product or not?" autoComplete="off" value={body} onChange={(evt) => {
-        evt.preventDefault();
         setBody(evt.target.value);
       }}/>
     <div>{body.length < 50 ? "Minimum required characters left: " + (50 - body.length) : "Minimum Reached"}</div>
 
-    <label>Upload your photos</label>
+    <label><span className="number">6</span>Upload your photos</label>
     <div>
       <MultiFileUpload imageURLS={imageURLS} handleImageUrls={handleImageUrls}/>
     </div>
 
-    <label>What is your nickname*</label>
+    <label><span className="number">7</span>What is your nickname*</label>
     <div>
       <input required type="text" maxLength="60" placeholder="Example: jackson11!" value={nickname} onChange={(evt) => {
-        evt.preventDefault();
         setNickname(evt.target.value);
       }} />
       <div>For privacy reasons, do not use your full name or email address</div>
     </div>
 
-    <label>You email*</label>
+    <label><span className="number">8</span>You email*</label>
     <div>
       <input required type="email" placeholder="Example: jackson11@email.com" value={email} onChange={(evt) => {
-        evt.preventDefault();
         setEmail(evt.target.value);
       }} />
       <div>For authentication reasons, you will not be emailed</div>
     </div>
     <input type="submit" value="Submit" />
-  </FormSubContainer>
-  </FormContainer>
+  </form>
+  </section>
   )
 }
 

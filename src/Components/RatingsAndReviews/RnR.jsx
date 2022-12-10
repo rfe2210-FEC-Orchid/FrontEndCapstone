@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx';
 import styled from 'styled-components';
+import WriteAReview from './WriteAReview.jsx';
 
 const RnR = () => {
   const [productID, setProductID] = useState("37311");
@@ -17,9 +18,10 @@ const RnR = () => {
   const [percentages, setPercentages] = useState({5: 0, 4: 0, 3: 0, 2: 0, 1:0})
   const [characteristics, setCharacteristics] = useState("");
   const [sortBy, setSortBy] = useState(sortBy || "relevant");
+  const [isWritingReview, setIsWritingReview] = useState(false); //for Modal
 
   useEffect(()=>{
-    axios.get(`http://localhost:3000/reviews?product_id=${productID}&count=2000&sort=${sortBy}`, {header: {'Access-Control-Allow-Origin': '*'}})
+    axios.get(`http://localhost:3000/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
       .then((data) => {
         console.log(data.data); //data.data.count has how many reviews
         setReviewLibrary(data.data.results);
@@ -88,7 +90,7 @@ const RnR = () => {
 
   //for reviews.meta
   useEffect(()=>{
-    axios.get(`http://localhost:3000/reviews/meta?product_id=${productID}`, {header: {'Access-Control-Allow-Origin': '*'}})
+    axios.get(`http://localhost:3000/reviews/meta?product_id=${productID}`)
       .then((data) => {
         console.log(data.data); //data.data.count has how many reviews
         setRatings(data.data.ratings);
@@ -134,7 +136,8 @@ const RnR = () => {
   return (
     <RnRContainer>
       <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
-      <ReviewsList productID={productID} reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} characteristics={characteristics} handleSortBy={handleSortBy} sortBy={sortBy}/>
+      <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview}/>
+      <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID}/>
     </RnRContainer>
   )
 }

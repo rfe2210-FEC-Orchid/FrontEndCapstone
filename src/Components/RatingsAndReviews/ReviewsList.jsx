@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useRef} from 'react';
-import axios from 'axios';
 import ReviewTile from './ReviewTile.jsx';
-import WriteAReview from './WriteAReview.jsx';
 import styled from 'styled-components';
 
-const ReviewsList = ({productID, reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, characteristics, handleSortBy, sortBy}) => {
-  const [isWritingReview, setIsWritingReview] = useState(false); //for Modal
+const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview}) => {
   const bottomRef = useRef(null);
 
   const FilterButton = styled.button`
@@ -74,13 +71,15 @@ const ReviewsList = ({productID, reviews, reviewCount, renderCount, handleMoreRe
     }
 
     :active {
-      background-color: #C3FCD5;
+      background-color:#800F67;
+      color: white;
       outline: 0;
     }
 
     :hover {
       outline: 0;
-      background-color: #C3FCD5;
+      background-color:#800F67;
+      color: white;
     }
 
     @media (min-width: 768px) {
@@ -129,7 +128,6 @@ const ReviewsList = ({productID, reviews, reviewCount, renderCount, handleMoreRe
       </ReviewListContainer>
       {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
       <DesignButtons onClick={() => setIsWritingReview(true)}>Add a Review ➕</DesignButtons>
-      <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID}/>
     </div>
   )
 }
