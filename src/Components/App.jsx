@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { createGlobalStyle } from 'styled-components';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Overview from './Overview/Overview.jsx';
 import RnR from './RatingsAndReviews/RnR.jsx';
 import RelatedItems from './RelatedItemsAndComparison/RelatedItems.jsx';
@@ -50,7 +49,7 @@ const App = () => {
       <Overview product_id={productID}/>
       <RelatedItems />
       <QA />
-      <RnR />
+      <RnR id=""/>
     </div>
   );
 };

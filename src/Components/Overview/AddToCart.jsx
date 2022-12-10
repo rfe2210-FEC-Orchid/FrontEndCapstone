@@ -47,6 +47,9 @@ const ErrorContainer = styled.div`
   background-color: #9c0303;
   line-height: 40px;
   text-align: center;
+
+  visibility: ${props => props.active ? 'visible' : 'hidden'};
+
 `;
 
 const AddToCart = (props) => {
@@ -81,7 +84,8 @@ const AddToCart = (props) => {
 
   return (
     <CartContainer>
-      {props.displayError && <ErrorContainer>please select a size</ErrorContainer>}
+      {/* {props.displayError && <ErrorContainer>please select a size</ErrorContainer>} */}
+      {<ErrorContainer active={props.displayError}>please select a size</ErrorContainer>}
       <QuantityDropdown onChange={(e) => props.handleChangeQuantity(e.target.value)}>
         {props.options.selectedSize
         ? quantityArray(props.options.availableQuantity).map((num) =>
