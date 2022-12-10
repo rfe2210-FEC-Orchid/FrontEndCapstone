@@ -37,8 +37,23 @@ const Header = styled.div`
 `;
 
 const App = () => {
+  const [productId, setproductId] = useState(37313);
+  const [productInfo, setproductInfo] = useState({});
 
-  const [productID, setProductID] = useState(37311);
+  useEffect(() => {
+    getProductInfo();
+  }, [])
+
+  let getProductInfo = () => {
+    axios.get(`http://localhost:3001/products/${productId}`)
+    .then((res) => {
+      console.log('product info: ', res.data);
+      setproductInfo(res.data);
+    })
+    .catch((err) => {
+      console.log('failed to retrieve product info', err);
+    })
+  }
 
   return (
     <div>
@@ -46,8 +61,8 @@ const App = () => {
       <Header>
         <h1>Orchid</h1>
       </Header>
-      <Overview product_id={productID}/>
-      <RelatedItems />
+      <Overview product_id={productId}/>
+      <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo} />
       <QA />
       <RnR id=""/>
     </div>

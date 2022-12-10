@@ -3,6 +3,10 @@ const axios = require('axios');
 const path = require('path');
 
 const PORT = process.env.PORT || 3001;
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature-relateditems
 require('dotenv').config();
 
 const app = express();
@@ -14,6 +18,11 @@ app.use(express.json());
 
 // routes
 app.all('/*', (req, res) => {
+<<<<<<< HEAD
+=======
+  console.log('request body:', req.body);
+  // console.log('full url:', process.env.API_URL + req.url);
+>>>>>>> feature-relateditems
 
   return axios({
     method: req.method,
@@ -24,6 +33,7 @@ app.all('/*', (req, res) => {
     data: req.body
   })
     .then((response) => {
+<<<<<<< HEAD
       // console.log('response from API:', response);
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
@@ -36,6 +46,16 @@ app.all('/*', (req, res) => {
       console.log('API requesterror:', err);
       res.sendStatus(500);
     });
+=======
+      console.log('response from API:', response.data);
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+      res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+
+      res.status(200).send(response.data);
+    })
+>>>>>>> feature-relateditems
 });
 
 app.listen(PORT, () => console.log(`app listening on port ${PORT}`));

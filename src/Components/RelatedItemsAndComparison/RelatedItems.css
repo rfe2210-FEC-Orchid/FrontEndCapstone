@@ -1,0 +1,139 @@
+/* MODAL */
+.toggle-modal {
+  display: block;
+  cursor: pointer;
+  padding: 8px 30px;
+  position: relative;
+  margin: 0 auto;
+  top: 10px;
+  left: 80px;
+}
+
+.modal-container, .close, .modal-container.active {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  height: 75vh;
+  top: 0;
+  left: 0px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #4F0B40;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s, visibility 0.3s, transform 0.5s;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  background-color: #F8F8F8;
+  position: relative;
+  overflow-x: scroll;
+  overflow-wrap: break-word;
+}
+
+th, td {
+  font-size: 30px;
+  padding: 5px 27px;
+  text-align: center;
+}
+
+.modal-container.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  /* background-image: url('/closex.svg'); */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
+/* CAROUSEL SLIDER */
+.carousel-container {
+  width: 90%;
+  /* height: 440px; */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#related-products-slider, #outfit-list-slider, #product-list {
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+  overflow-x: scroll;
+  display: flex;
+  align-items: stretch;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+#related-products-slider::-webkit-scrollbar{
+  display:none;
+}
+
+#outfit-list-slider::-webkit-scrollbar{
+  display:none;
+}
+
+#product-list::-webkit-scrollbar{
+  display:none;
+}
+
+/* ARROWS */
+.left-arrow, .right-arrow {
+  color: #4F0B40;
+  position: relative;
+  /* opacity: 0.5; */
+}
+.left-arrow:hover, .right-arrow:hover, #add-outfit:hover {
+  color: #800F67;
+  /* opacity: 0.5; */
+  cursor: pointer;
+}
+.right-arrow {
+  right: -10px;
+}
+.left-arrow {
+  left: 0;
+}
+
+/* PRODUCT CARD */
+.card {
+  margin: 10px;
+  background-color: #F2F2F2;
+  box-shadow: 2px 2px 2px 2px #0000001f;
+  cursor: pointer;
+}
+
+#image {
+  width: 200px;
+  height: 180px;
+}
+.card-details {
+  margin: 0px 10px;
+  font-size: 14px;
+  line-height: 0.4;
+}
+
+#add-outfit {
+  margin: 10px;
+  background-color: #F2F2F2;
+  box-shadow: 2px 2px 2px 2px #0000001f;
+  cursor: pointer;
+  align-items: stretch;
+  padding: 10px;
+  opacity: 0.7;
+  width: 180px;
+  height: 220px;
+  text-align: center;
+}
