@@ -30,7 +30,7 @@ const UpperColumnContainerRight = styled.div`
 const Overview = (props) => {
 
   // state
-  const [selectedStyle, setSelectedStyle] = useState({});
+  // const [selectedStyle, setSelectedStyle] = useState({});
   const [allStyles, setAllStyles] = useState([]);
   const [productInfo, setProductInfo] = useState({});
 
@@ -44,25 +44,27 @@ const Overview = (props) => {
       })
       .then(axios.spread((styles, info) => {
         console.log('received data from API');
-        setSelectedStyle(styles.data.results[0]);
+        props.setSelectedStyle(styles.data.results[0]);
         setAllStyles(styles.data.results);
         setProductInfo(info.data);
       }))
   }, []);
 
-  // functions
-  const handleSelectStyle = (style) => {
-    setSelectedStyle(style);
-  };
+
+
+  // // functions
+  // const handleSelectStyle = (style) => {
+  //   props.setSelectedStyle(style);
+  // };
 
   return (
     <div>
         <UpperContentContainer>
-        <UpperColumnContainerLeft>{selectedStyle.photos && <ImageGallery photos={selectedStyle.photos}/>}</UpperColumnContainerLeft>
+        <UpperColumnContainerLeft>{props.selectedStyle.photos && <ImageGallery photos={props.selectedStyle.photos}/>}</UpperColumnContainerLeft>
         <UpperColumnContainerRight>
           <ProductRating productID={props.product_id}/>
           <ProductInfo name={productInfo.name} category={productInfo.category}/>
-          <ProductStyle selectedStyle={selectedStyle} allStyles={allStyles} handleSelectStyle={handleSelectStyle}/>
+          <ProductStyle selectedStyle={props.selectedStyle} allStyles={allStyles} handleSelectStyle={props.setSelectedStyle}/>
           <ProductShare />
         </UpperColumnContainerRight>
       </UpperContentContainer>

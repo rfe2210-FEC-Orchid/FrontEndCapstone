@@ -39,6 +39,7 @@ const Header = styled.div`
 const App = () => {
   const [productId, setproductId] = useState(37313);
   const [productInfo, setproductInfo] = useState({});
+  const [selectedStyle, setSelectedStyle] = useState({});
 
   useEffect(() => {
     getProductInfo();
@@ -61,7 +62,7 @@ const App = () => {
       <Header>
         <h1>Orchid</h1>
       </Header>
-      <Overview product_id={productId}/>
+      <Overview selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} product_id={productId}/>
       <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo} />
       <QA />
       <RnR id=""/>
