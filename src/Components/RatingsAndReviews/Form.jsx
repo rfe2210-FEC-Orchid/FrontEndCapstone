@@ -34,17 +34,30 @@ const Form = ({characteristics, productID}) => {
     setOverallRating(num);
   }
 
-  // const handleSubmit = () => {
-  //   axios.post(`http://localhost:3000/reviews`, {
-  //     product_id : productID,
-  //     rating : overallRating,
-  //     summary: summary,
-  //     body: body,
-  //     recommend: ifRecommend,
-  //     name: nickname
-
-  //   })
-  // }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    axios.post(`http://localhost:3000/reviews`, {
+      product_id : productID,
+      rating : overallRating,
+      summary: summary,
+      body: body,
+      recommend: ifRecommend,
+      name: nickname,
+      email: email,
+      photos: imageURLS,
+      characteristics: characteristicsChosen
+    })
+    .then(()=>{
+      console.log('success');
+    })
+    .catch((err) =>  {
+      console.error(err.response.data);
+    }, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+  }
 
   return (
   <section>
@@ -63,7 +76,7 @@ const Form = ({characteristics, productID}) => {
 
     <div>
       <label><span className="number">2</span>Do you recommend this product?*</label><br/>
-      <input required checked type="radio" value={true} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/>Yes
+      <input required defaultChecked type="radio" value={true} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/>Yes
       <input required type="radio" value={false} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/> No
     </div>
 
@@ -111,7 +124,7 @@ const Form = ({characteristics, productID}) => {
       }} />
       <div>For authentication reasons, you will not be emailed</div>
     </div>
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit" onClick={handleSubmit} />
   </form>
   </section>
   )

@@ -15,8 +15,8 @@ app.use(express.json());
 // routes
 app.all('/*', (req, res) => {
   // console.log('request body:', req.body);
-  console.log(req.method);
-  console.log('url:', req.url);
+  // console.log(req.method);
+  // console.log('url:', req.url);
 
 
 
@@ -38,7 +38,7 @@ app.all('/*', (req, res) => {
       res.end();
     })
     .catch((err) => {
-      // console.log('API request error:', err);
+      console.log('API request error:', err);
       res.sendStatus(500);
     });
 });
