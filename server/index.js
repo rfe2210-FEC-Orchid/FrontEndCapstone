@@ -25,7 +25,7 @@ app.all('/*', (req, res) => {
     data: req.body
   })
     .catch((err) => {
-      console.log('API request error:', err);
+      console.log('API requesterror:', err);
       res.sendStatus(500);
     })
     .then((response) => {
