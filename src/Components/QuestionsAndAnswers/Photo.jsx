@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const Overview = (props) => {
-  return (
+const Photo = ({photo}) => {
+  return(
     <div>
-      Overview!
+      <img src={photo} width="30%" height = "40%"/>
     </div>
-  );
-};
+  )
 
-export default Overview;
+}
+
+export default Photo

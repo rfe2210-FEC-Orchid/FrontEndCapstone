@@ -17,5 +17,10 @@
         "react"
     ],
     "rules": {
+        "react/prop-types":"off"
+    },
+
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
     }
 }
