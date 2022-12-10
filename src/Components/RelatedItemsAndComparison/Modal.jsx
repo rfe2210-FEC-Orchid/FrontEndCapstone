@@ -32,3 +32,5 @@ let Modal = ({toggle, action}) => {
 export default Modal;
 
 
+// COMPARISON
+// star rating, product category, product title, price, product overview (some items - free form text field)

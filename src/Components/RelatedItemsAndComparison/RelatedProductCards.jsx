@@ -19,16 +19,14 @@ const RelatedProductCards = ({product, setproductId}) => {
       <FaRegStar size={20} className='toggle-modal' onClick={openModal}/>
       <Modal toggle={modalState} action={openModal} />
       <div onClick={refreshOverview}>
-        {product.image ? (
-          <img src={product.image[0].url} alt={product.name} width='230' height='230' className='image'/>
-          ) : 'image not available'
+        {product.image ? (<img src={product.image[0].url} alt={product.name} id='image'/>) : 'image not available'
         }
-       <div className='card-details'>
-         <h4>{product.category}</h4>
-         <h4>{product.name}</h4>
-         <h5>${product.price}</h5>
-         <p>★★★★★</p>
-       </div>
+        <div className='card-details'>
+          <h4>{product.category}</h4>
+          <h4>{product.name}</h4>
+          <h5>${product.price}</h5>
+          <p>★★★★★</p>
+        </div>
       </div>
     </div>
   )
