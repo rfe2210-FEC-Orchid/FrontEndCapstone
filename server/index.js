@@ -10,14 +10,14 @@ require('dotenv').config();
 const app = express();
 
 // middleware
-app.use(cors())
+app.use(cors());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.json());
 
 
 // routes
 app.all('/*', (req, res) => {
-  console.log('request body:', req.body);
+  // console.log('request body:', req.body);
   // console.log('full url:', process.env.API_URL + req.url);
 
   return axios({
