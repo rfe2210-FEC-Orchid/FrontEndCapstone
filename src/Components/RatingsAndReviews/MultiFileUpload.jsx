@@ -58,7 +58,7 @@ const MultiFileUpload = ({imageURLS, handleImageUrls}) => {
           imageURLS.map((image) => (
             <img alt="uploaded image" style={{width: "50px", height: "50px", padding:"5px"}} src={image} />
           ))
-          : "No Images Uploaded Yet"}
+          : <span className="image-text">No Images Uploaded Yet</span>}
         </ImagePreviewContainer>
       )
     }

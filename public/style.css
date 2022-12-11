@@ -16,6 +16,10 @@
   margin: 5px 20px;
 }
 
+.question-container {
+	margin: 15px;
+}
+
 .text-input {
 	padding: 10px;
 	margin: 10px 0;
@@ -32,6 +36,7 @@
 	border: 2px solid #800F67;
 }
 
+
 textarea {
 	resize: vertical;
 }
@@ -41,11 +46,20 @@ input[type=text], input[type=email] {
 	border-bottom: 1px solid black;
 } */
 
-.question-container {
+.charquestion-container {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	justify-content: space-evenly;
+	justify-content: space-between;
+	position: relative;
+	left: 20px;
+}
+.yes-no-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	position: relative;
+	left: 20px;
 }
 
 .radio-choice {
@@ -83,7 +97,8 @@ input[type=text], input[type=email] {
 
 .radio-choice input {
 	position: absolute;
-	left: -9999px;
+	top: 9px;
+	left: 6px;
 }
 
 .radio-choice input:checked + span {
@@ -94,6 +109,34 @@ input[type=text], input[type=email] {
 	box-shadow: inset 0 0 0 0.4375em #800F67;
 }
 
-.placeholder {
-	height: 20px;
+.image-text {
+	position: relative;
+	left: 15px;
+	top: 10px;
 }
+
+.review-form {
+  position: relative;
+}
+
+.form-submit {
+	height: 40px;
+  width: 20%;
+  border: none;
+  background-color: #4f0b40;
+  color: white;
+  border: 1.5px solid black;
+	position: absolute;
+	left: 50%;
+	margin: 0 0 100px -10%;
+}
+
+.form-submit:hover {
+	background-color: #800f67;
+	cursor: pointer;
+}
+
+.placeholder {
+	height: 80px;
+}
+

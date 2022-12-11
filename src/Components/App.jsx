@@ -64,7 +64,7 @@ const App = () => {
       <Overview product_id={productId}/>
       <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo} />
       <QA />
-      <RnR productID={productId} id=""/>
+      <RnR productID={productId} productName={productInfo.name} id=""/>
     </div>
   );
 };

@@ -22,7 +22,7 @@ const CharacteristicQuestion = ({characteristic, category, handleChoosingCharact
   return (
     <div>
       <label>{category}</label><br/>
-      <div className="question-container">
+      <div className="charquestion-container">
         <label className="radio-choice">
           <input required type="radio" name={characteristic.id} value={1} checked={characteristicsChosen[characteristic.id] === 1} onChange={handleChoosingCharacteristics}/>
           <span className="radio-span" >{"1 - " + selectionMeaning[0]}</span>

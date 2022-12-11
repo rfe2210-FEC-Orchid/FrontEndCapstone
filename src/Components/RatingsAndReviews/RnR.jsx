@@ -5,7 +5,7 @@ import Ratings from './Ratings.jsx';
 import styled from 'styled-components';
 import WriteAReview from './WriteAReview.jsx';
 
-const RnR = ({productID}) => {
+const RnR = ({productID, productName}) => {
   // const [productID, setProductID] = useState(37311);
   const [reviewLibrary, setReviewLibrary] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -17,7 +17,7 @@ const RnR = ({productID}) => {
   const [ratings, setRatings] = useState({});
   const [percentages, setPercentages] = useState({5: 0, 4: 0, 3: 0, 2: 0, 1:0})
   const [characteristics, setCharacteristics] = useState("");
-  const [sortBy, setSortBy] = useState(sortBy || "relevant");
+  const [sortBy, setSortBy] = useState(sortBy || "relevant");2
   const [isWritingReview, setIsWritingReview] = useState(false); //for Modal
 
   useEffect(()=>{
@@ -34,7 +34,7 @@ const RnR = ({productID}) => {
       .catch((err) => {
         console.error(err);
       })
-  },[sortBy, renderCount]);
+  },[sortBy]);
 
 
   useEffect(()=>{
@@ -128,7 +128,7 @@ const RnR = ({productID}) => {
 
   const RnRContainer = styled.div`
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 2fr 5fr;
     justify-content: center;
   `;
 
@@ -137,7 +137,7 @@ const RnR = ({productID}) => {
     <RnRContainer>
       <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
       <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview}/>
-      <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID}/>
+      <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
     </RnRContainer>
   )
 }

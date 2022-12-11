@@ -3,6 +3,11 @@ import styled from 'styled-components';
 import Star from './Star.jsx';
 
 
+  const StarRatings = styled.span`
+  display: inline-flex;
+  position: relative;
+  width: 100px;
+  `;
 
 const Stars = ({number}) => {
   const [starMap, setStarMap] = useState([0,0,0,0,0]);
@@ -20,11 +25,6 @@ const Stars = ({number}) => {
     setStarMap(baseStarMap);
   }, [number])
 
-  const StarRatings = styled.span`
-    display: inline-flex;
-    position: relative;
-    width: 100px;
-  `;
 
   return (
     <StarRatings>

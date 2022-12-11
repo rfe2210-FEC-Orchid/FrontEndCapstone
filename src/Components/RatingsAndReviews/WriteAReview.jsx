@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, {css} from 'styled-components';
 import Form from './Form.jsx';
 
-const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) => {
+const WriteAReview = ({isWritingReview, onClose, characteristics, productID, productName}) => {
 
   const Overlay = styled.div`
     background-color: rgb(128, 15, 103, 0.7);
@@ -58,7 +58,7 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) =>
     <Overlay isWritingReview={isWritingReview}>
       <Container >
         <Closebtn onClick={onClose}>X</Closebtn>
-        <Form characteristics={characteristics} productID={productID} onClose={onClose}/>
+        <Form characteristics={characteristics} productID={productID} onClose={onClose} productName={productName}/>
       </Container>
     </Overlay>
   )
