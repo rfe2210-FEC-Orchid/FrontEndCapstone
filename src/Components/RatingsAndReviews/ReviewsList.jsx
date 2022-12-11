@@ -3,7 +3,7 @@ import ReviewTile from './ReviewTile.jsx';
 import styled from 'styled-components';
 
 const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview}) => {
-  const bottomRef = useRef(null);
+  // const bottomRef = useRef(null);
 
   const FilterButton = styled.button`
     cursor: pointer;
@@ -25,7 +25,7 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
     overflow-y: auto;
     height: auto;
     max-height: 450px;
-    width: 55%;
+    width: 65%;
   `;
 
   const DesignButtons = styled.button`
@@ -91,10 +91,10 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
 
 
 
-  useEffect(() => {
-    // 👇️ scroll to bottom every time messages change
-    bottomRef.current?.scrollIntoView({behavior: "smooth", block: "start"});
-  }, [renderCount]);
+  // useEffect(() => {
+  //   // 👇️ scroll to bottom every time messages change
+  //   bottomRef.current?.scrollIntoView({behavior: "smooth", block: "start"});
+  // }, [renderCount]);
 
   return (
     <div>
@@ -124,7 +124,7 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
         </FilterButton>}
       <ReviewListContainer >
         {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review}/>)}
-        <div ref={bottomRef}></div>
+        {/* <div ref={bottomRef}></div> */}
       </ReviewListContainer>
       {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
       <DesignButtons onClick={() => setIsWritingReview(true)}>Add a Review ➕</DesignButtons>

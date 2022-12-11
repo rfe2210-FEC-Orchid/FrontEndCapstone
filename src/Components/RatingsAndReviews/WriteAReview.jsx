@@ -33,8 +33,8 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) =>
 
   const Container = styled.div`
      width: 75%;
-     height:  80%;
-     top: 15px;
+     height:  90%;
+     top: 50px;
      display: flex;
      background: white;
      position: relative;
@@ -58,7 +58,7 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) =>
     <Overlay isWritingReview={isWritingReview}>
       <Container >
         <Closebtn onClick={onClose}>X</Closebtn>
-        <Form characteristics={characteristics} productID={productID}/>
+        <Form characteristics={characteristics} productID={productID} onClose={onClose}/>
       </Container>
     </Overlay>
   )

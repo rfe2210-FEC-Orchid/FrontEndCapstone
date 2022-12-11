@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import CharacteristicQuestion from './CharacteristicQuestion.jsx'
-import styled from 'styled-components';
 import MultiFileUpload from './MultiFileUpload.jsx';
 import ClickableStars from './ClickableStars.jsx';
 import axios from 'axios';
 
-const Form = ({characteristics, productID}) => {
+const Form = ({characteristics, productID, onClose}) => {
   const [overallRating, setOverallRating] = useState(0);
   const [summary, setSummary] = useState("");
   const [ifRecommend, setIfRecommend] = useState(true);
@@ -20,7 +19,7 @@ const Form = ({characteristics, productID}) => {
     const {name, value} = evt.target;
     setCharacteristicsChosen(prev => ({
       ...prev,
-      [name]: value
+      [name]: Number(value)
     }));
   }
 
@@ -49,12 +48,21 @@ const Form = ({characteristics, productID}) => {
     })
     .then(()=>{
       console.log('success');
+      onClose();
+      setOverallRating(0);
+      setSummary("");
+      setIfRecommend(true);
+      setBody("");
+      setNickname("");
+      setEmail("");
+      setCharacteristicsChosen({});
+      setImageURLS([]);
     })
     .catch((err) =>  {
       console.error(err.response.data);
     }, {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "text/plain"
       }
     })
   }
@@ -66,7 +74,7 @@ const Form = ({characteristics, productID}) => {
     <h4>About the Product Name Here</h4>
   </header>
 
-  <form>
+  <form onSubmit={handleSubmit}>
     <div>
       <label><span className="number">1</span>Overall Rating*</label><br/>
       <div className="clickable-stars">
@@ -90,8 +98,8 @@ const Form = ({characteristics, productID}) => {
     </div>
 
     <div>
-      <label><span className="number">4</span>Review Summary</label><br/>
-      <textarea required maxLength="60" rows="2" cols="50" placeholder="Example: Best purchase ever!" value={summary} onChange={(evt) => {
+      <label><span className="number">4</span>Review Summary*</label><br/>
+      <textarea className="text-input" required maxLength="60" rows="2" cols="50" placeholder="Example: Best purchase ever!" value={summary} onChange={(evt) => {
 
         console.log(summary);
         setSummary(evt.target.value);
@@ -99,7 +107,7 @@ const Form = ({characteristics, productID}) => {
     </div>
 
     <label><span className="number">5</span>Review Body*</label><br/>
-      <textarea required minLength="50" maxLength="1000" rows="4" cols="50" placeholder="Why did you like the product or not?" autoComplete="off" value={body} onChange={(evt) => {
+      <textarea className="text-input" required minLength="50" maxLength="1000" rows="4" cols="50" placeholder="Why did you like the product or not?" autoComplete="off" value={body} onChange={(evt) => {
         setBody(evt.target.value);
       }}/>
     <div>{body.length < 50 ? "Minimum required characters left: " + (50 - body.length) : "Minimum Reached"}</div>
@@ -111,7 +119,7 @@ const Form = ({characteristics, productID}) => {
 
     <label><span className="number">7</span>What is your nickname*</label>
     <div>
-      <input required type="text" maxLength="60" placeholder="Example: jackson11!" value={nickname} onChange={(evt) => {
+      <input className="text-input" required type="text" maxLength="60" placeholder="Example: jackson11!" value={nickname} onChange={(evt) => {
         setNickname(evt.target.value);
       }} />
       <div>For privacy reasons, do not use your full name or email address</div>
@@ -119,13 +127,14 @@ const Form = ({characteristics, productID}) => {
 
     <label><span className="number">8</span>You email*</label>
     <div>
-      <input required type="email" placeholder="Example: jackson11@email.com" value={email} onChange={(evt) => {
+      <input className="text-input" required type="email" placeholder="Example: jackson11@email.com" value={email} onChange={(evt) => {
         setEmail(evt.target.value);
       }} />
       <div>For authentication reasons, you will not be emailed</div>
     </div>
-    <input type="submit" value="Submit" onClick={handleSubmit} />
+    <input type="submit" value="Submit" />
   </form>
+  <div className="placeholder"></div>
   </section>
   )
 }

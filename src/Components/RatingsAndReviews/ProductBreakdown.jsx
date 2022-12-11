@@ -11,6 +11,8 @@ const ProductBreakdown = ({characteristic, category}) => {
   const Container = styled.div`
     position: relative;
     width: 175px;
+    left: 2em;
+    margin: 2px;
   `;
 
   const ScaleBar = styled.div`

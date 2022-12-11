@@ -23,7 +23,7 @@ const Stars = ({number}) => {
   const StarRatings = styled.span`
     display: inline-flex;
     position: relative;
-    width: 50px;
+    width: 100px;
   `;
 
   return (

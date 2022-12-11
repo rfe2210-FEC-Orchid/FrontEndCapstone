@@ -26,6 +26,8 @@ const BarGraph = ({ratings, percentages, handleBarFilter, renderList}) => {
   `;
 
   const BarContainer = styled.div`
+    position: relative;
+    left: 2em;
     cursor: pointer;
     width: 215px;
     &:hover {

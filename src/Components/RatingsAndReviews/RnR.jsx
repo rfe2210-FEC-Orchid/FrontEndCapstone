@@ -5,8 +5,8 @@ import Ratings from './Ratings.jsx';
 import styled from 'styled-components';
 import WriteAReview from './WriteAReview.jsx';
 
-const RnR = () => {
-  const [productID, setProductID] = useState("37311");
+const RnR = ({productID}) => {
+  // const [productID, setProductID] = useState(37311);
   const [reviewLibrary, setReviewLibrary] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(0);
