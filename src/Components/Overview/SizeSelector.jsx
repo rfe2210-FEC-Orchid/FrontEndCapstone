@@ -10,11 +10,11 @@ const SizeOption = styled.div`
   margin: 5px;
   padding: 2px;
   background-color: #f2f2f2;
-  border: ${props => props.selected ? '1.5px solid black' : '1.5px solid white'};
+  border: ${props => props.selected ? '1.5px solid #4F0B40' : '1.5px solid white'};
 
   &:hover {
     cursor: pointer;
-    border: 1.5px solid black;
+    border: 1.5px solid #4F0B40;
     background-color: #f2f2f2;
   }
 `;

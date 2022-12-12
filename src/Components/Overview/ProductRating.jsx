@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-
+import styled from 'styled-components';
 import axios from 'axios';
 import Stars from './Stars.jsx';
+
+const ProductRatingsContainer = styled.div`
+  display: inline-block;
+  border-bottom: 1px solid white;
+  &:hover {
+    cursor: pointer;
+    border-bottom: 1px solid black;
+  }
+`;
 
 const ProductRating = (props) => {
 
@@ -33,9 +42,9 @@ const ProductRating = (props) => {
   }, []);
 
   return (
-    <div>
-      <Link activeClass="active" to="RnR" smooth={true}>{RNRData && <Stars number={RNRData.avg}/>}{RNRData.avg} ({RNRData.n})</Link>
-    </div>
+    <ProductRatingsContainer>
+      <Link to="RnR" smooth={true}>{RNRData && <Stars number={RNRData.avg}/>}{RNRData.avg} ({RNRData.n})</Link>
+    </ProductRatingsContainer>
   );
 };
 
