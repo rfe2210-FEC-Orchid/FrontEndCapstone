@@ -72,7 +72,7 @@ const App = () => {
       </Header>
       <Overview selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} product_id={productId}/>
       <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo} />
-      <QA />
+      <QA productId={productId} productName={productInfo.name} />
       <RnR productID={productId} productName={productInfo.name} id="" handleTrack={handleTrack}/>
     </UserContext.Provider>
   );

@@ -3,8 +3,6 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Answers from './Answers.jsx';
 import AnswerModal from './AnswerModal.jsx';
-//var cl = new cloudinary.Cloudinary({cloud_name: CLOUD_NAME, secure: true});
-
 
 const QuestionList = ({name, question}) => {
   const [ url, setUrl ] = useState([]);
@@ -23,6 +21,7 @@ const QuestionList = ({name, question}) => {
     if (numberOfA+2 >= Object.values(question.answers).length) {
       setMoreAnswers(false);
     }
+
     setNumberOfA(numberOfA+2)
   }
 
@@ -54,14 +53,78 @@ const QuestionList = ({name, question}) => {
    }
   }
 
+  const Question = styled.div`
+    display: inline-block;
+    //border: 1px solid red;
+    //padding: 1rem 1rem;
+    vertical-align: middle;
+    width: 70%;
+    font-size: 20px;
+ `
+ const QuestionButton = styled.div`
+     display: flex;  flex-wrap: wrap;  align-content: stretch;
+  `
+
+
+  const Container = styled.div`
+    width: 100%;
+    display: flex;  flex-wrap: wrap;  align-content: stretch;
+   `
+   const Helpful = styled.div`
+    font-size: 13px;
+    color:rgb(150, 141, 141);
+  `
+  const Button = styled.div`
+    font-size: 13px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: rgb(150, 141, 141);
+    cursor:pointer;
+    &:hover {
+      color:#080707;
+      transition: 0.7s;
+  }
+  `
+  const Divider = styled.div`
+    width:5px;
+    height:auto;
+    display:inline-block;
+`
+const AButton = styled.div`
+font-family: Nunito Sans, sans-serif, Daniel;
+background-color:#fefef;
+border: none;
+outline: none;
+color:#800F67;
+font-size: 18px;
+cursor:pointer;
+&:hover {
+      color:#070101;
+      transition: 0.7s;
+  }
+`
+
+
 return(
   <div>
-  Q: {question.question_body}
-  Helpful?
-  <button onClick={handleHelpfulQ}>Yes ({helpful})</button>
-  <button onClick={handleAddAnswer}>
-  Add Answer
-  </button>
+    <p></p>
+  <Container>
+    <Question>
+    <b>Q:{"  " + question.question_body}</b>
+    </Question>
+    <QuestionButton>
+    <Helpful>
+    Helpful?
+    </Helpful>
+    <Divider/>
+    <Button onClick={handleHelpfulQ}> <u>Yes</u>({helpful})</Button>
+    <Divider/>
+    <Button onClick={handleAddAnswer}><u>Add Answer</u></Button>
+    </QuestionButton>
+
+  </Container>
+  <p></p>
   {modalA &&
     <div>
       <AnswerModal handleAddAnswer ={handleAddAnswer} url={url} setUrl={setUrl} formErrorA={formErrorA} handleAFormSubmit={handleAFormSubmit} modalFormA={modalFormA} setModalFormA={setModalFormA} name={name} question={question.question_body}/>
@@ -78,7 +141,7 @@ return(
 
   })}
     <p>
-  {(Object.values(question.answers).length>2 && moreAnswers)  && <button onClick={handleMoreAnswers}>LOAD MORE ANSWERS</button>}
+  {(Object.values(question.answers).length>2 && moreAnswers)  && <AButton onClick={handleMoreAnswers}><b>LOAD MORE ANSWERS</b></AButton>}
   </p>
   </div>
 )

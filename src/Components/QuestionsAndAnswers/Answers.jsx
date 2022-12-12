@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Photo from './Photo.jsx'
+import './questions.css';
+
 
 const Answers = ({answer}) => {
   const [helpfulA, setHelpfulA] = useState(answer.helpfulness)
@@ -19,17 +21,31 @@ const Answers = ({answer}) => {
     setHelpfulA(helpfulA+1)
   }
 
+  const Button = styled.div`
+    font-size: 13px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: rgb(150, 141, 141);
+    cursor:pointer;
+    &:hover {
+      color:#080707;
+      transition: 0.7s;
+  }
+  `
+   const Container = styled.div`
+   width: 100%;
+   display: flex;  flex-wrap: wrap;  align-content: stretch;
+  `
+
+
+
   return(
     <div>
-      A: {answer.body}
-      by {answer.answerer_name},
-      {new Date(answer.date).toLocaleString('en-US',{
-        //january 1, 2019
-        month:'long',
-        day: 'numeric',
-        year: 'numeric'
-        })}
-        {answer.photos.length > 0 &&
+      <b className ='fonttwo'>A: </b>
+      <span className='divider'></span>
+      {answer.body}
+      {answer.photos.length > 0 &&
           answer.photos.map((photo,key) => {
           return(
             <div key={key}>
@@ -37,10 +53,27 @@ const Answers = ({answer}) => {
             </div>
           )})
         }
-      | Helpful?
-      <button onClick={handleHelpfulA}>Yes({helpfulA})</button>
+      <Container>
+      <p className ='smallGrey'>by {answer.answerer_name},
+      <span className='divider'></span>
+      {new Date(answer.date).toLocaleString('en-US',{
+        //january 1, 2019
+        month:'long',
+        day: 'numeric',
+        year: 'numeric'
+        })}
+        <span className='divider'></span>
+          | Helpful?
+        <span className='divider'></span>
+      <button className ='smallbtn' onClick={handleHelpfulA}><u>Yes</u>({helpfulA})</button>
+      <span className='divider'></span>
       |
-      <button onClick={handleAReport}>{reportA}</button>
+      <span className='divider'></span>
+      <button className ='smallbtn' onClick={handleAReport}><u>{reportA}</u></button>
+      </p>
+      </Container>
+
+
 
     </div>
     )
