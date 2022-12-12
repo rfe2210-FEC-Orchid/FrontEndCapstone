@@ -11,12 +11,15 @@ const OutfitList = ({setproductId, currentProductInfo, selectedStyle}) => {
 
   const currentOutfit = {id: currentProductInfo.id, category: currentProductInfo.category, name: currentProductInfo.name, price: currentProductInfo.default_price, image: selectedStyle.photos};
 
-  const addOutfit = (item) => {
+  const addOutfit = () => {
     let outfitCopy = [...outfits];
-    let {id} = item;
+    let {id} = currentOutfit;
+    console.log('currentOutfit: ', currentOutfit);
     let existingitem = outfitCopy.find((outfitItem) => outfitItem.id === id);
     if (!existingitem) {
-      outfitCopy.push(item);
+      outfitCopy.push(currentOutfit);
+    } else {
+      console.log('this product already exists in your outfit list');
     }
     setOutfits(outfitCopy);
     let stringOutfits = JSON.stringify(outfitCopy);
@@ -59,7 +62,7 @@ const OutfitList = ({setproductId, currentProductInfo, selectedStyle}) => {
                <FaPlusCircle size={75}/>
              </div>
              {outfits.map((product) => {
-               return ( <OutfitCards key={product.id} product={product} setproductId={setproductId} /> )
+               return ( <OutfitCards key={product.id} product={product} setproductId={setproductId} delete={removeOutfit}/> )
              })}
            </div>
           <FaAngleRight size={40} className='right-arrow' onClick={slideRight}/>
