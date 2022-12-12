@@ -22,7 +22,7 @@
 
 .text-input {
 	padding: 10px;
-	margin: 10px 0;
+	margin: 10px 0 0 0;
 	box-shadow:0 0 15px 4px rgba(0,0,0,0.1);
 	border-radius:10px;
 	border: 0;
@@ -36,6 +36,11 @@
 	border: 2px solid #800F67;
 }
 
+.text-input:invalid:focus {
+	outline: none;
+	border: 2px solid red;
+}
+
 
 textarea {
 	resize: vertical;
@@ -45,6 +50,11 @@ input[type=text], input[type=email] {
 	border: 0;
 	border-bottom: 1px solid black;
 } */
+
+.text-below-input {
+  text-align: right;
+	font-size: 14px;
+}
 
 .charquestion-container {
 	display: flex;
@@ -99,6 +109,7 @@ input[type=text], input[type=email] {
 	position: absolute;
 	top: 9px;
 	left: 6px;
+	/* visibility: hidden; */
 }
 
 .radio-choice input:checked + span {

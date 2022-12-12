@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import styled, { createGlobalStyle } from 'styled-components';
 import Overview from './Overview/Overview.jsx';
 import RnR from './RatingsAndReviews/RnR.jsx';
 import RelatedItems from './RelatedItemsAndComparison/RelatedItems.jsx';
 import QA from './QuestionsAndAnswers/QA.jsx';
+import {UserContext} from './UserContext.jsx';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -39,6 +40,8 @@ const Header = styled.div`
 const App = () => {
   const [productId, setproductId] = useState(37313);
   const [productInfo, setproductInfo] = useState({});
+  const [trackData, setTrackData] = useState([]); //for user tracking
+  const userTrackData = useMemo(() => ({trackData, setTrackData}), [trackData, setTrackData]); //for user tracking
 
   useEffect(() => {
     getProductInfo();
@@ -55,17 +58,22 @@ const App = () => {
     })
   }
 
+  const handleTrack = (evt, moduleName) => { // for user tracking
+      const newData = "Module: " + moduleName + " | Element: " + evt.target.dataset.name + " | " + Date().toString();
+      setTrackData([...trackData, newData])
+    }
+
   return (
-    <div>
+    <UserContext.Provider value={userTrackData}>
       <GlobalStyle />
       <Header>
         <h1>Orchid</h1>
       </Header>
       <Overview product_id={productId}/>
       <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo} />
-      <QA />
-      <RnR productID={productId} productName={productInfo.name} id=""/>
-    </div>
+      {/* <QA /> */}
+      <RnR productID={productId} productName={productInfo.name} id="" handleTrack={handleTrack}/>
+    </UserContext.Provider>
   );
 };
 

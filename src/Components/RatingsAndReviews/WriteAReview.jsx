@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import styled, {css} from 'styled-components';
 import Form from './Form.jsx';
 
@@ -15,6 +15,7 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID, pro
     justify-content: center;
     align-items: center;
     opacity: 0;
+    z-index: 1000;
     visibility: hidden;
     transform: scale(0.8);
     transition: opacity 0.8s visibility 0.8s transform 0.8s;

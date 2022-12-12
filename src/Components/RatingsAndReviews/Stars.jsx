@@ -27,7 +27,7 @@ const Stars = ({number}) => {
 
 
   return (
-    <StarRatings>
+    <StarRatings >
       {starMap.map((rating, index) => <Star key={" " + index} rating={rating}/>)}
     </StarRatings>
   )

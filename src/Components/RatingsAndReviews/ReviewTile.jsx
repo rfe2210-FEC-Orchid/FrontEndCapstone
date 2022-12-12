@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Stars from './Stars.jsx';
@@ -106,14 +106,14 @@ const ReviewTile = ({review}) => {
         })
   }
   return (
-    <Container>
+    <Container data-name="review-tile">
       <Stars number={review.rating}/>
-      <NameBlock>
+      <NameBlock data-name="review-tile">
         <span>{review.reviewer_name + ", "}</span>
         <span>{dateFormatted.month + " " + dateFormatted.day + ", " + dateFormatted.year}</span>
       </NameBlock>
-      <ReviewSummaryBlock>{review.summary}</ReviewSummaryBlock>
-      <ReviewBodyBlock>
+      <ReviewSummaryBlock data-name="review-tile">{review.summary}</ReviewSummaryBlock>
+      <ReviewBodyBlock data-name="review-tile">
         {isShowingMore ? review.body : (review.body.substring(0, 251) + (review.body.length > 250 ? "..." : ""))}
         <div> {review.body.length > 250 &&
           <ShowMoreBtn onClick={handleShowMore}>{isShowingMore ? "^ Show Less" : "v Show More"}</ShowMoreBtn>
@@ -121,7 +121,7 @@ const ReviewTile = ({review}) => {
       </ReviewBodyBlock>
       {review.recommend && <RecommendBlock>✓ I recommend this product</RecommendBlock>}
       {review.response &&
-      <ResponseBlock>
+      <ResponseBlock data-name="review-tile">
         <div>Response:</div>
         <div>{review.response}</div>
       </ResponseBlock>}

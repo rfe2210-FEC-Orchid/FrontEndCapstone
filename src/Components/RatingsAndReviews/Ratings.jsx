@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Stars from './Stars.jsx';
 import BarGraph from './BarGraph.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
@@ -22,8 +22,8 @@ const Ratings = ({handleBarFilter, renderList, avgRating, recommendPercentage, r
 
   return (
     <RatingsContainer>
-      <AvgRatingContainer>{avgRating}</AvgRatingContainer>
-      <Stars number={avgRating}/>
+      <AvgRatingContainer data-name="avgRating">{avgRating}</AvgRatingContainer>
+      <Stars data-name="stars" number={avgRating}/>
       <h4 style={{padding: "0px", margin: "5px"}}>Rating Breakdown</h4>
       <PercentageRecommended>{recommendPercentage + "% of reviews recommend this product"}</PercentageRecommended>
       <BarGraph ratings={ratings} percentages={percentages} handleBarFilter={handleBarFilter} renderList={renderList}/>

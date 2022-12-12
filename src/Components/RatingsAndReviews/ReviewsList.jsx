@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import styled from 'styled-components';
 
-const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview}) => {
+const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, handleTrack}) => {
   // const bottomRef = useRef(null);
 
   const FilterButton = styled.button`
@@ -125,9 +125,11 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
       <ReviewListContainer >
         {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review}/>)}
         {/* <div ref={bottomRef}></div> */}
-      </ReviewListContainer>
-      {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
-      <DesignButtons onClick={() => setIsWritingReview(true)}>Add a Review ➕</DesignButtons>
+      </ReviewListContainer >
+      {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons data-name="more-reviews" onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
+      <DesignButtons data-name="add-review" onClick={(evt) => {
+        handleTrack(evt, "reviewNratings");
+        setIsWritingReview(true)}}>Add a Review ➕</DesignButtons>
     </div>
   )
 }

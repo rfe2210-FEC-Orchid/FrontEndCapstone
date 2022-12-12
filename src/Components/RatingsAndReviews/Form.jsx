@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CharacteristicQuestion from './CharacteristicQuestion.jsx'
 import MultiFileUpload from './MultiFileUpload.jsx';
 import ClickableStars from './ClickableStars.jsx';
@@ -117,10 +117,10 @@ const Form = ({characteristics, productID, onClose, productName}) => {
 
     <div className="question-container">
       <label><span className="number">5</span>Review Body<span style={{color: "red"}}>*</span></label><br/>
-        <textarea className="text-input" required minLength="50" maxLength="1000" rows="4" cols="50" placeholder="Why did you like the product or not?" autoComplete="off" value={body} onChange={(evt) => {
+        <textarea className="text-input" required minLength="50" maxLength="1000" rows="4" cols="50" placeholder="Why did you like the product or not?" value={body} onChange={(evt) => {
           setBody(evt.target.value);
         }}/>
-      <div>{body.length < 50 ? "Minimum required characters left: " + (50 - body.length) : "Minimum Reached"}</div>
+      <div className="text-below-input">{body.length < 50 ? "Minimum required characters left: " + (50 - body.length) : "Minimum Reached"}</div>
     </div>
 
     <div className="question-container">
@@ -136,7 +136,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
         <input className="text-input" required type="text" maxLength="60" placeholder="Example: jackson11!" value={nickname} onChange={(evt) => {
           setNickname(evt.target.value);
         }} />
-        <div>For privacy reasons, do not use your full name or email address</div>
+        <div className="text-below-input">For privacy reasons, do not use your full name or email address</div>
       </div>
     </div>
 
@@ -146,7 +146,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
         <input className="text-input" required type="email" placeholder="Example: jackson11@email.com" value={email} onChange={(evt) => {
           setEmail(evt.target.value);
         }} />
-        <div>For authentication reasons, you will not be emailed</div>
+        <div className="text-below-input">For authentication reasons, you will not be emailed</div>
       </div>
     </div>
 
