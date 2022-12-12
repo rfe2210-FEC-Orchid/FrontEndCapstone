@@ -76,14 +76,14 @@ const Form = ({characteristics, productID, onClose, productName}) => {
 
   <form className="review-form" onSubmit={handleSubmit}>
     <div className="question-container">
-      <label><span className="number">1</span>Overall Rating*</label><br/>
+      <label><span className="number">1</span>Overall Rating<span style={{color: "red"}}>*</span></label><br/>
       <div className="clickable-stars">
         <ClickableStars overallRating={overallRating} handleSetOverallRating={handleSetOverallRating}/>
       </div>
     </div>
 
     <div className="question-container">
-      <label><span className="number">2</span>Do you recommend this product?*</label><br/>
+      <label><span className="number">2</span>Do you recommend this product?<span style={{color: "red"}}>*</span></label><br/>
       <div className="yes-no-container">
         <label className="radio-choice">
           <input required defaultChecked type="radio" value={true} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/>
@@ -98,7 +98,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
     </div>
 
     <div className="question-container">
-      <label><span className="number">3</span>Characteristics*</label>
+      <label><span className="number">3</span>Characteristics<span style={{color: "red"}}>*</span></label>
         {/* <label>{characteristicsChosen}</label> */}
       <div>
         {Object.keys(characteristics).map((key) => <CharacteristicQuestion key={key} characteristic={characteristics[key]} category={key}
@@ -107,7 +107,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
     </div>
 
     <div className="question-container">
-      <label><span className="number">4</span>Review Summary*</label><br/>
+      <label><span className="number">4</span>Review Summary<span style={{color: "red"}}>*</span></label><br/>
       <textarea className="text-input" required maxLength="60" rows="2" cols="50" placeholder="Example: Best purchase ever!" value={summary} onChange={(evt) => {
 
         console.log(summary);
@@ -116,7 +116,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
     </div>
 
     <div className="question-container">
-      <label><span className="number">5</span>Review Body*</label><br/>
+      <label><span className="number">5</span>Review Body<span style={{color: "red"}}>*</span></label><br/>
         <textarea className="text-input" required minLength="50" maxLength="1000" rows="4" cols="50" placeholder="Why did you like the product or not?" autoComplete="off" value={body} onChange={(evt) => {
           setBody(evt.target.value);
         }}/>
@@ -131,7 +131,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
     </div>
 
     <div className="question-container">
-      <label><span className="number">7</span>What is your nickname*</label>
+      <label><span className="number">7</span>What is your nickname<span style={{color: "red"}}>*</span></label>
       <div>
         <input className="text-input" required type="text" maxLength="60" placeholder="Example: jackson11!" value={nickname} onChange={(evt) => {
           setNickname(evt.target.value);
@@ -141,7 +141,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
     </div>
 
     <div className="question-container">
-      <label><span className="number">8</span>You email*</label>
+      <label><span className="number">8</span>You email<span style={{color: "red"}}>*</span></label>
       <div>
         <input className="text-input" required type="email" placeholder="Example: jackson11@email.com" value={email} onChange={(evt) => {
           setEmail(evt.target.value);

@@ -129,11 +129,16 @@ input[type=text], input[type=email] {
 	position: absolute;
 	left: 50%;
 	margin: 0 0 100px -10%;
+	font-size: 16px;
 }
 
 .form-submit:hover {
 	background-color: #800f67;
 	cursor: pointer;
+}
+
+.pdbreakdown-container {
+	margin: 10px 0px;
 }
 
 .placeholder {

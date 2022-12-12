@@ -10,7 +10,7 @@ const ProductBreakdown = ({characteristic, category}) => {
   // }
   const Container = styled.div`
     position: relative;
-    width: 175px;
+    width: 225px;
     left: 2em;
     margin: 2px;
   `;
@@ -20,7 +20,7 @@ const ProductBreakdown = ({characteristic, category}) => {
     /* position: relative; */
     background-color: grey;
     height: 10px;
-    width: 30px;
+    width: 40px;
     margin: 0 2px;
   `;
 
@@ -36,17 +36,19 @@ const ProductBreakdown = ({characteristic, category}) => {
   `;
 
   const LowText = styled.span`
+    font-size: 12px;
   `;
 
   const HighText = styled.span`
     position: absolute;
     right: 0px;
+    font-size: 12px;
   `;
 
   return (
    <Container>
     <div>{category}</div>
-    <Pointer style={{left: (2 + Math.round(characteristic.value * 158 / 5)) + "px"}}/>
+    <Pointer style={{left: (2 + Math.round(characteristic.value * 208 / 5)) + "px"}}/>
     {[...new Array(5)].map(() => <ScaleBar></ScaleBar>)}
     {/* <span>{Math.round(characteristic.value * 100) / 100}</span><br/> */}
     <LowText>Poor</LowText>

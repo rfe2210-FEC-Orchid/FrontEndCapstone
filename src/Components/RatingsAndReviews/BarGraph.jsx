@@ -6,7 +6,7 @@ import styled from 'styled-components';
   position: relative;
   background-color: #C4C4C4;
   height: 10px;
-  width: 100px;
+  width: 120px;
   margin: 0px 5px;
   `;
 
@@ -27,7 +27,7 @@ import styled from 'styled-components';
   position: relative;
   left: 2em;
   cursor: pointer;
-  width: 240px;
+  width: 260px;
   &:hover {
     border-bottom: 1px solid black;
   }

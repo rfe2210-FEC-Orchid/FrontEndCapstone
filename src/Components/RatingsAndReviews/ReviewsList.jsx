@@ -23,8 +23,8 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
 
   const ReviewListContainer = styled.div`
     overflow-y: auto;
-    height: auto;
-    max-height: 450px;
+    height: 450px;
+    /* max-height: 450px; */
     width: 65%;
   `;
 
