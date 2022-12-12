@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import CharacteristicQuestion from './CharacteristicQuestion.jsx'
-import styled from 'styled-components';
 import MultiFileUpload from './MultiFileUpload.jsx';
 import ClickableStars from './ClickableStars.jsx';
 import axios from 'axios';
 
-const Form = ({characteristics, productID}) => {
+const Form = ({characteristics, productID, onClose, productName}) => {
   const [overallRating, setOverallRating] = useState(0);
   const [summary, setSummary] = useState("");
   const [ifRecommend, setIfRecommend] = useState(true);
@@ -20,7 +19,7 @@ const Form = ({characteristics, productID}) => {
     const {name, value} = evt.target;
     setCharacteristicsChosen(prev => ({
       ...prev,
-      [name]: value
+      [name]: Number(value)
     }));
   }
 
@@ -49,12 +48,21 @@ const Form = ({characteristics, productID}) => {
     })
     .then(()=>{
       console.log('success');
+      onClose();
+      setOverallRating(0);
+      setSummary("");
+      setIfRecommend(true);
+      setBody("");
+      setNickname("");
+      setEmail("");
+      setCharacteristicsChosen({});
+      setImageURLS([]);
     })
     .catch((err) =>  {
       console.error(err.response.data);
     }, {
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "text/plain"
       }
     })
   }
@@ -63,69 +71,88 @@ const Form = ({characteristics, productID}) => {
   <section>
   <header>
     <h2>Write a Review</h2>
-    <h4>About the Product Name Here</h4>
+    <h4>{"About " + productName}</h4>
   </header>
 
-  <form>
-    <div>
-      <label><span className="number">1</span>Overall Rating*</label><br/>
+  <form className="review-form" onSubmit={handleSubmit}>
+    <div className="question-container">
+      <label><span className="number">1</span>Overall Rating<span style={{color: "red"}}>*</span></label><br/>
       <div className="clickable-stars">
         <ClickableStars overallRating={overallRating} handleSetOverallRating={handleSetOverallRating}/>
       </div>
     </div>
 
-    <div>
-      <label><span className="number">2</span>Do you recommend this product?*</label><br/>
-      <input required defaultChecked type="radio" value={true} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/>Yes
-      <input required type="radio" value={false} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/> No
+    <div className="question-container">
+      <label><span className="number">2</span>Do you recommend this product?<span style={{color: "red"}}>*</span></label><br/>
+      <div className="yes-no-container">
+        <label className="radio-choice">
+          <input required defaultChecked type="radio" value={true} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/>
+          <span className="radio-span" >Yes</span>
+        </label>
+
+        <label className="radio-choice">
+          <input required type="radio" value={false} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/>
+          <span className="radio-span" >No</span>
+        </label>
+      </div>
     </div>
 
-    <div>
-      <label><span className="number">3</span>Characteristics*</label>
-      {/* <label>{characteristicsChosen}</label> */}
+    <div className="question-container">
+      <label><span className="number">3</span>Characteristics<span style={{color: "red"}}>*</span></label>
+        {/* <label>{characteristicsChosen}</label> */}
       <div>
         {Object.keys(characteristics).map((key) => <CharacteristicQuestion key={key} characteristic={characteristics[key]} category={key}
         handleChoosingCharacteristics={handleChoosingCharacteristics} characteristicsChosen={characteristicsChosen}/> )}
       </div>
     </div>
 
-    <div>
-      <label><span className="number">4</span>Review Summary</label><br/>
-      <textarea required maxLength="60" rows="2" cols="50" placeholder="Example: Best purchase ever!" value={summary} onChange={(evt) => {
+    <div className="question-container">
+      <label><span className="number">4</span>Review Summary<span style={{color: "red"}}>*</span></label><br/>
+      <textarea className="text-input" required maxLength="60" rows="2" cols="50" placeholder="Example: Best purchase ever!" value={summary} onChange={(evt) => {
 
         console.log(summary);
         setSummary(evt.target.value);
       }}/>
     </div>
 
-    <label><span className="number">5</span>Review Body*</label><br/>
-      <textarea required minLength="50" maxLength="1000" rows="4" cols="50" placeholder="Why did you like the product or not?" autoComplete="off" value={body} onChange={(evt) => {
-        setBody(evt.target.value);
-      }}/>
-    <div>{body.length < 50 ? "Minimum required characters left: " + (50 - body.length) : "Minimum Reached"}</div>
-
-    <label><span className="number">6</span>Upload your photos</label>
-    <div>
-      <MultiFileUpload imageURLS={imageURLS} handleImageUrls={handleImageUrls}/>
+    <div className="question-container">
+      <label><span className="number">5</span>Review Body<span style={{color: "red"}}>*</span></label><br/>
+        <textarea className="text-input" required minLength="50" maxLength="1000" rows="4" cols="50" placeholder="Why did you like the product or not?" value={body} onChange={(evt) => {
+          setBody(evt.target.value);
+        }}/>
+      <div className="text-below-input">{body.length < 50 ? "Minimum required characters left: " + (50 - body.length) : "Minimum Reached"}</div>
     </div>
 
-    <label><span className="number">7</span>What is your nickname*</label>
-    <div>
-      <input required type="text" maxLength="60" placeholder="Example: jackson11!" value={nickname} onChange={(evt) => {
-        setNickname(evt.target.value);
-      }} />
-      <div>For privacy reasons, do not use your full name or email address</div>
+    <div className="question-container">
+      <label><span className="number">6</span>Upload your photos</label>
+      <div>
+        <MultiFileUpload imageURLS={imageURLS} handleImageUrls={handleImageUrls}/>
+      </div>
     </div>
 
-    <label><span className="number">8</span>You email*</label>
-    <div>
-      <input required type="email" placeholder="Example: jackson11@email.com" value={email} onChange={(evt) => {
-        setEmail(evt.target.value);
-      }} />
-      <div>For authentication reasons, you will not be emailed</div>
+    <div className="question-container">
+      <label><span className="number">7</span>What is your nickname<span style={{color: "red"}}>*</span></label>
+      <div>
+        <input className="text-input" required type="text" maxLength="60" placeholder="Example: jackson11!" value={nickname} onChange={(evt) => {
+          setNickname(evt.target.value);
+        }} />
+        <div className="text-below-input">For privacy reasons, do not use your full name or email address</div>
+      </div>
     </div>
-    <input type="submit" value="Submit" onClick={handleSubmit} />
+
+    <div className="question-container">
+      <label><span className="number">8</span>You email<span style={{color: "red"}}>*</span></label>
+      <div>
+        <input className="text-input" required type="email" placeholder="Example: jackson11@email.com" value={email} onChange={(evt) => {
+          setEmail(evt.target.value);
+        }} />
+        <div className="text-below-input">For authentication reasons, you will not be emailed</div>
+      </div>
+    </div>
+
+    <input className="form-submit" type="submit" value="Submit" />
   </form>
+  <div className="placeholder"></div>
   </section>
   )
 }

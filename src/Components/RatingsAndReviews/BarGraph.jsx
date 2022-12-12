@@ -1,15 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BarGraph = ({ratings, percentages, handleBarFilter, renderList}) => {
-
   const BackgroundBar = styled.div`
-    display: inline-flex;
-    position: relative;
-    background-color: #C4C4C4;
-    height: 10px;
-    width: 80px;
-    margin: 0px 5px;
+  display: inline-flex;
+  position: relative;
+  background-color: #C4C4C4;
+  height: 10px;
+  width: 120px;
+  margin: 0px 5px;
   `;
 
   // const BackgroundBar = styled.div`
@@ -18,20 +16,24 @@ const BarGraph = ({ratings, percentages, handleBarFilter, renderList}) => {
   //   width: 50px;
   // `;
   const Bar = styled.div`
-    background-color: black;
-    height: 10px;
-    width: 0%;
-    overflow: hidden;
-    position: absolute;
+  background-color: black;
+  height: 10px;
+  width: 0%;
+  overflow: hidden;
+  position: absolute;
   `;
 
   const BarContainer = styled.div`
-    cursor: pointer;
-    width: 215px;
-    &:hover {
-      border-bottom: 1px solid black;
-    }
+  position: relative;
+  left: 2em;
+  cursor: pointer;
+  width: 260px;
+  &:hover {
+    border-bottom: 1px solid black;
+  }
   `;
+
+const BarGraph = ({ratings, percentages, handleBarFilter, renderList}) => {
 
   return (
     <div>

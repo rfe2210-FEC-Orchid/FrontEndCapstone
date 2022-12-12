@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef} from 'react';
+import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import styled from 'styled-components';
 
-const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview}) => {
-  const bottomRef = useRef(null);
+const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, handleTrack}) => {
+  // const bottomRef = useRef(null);
 
   const FilterButton = styled.button`
     cursor: pointer;
@@ -23,9 +23,9 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
 
   const ReviewListContainer = styled.div`
     overflow-y: auto;
-    height: auto;
-    max-height: 450px;
-    width: 55%;
+    height: 450px;
+    /* max-height: 450px; */
+    width: 65%;
   `;
 
   const DesignButtons = styled.button`
@@ -91,10 +91,10 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
 
 
 
-  useEffect(() => {
-    // 👇️ scroll to bottom every time messages change
-    bottomRef.current?.scrollIntoView({behavior: "smooth", block: "start"});
-  }, [renderCount]);
+  // useEffect(() => {
+  //   // 👇️ scroll to bottom every time messages change
+  //   bottomRef.current?.scrollIntoView({behavior: "smooth", block: "start"});
+  // }, [renderCount]);
 
   return (
     <div>
@@ -124,10 +124,12 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
         </FilterButton>}
       <ReviewListContainer >
         {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review}/>)}
-        <div ref={bottomRef}></div>
-      </ReviewListContainer>
-      {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
-      <DesignButtons onClick={() => setIsWritingReview(true)}>Add a Review ➕</DesignButtons>
+        {/* <div ref={bottomRef}></div> */}
+      </ReviewListContainer >
+      {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons data-name="more-reviews" onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
+      <DesignButtons data-name="add-review" onClick={(evt) => {
+        handleTrack(evt, "reviewNratings");
+        setIsWritingReview(true)}}>Add a Review ➕</DesignButtons>
     </div>
   )
 }

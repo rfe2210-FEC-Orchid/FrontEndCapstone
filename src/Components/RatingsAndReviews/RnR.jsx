@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import ReviewsList from './ReviewsList.jsx';
 import Ratings from './Ratings.jsx';
 import styled from 'styled-components';
 import WriteAReview from './WriteAReview.jsx';
+import {UserContext} from '../UserContext.jsx';
 
-const RnR = () => {
-  const [productID, setProductID] = useState("37311");
+const RnR = ({productID, productName, handleTrack}) => {
+  // const [productID, setProductID] = useState(37311);
   const [reviewLibrary, setReviewLibrary] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(0);
@@ -17,47 +18,55 @@ const RnR = () => {
   const [ratings, setRatings] = useState({});
   const [percentages, setPercentages] = useState({5: 0, 4: 0, 3: 0, 2: 0, 1:0})
   const [characteristics, setCharacteristics] = useState("");
-  const [sortBy, setSortBy] = useState(sortBy || "relevant");
+  const [sortBy, setSortBy] = useState(sortBy || "relevant");2
   const [isWritingReview, setIsWritingReview] = useState(false); //for Modal
+  const {trackData}= useContext(UserContext); //usertracking
 
   useEffect(()=>{
     axios.get(`http://localhost:3001/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
       .then((data) => {
-        console.log(data.data); //data.data.count has how many reviews
-        setReviewLibrary(data.data.results);
-        setReviews(data.data.results);
-        setReviewCount(data.data.results.length);
-        if (data.data.results.length < 2) {
-          setRenderCount(data.data.results.length);
-        }
+
+          console.log(data.data); //data.data.count has how many reviews
+          setReviewLibrary(data.data.results);
+          handleRenderList(data.data.results);
+          if (data.data.results.length < 2) {
+            setRenderCount(data.data.results.length);
+          }
+          // return new Promise((resolve) => {resolve(data.data.results)})
       })
+      // .then((data) => {
+      //   console.log("I'm in the promise");
+      //   handleRenderList(data);
+      //   // handleRenderList();
+      // })
       .catch((err) => {
         console.error(err);
       })
-  },[sortBy, renderCount]);
+  },[sortBy]);
 
 
   useEffect(()=>{
-    console.log(renderList.length === 0);
     handleRenderList();
   },[renderList]);
 
-  const handleRenderList = () => {
+  const handleRenderList = (data) => {
+    const library = data || reviewLibrary;
     if (renderList.length === 0) {
-      setReviews(reviewLibrary);
-      setReviewCount(reviewLibrary.length);
+      setReviews(library);
+      setReviewCount(library.length);
       console.log(renderCount);
-      // if (reviewLibrary.length < 2) {
-      //   setRenderCount(reviewLibrary.length);
+      // if (library.length < 2) {
+      //   setRenderCount(library.length);
       // }
     } else {
-      let videoList = reviewLibrary.filter((review) => {return (renderList.indexOf(review.rating) > -1)});
+      let videoList = library.filter((review) => {return (renderList.indexOf(review.rating) > -1)});
       setReviews(videoList);
       setReviewCount(videoList.length);
     }
   }
 
-  const handleMoreReviews = () => {
+  const handleMoreReviews = (evt) => {
+    handleTrack(evt, "reviewNratings");
     if ((reviewCount - renderCount) >= 2) {
       setRenderCount(currCount => {
         return currCount + 2;
@@ -127,17 +136,21 @@ const RnR = () => {
   }
 
   const RnRContainer = styled.div`
+    left: 20px;
+    position: relative;
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    justify-content: center;
+    grid-template-columns: 2fr 5fr;
+    grid-template-areas: "header header";
   `;
 
 
   return (
     <RnRContainer>
+      <h2 style={{padding: "0px", margin: "100px, 0px, 0px, 0px", gridArea : "header"}}>Ratings & Reviews</h2>
       <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
-      <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview}/>
-      <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID}/>
+      <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} handleTrack={handleTrack}/>
+      <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
+      {trackData.map((data) => <div>{data}</div>)}
     </RnRContainer>
   )
 }
