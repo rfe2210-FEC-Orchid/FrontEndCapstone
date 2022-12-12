@@ -7,16 +7,18 @@ let Modal = ({toggle, action, comparedProduct, currentProduct}) => {
     <div className={`modal-container ${toggle ? 'active' : ''}`}>
       <div className='modal'>
         <h1 style={{margin: '30px'}}>COMPARING</h1>
-        <table style={{margin: '30px'}}>
-          <thead>
-            <tr>
-              <th>{currentProduct.name}</th>
-              <th></th>
-              <th>{comparedProduct.name}</th>
-            </tr>
-          </thead>
-          <Comparison currentProduct={currentProduct} comparedProduct={comparedProduct}/>
-        </table>
+        <div id='table-container'>
+          <table style={{margin: '30px'}}>
+            <thead>
+              <tr>
+                <th>{currentProduct.name}</th>
+                <th></th>
+                <th>{comparedProduct.name}</th>
+              </tr>
+            </thead>
+            <Comparison currentProduct={currentProduct} comparedProduct={comparedProduct}/>
+          </table>
+        </div>
         {/* <div className='close' onClick={action}></div> */}
       </div>
     </div>
