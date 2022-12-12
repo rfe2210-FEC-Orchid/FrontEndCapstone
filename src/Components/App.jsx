@@ -63,7 +63,7 @@ const App = () => {
         <h1>Orchid</h1>
       </Header>
       <Overview selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} product_id={productId}/>
-      <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo} />
+      <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo} selectedStyle={selectedStyle} />
       <QA />
       <RnR id=""/>
     </div>

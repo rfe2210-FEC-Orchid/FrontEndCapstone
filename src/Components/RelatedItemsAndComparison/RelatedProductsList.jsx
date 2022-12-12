@@ -6,7 +6,6 @@ import OutfitList from './OutfitList.jsx';
 import RelatedProductCards from './RelatedProductCards.jsx';
 
 const RelatedProductsList = ({relatedProducts,  setproductId, currentProductInfo}) => {
-
   const slideLeft = () => {
     const slider = document.getElementById('related-products-slider');
     slider.scrollLeft = slider.scrollLeft - 500;

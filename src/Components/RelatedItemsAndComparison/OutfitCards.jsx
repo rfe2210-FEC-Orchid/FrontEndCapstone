@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const OutfitCards = ({product}) => {
-  // get product info with the given sku_id
   return (
     <div className='card'>
       {product.image ? (

@@ -3,9 +3,8 @@ import axios from 'axios';
 import RelatedProductsList from './RelatedProductsList.jsx';
 import OutfitList from './OutfitList.jsx';
 
-const RelatedItems = ({productId, setproductId, productInfo, setproductInfo}) => {
+const RelatedItems = ({productId, setproductId, productInfo, setproductInfo, selectedStyle}) => {
   const [relatedProducts, setrelatedProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     GetRelatedProductsList();
@@ -62,44 +61,11 @@ const RelatedItems = ({productId, setproductId, productInfo, setproductInfo}) =>
       console.log('failed to retrieve cart: ', err);
     })
   }
-  // get product info based on sku_id - product info needs product id
-  // match sku_id to a product id
-  // get product info based on product id
-  // get style info based on product id
-  // let GetCartInfo = (req) => {
-  //   let cartInfo = req.map((id) => {
-  //     let skuId = id.sku_id;
-  //     if (skuId)
-  //     return axios.get(`http://localhost:3001/products/${id}`)
-  //       .then((res) => {
-  //         return axios.get(`http://localhost:3001/products/${id}/styles`)
-  //         .then((result) => {
-  //           let product = {id: res.data.id, category: res.data.category, name: res.data.name, price: res.data.default_price, image: result.data.results[0].photos};
-  //           return product;
-  //         })
-  //         .catch((err) => {
-  //           console.log('failed to retrieve product style', err);
-  //         })
-  //         // return res.data;
-  //       })
-  //       .catch((err) => {
-  //         console.log('failed to retrieve product info: ', err);
-  //       })
-  //     })
-  //     Promise.all(cartInfo)
-  //     .then((result) => {
-  //       console.log('array of outfit info: ', result);
-  //       setCart(result);
-  //     })
-  //     .catch((err) => {
-  //       console.log('failed to get an array of outfit info: ', err);
-  //     })
-  // }
 
   return (
     <div>
       <RelatedProductsList relatedProducts={relatedProducts} setproductId={setproductId} currentProductInfo={productInfo} />
-      {/* <OutfitList cart={cart} setproductId={setproductId} /> */}
+      <OutfitList setproductId={setproductId} currentProductInfo={productInfo} selectedStyle={selectedStyle}/>
     </div>
   )
 }
