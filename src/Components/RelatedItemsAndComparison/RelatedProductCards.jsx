@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {FaRegStar} from 'react-icons/fa';
+import {FaStar} from 'react-icons/fa';
 import Modal from './Modal.jsx';
 
 const RelatedProductCards = ({product, setproductId, currentProductInfo}) => {
@@ -10,7 +10,7 @@ const RelatedProductCards = ({product, setproductId, currentProductInfo}) => {
     setmodalState(!modalState);
   }
   let refreshOverview = () => {
-    console.log('I got clicked, and I should be refreshing the page')
+    console.log('I got clicked, and I should be refreshing the page:')
     setproductId(product.id);
   }
 
@@ -18,7 +18,7 @@ const RelatedProductCards = ({product, setproductId, currentProductInfo}) => {
     <div className='card'>
       <div>
         <div className='image-and-modal'>
-          <FaRegStar size={20} className='toggle-modal' onClick={openModal}/>
+          <FaStar size={20} className='toggle-modal' onClick={openModal}/>
           <Modal toggle={modalState} action={openModal} comparedProduct={product} currentProduct={currentProductInfo}/>
           {product.image ? (<img src={product.image[0].url} alt={product.name} id='image'/>) : 'image not available'
           }

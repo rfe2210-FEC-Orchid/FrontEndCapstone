@@ -91,10 +91,10 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
 
 
 
-  useEffect(() => {
-    // 👇️ scroll to bottom every time messages change
-    bottomRef.current?.scrollIntoView({behavior: "smooth", block: "start"});
-  }, [renderCount]);
+  // useEffect(() => {
+  //   // 👇️ scroll to bottom every time messages change
+  //   bottomRef.current?.scrollIntoView({behavior: "smooth", block: "start"});
+  // }, [renderCount]);
 
   return (
     <div>

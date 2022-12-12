@@ -1,5 +1,5 @@
 /* MODAL */
-.toggle-modal {
+.toggle-modal, .delete-icon {
   display: block;
   cursor: pointer;
   position: absolute;
@@ -7,6 +7,27 @@
   top: 8px;
   right: 5px;
   padding: 5px;
+  background-color: #F2F2F2;
+  color: black;
+  opacity: 0.5;
+  border-radius: 20px;
+}
+.toggle-modal:hover {
+  opacity: 0.8;
+  cursor: pointer;
+  color: #FFD31A;
+}
+
+.delete-icon {
+  background-color: #F2F2F2;
+  color: black;
+  opacity: 0.5;
+  border-radius: 20px;
+}
+
+.delete-icon:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .modal-container, .close, .modal-container.active {
@@ -96,6 +117,7 @@ tr:nth-child(even) {
   align-items: stretch;
   scrollbar-width: none;
   scroll-behavior: smooth;
+  position: relative;
 }
 
 #related-products-slider::-webkit-scrollbar{
@@ -112,15 +134,19 @@ tr:nth-child(even) {
 
 /* ARROWS */
 .left-arrow, .right-arrow {
-  color: #4F0B40;
+  background-color: #4F0B40;
   position: relative;
   /* opacity: 0.5; */
+  color: white;
+  border-radius: 10px;
 }
-.left-arrow:hover, .right-arrow:hover, #add-outfit:hover {
-  color: #800F67;
+
+.left-arrow:hover, .right-arrow:hover {
+  background-color: #800F67;
   /* opacity: 0.5; */
   cursor: pointer;
 }
+
 .right-arrow {
   right: -10px;
 }
@@ -133,6 +159,12 @@ tr:nth-child(even) {
   margin: 10px;
   background-color: #F2F2F2;
   /* box-shadow: 2px 2px 2px 2px #0000001f; */
+  cursor: pointer;
+}
+
+.card:hover {
+  border: 1px solid;
+  border-color: black;
   cursor: pointer;
 }
 
@@ -152,15 +184,28 @@ tr:nth-child(even) {
   line-height: 0.4;
 }
 
+/* OUTFIT CARD */
 #add-outfit {
   margin: 10px;
   background-color: #F2F2F2;
-  box-shadow: 2px 2px 2px 2px #0000001f;
+  /* box-shadow: 2px 2px 2px 2px #0000001f; */
   cursor: pointer;
   align-items: stretch;
   padding: 10px;
   opacity: 0.7;
   width: 180px;
-  height: 220px;
+  height: 280px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#add-outfit:hover {
+  color: #4F0B40;
+  opacity: 0.8;
+  border: 1px solid;
+  border-color: black;
+  cursor: pointer;
 }

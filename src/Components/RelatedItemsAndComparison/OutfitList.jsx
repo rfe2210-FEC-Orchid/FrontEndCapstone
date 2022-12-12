@@ -62,7 +62,7 @@ const OutfitList = ({setproductId, currentProductInfo, selectedStyle}) => {
                <FaPlusCircle size={75}/>
              </div>
              {outfits.map((product) => {
-               return ( <OutfitCards key={product.id} product={product} setproductId={setproductId} delete={removeOutfit}/> )
+               return ( <OutfitCards key={product.id} product={product} setproductId={setproductId} deleteOutfit={removeOutfit}/> )
              })}
            </div>
           <FaAngleRight size={40} className='right-arrow' onClick={slideRight}/>
