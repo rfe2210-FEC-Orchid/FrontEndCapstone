@@ -5,26 +5,39 @@ import './RelatedItems.css';
 import OutfitCards from './OutfitCards.jsx';
 
 const OutfitList = ({setproductId, currentProductInfo, selectedStyle}) => {
-  // let storage = () => {
-  //   const localStorageObjects = Object.values(localStorage);
-  //   const newSet = localStorageObjects.map((item) => JSON.parse(item));
-  //   return newSet;
-  // }
+  const [outfits, setOutfits] = useState([]);
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined' && localStorage.length !== 0) {
-  //     const updatedStorage = storage();
-  //   }
-  // }, [])
+  let localOufitList = localStorage.getItem('outfits');
 
-  // const [currentStorage, setStorage] = useState(updatedStorage);
+  const currentOutfit = {id: currentProductInfo.id, category: currentProductInfo.category, name: currentProductInfo.name, price: currentProductInfo.default_price, image: selectedStyle.photos};
 
-  // let outfitsID = outfits.map((item) => item.id);
-  let addOutfit = () => {
-    // if (!Storage.includes(currentProductInfo.id)) {
-      setOutfits({id: currentProductInfo.id, category: currentProductInfo.category, name: currentProductInfo.name, price: currentProductInfo.default_price, image: selectedStyle.photos});
-    // }
-  }
+  const addOutfit = (item) => {
+    let outfitCopy = [...outfits];
+    let {id} = item;
+    let existingitem = outfitCopy.find((outfitItem) => outfitItem.id === id);
+    if (!existingitem) {
+      outfitCopy.push(item);
+    }
+    setOutfits(outfitCopy);
+    let stringOutfits = JSON.stringify(outfitCopy);
+    localStorage.setItem('outfits', stringOutfits);
+  };
+
+  const removeOutfit = (itemID) => {
+    let outfitCopy = [...outfits];
+    outfitCopy = outfitCopy.filter((item) => item.id != itemID);
+    setOutfits(outfitCopy);
+    let stringOutfits = JSON.stringify(outfitCopy);
+    localStorage.setItem('outfits', stringOutfits);
+  };
+
+  useEffect(() => {
+    localOufitList = JSON.parse(localOufitList);
+    if (typeof window !== 'undefined' && localOufitList) {
+      setOutfits(localOufitList);
+    }
+  }, [])
+
   const slideLeft = () => {
     const slider = document.getElementById('outfit-list-slider');
     slider.scrollLeft = slider.scrollLeft - 500;
