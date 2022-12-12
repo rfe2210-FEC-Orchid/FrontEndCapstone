@@ -3,10 +3,11 @@ import axios from 'axios';
 import styled from 'styled-components';
 import QuestionList from './QuestionList.jsx';
 import QuestionModal from './QuestionModal.jsx';
+import './questions.css';
 
-const QA = (props) => {
+
+const QA = ({productId,productName}) => {
   const prod = {};
-
   const [questionSearch, setQuestionSearch] = useState('');
   const [questionData, setQuestionData] = useState([]);
   const [originalData, setOriginalData] =  useState([]);
@@ -16,10 +17,11 @@ const QA = (props) => {
   const [questionNumber, setQuestionNumber] = useState(4);
   const [moreQs, setMoreQs] = useState(true);
 
-  prod.name = "Camo Onesie",
+  prod.name = productName
+
 
   //set static product id for testing
-  prod.product_id = 37314
+  prod.product_id = productId
 
   useEffect(()=> {
     axios({
@@ -76,44 +78,52 @@ const QA = (props) => {
    }
   }
 
-  const Container = styled.div`
-    width: 600px;
-    padding: 10px;
-    border: 3px solid black;
-    margin: 0;
-    `
-  const Search = styled.div`
-    input{
-    background: transparent;
-    outline: none;
-    width: 500px;
-    border-radius: 3px;
-    border: 1px solid black;
-    margin: auto;
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
-    background-size: 13px;
-    padding: 0.25em 1em;
-    background-repeat: no-repeat;
-    background-position: 467px center;
-    }
-    `
 
+  const Button = styled.button`
+  height: 50px ;
+  width: 30%;
+  color: #FFFFFF;
+  font-size: 1em;
+  //margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px;
+  border-style: solid;
+  background-color:#4F0B40 ;
+  border-color:#4F0B40;
+  border-radius: 3px;
+  cursor:pointer;
+  font-family: Nunito Sans, sans-serif, Daniel;
+  &:hover {
+      color:#FFFFFF;
+      background-color:#800F67;
+      transition: 0.7s;
+  }
+`;
+  const Divider = styled.div`
+    width:5px;
+    height:auto;
+    display:inline-block;
+  `
+  const QAListContainer = styled.div`
+  overflow-y: auto;
+  height: auto;
+  max-height: 450px;
+  width: 82%;
+`;
 
   return (
-    <Container>
+    <div className = "container">
       <h2>QUESTIONS & ANSWERS</h2>
-      <Search >
-      <form onChange={handleChange}>
+      <form className = "topnav" onChange={handleChange}>
       <input
-      value= {questionSearch}
-      onInput ={(e)=> {setQuestionSearch(e.target.value)}}
+      // value= {questionSearch}
+      // onInput ={(e)=> {setQuestionSearch(e.target.value)}}
       type ="text"
-      autoFocus ="autoFocus"
       id = 'question-search'
       placeholder = " HAVE A QUESTION? SEARCH FOR ANSWERS" />
       </form>
-      </Search>
-
+      <p></p>
+      <QAListContainer>
       {questionData.map((question, index) => {
         return (
         <div key={index}>
@@ -122,13 +132,16 @@ const QA = (props) => {
       )
     }
   )}
-    {(originalData.length >4 && moreQs)  && <button onClick={handleMoreQ}>MORE ANSWERED QUESTIONS</button>}
-    <button onClick ={handleAddQ}>ADD A QUESTION</button>
+  </QAListContainer>
+  <p></p>
+    {(originalData.length >4 && moreQs)  && <Button onClick={handleMoreQ}>MORE ANSWERED QUESTIONS</Button>}
+    <Divider></Divider>
+    <Button onClick ={handleAddQ}>ADD A QUESTION +</Button>
     {openQModal &&
     <div>
       <QuestionModal handleAddQ={handleAddQ} formError={formError} name={prod.name}handleQFormSubmit={handleQFormSubmit} modalFormQ={modalFormQ} setModalFormQ={setModalFormQ}/>
     </div>}
-    </Container>
+    </div>
 
   );
 };
