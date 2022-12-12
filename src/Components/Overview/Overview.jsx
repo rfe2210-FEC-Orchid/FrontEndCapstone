@@ -31,31 +31,24 @@ const Overview = (props) => {
 
   // state
   // const [selectedStyle, setSelectedStyle] = useState({});
-  const [allStyles, setAllStyles] = useState([]);
-  const [productInfo, setProductInfo] = useState({});
+  // const [allStyles, setAllStyles] = useState([]);
+  // const [productInfo, setProductInfo] = useState({});
 
-  useEffect(() => {
-    axios.all([
-      axios.get(`http://localhost:3001/products/${props.product_id}/styles`),
-      axios.get(`http://localhost:3001/products/${props.product_id}`)
-    ])
-      .catch((err) => {
-        console.log('error fetching data from API:', err);
-      })
-      .then(axios.spread((styles, info) => {
-        console.log('received data from API');
-        props.setSelectedStyle(styles.data.results[0]);
-        setAllStyles(styles.data.results);
-        setProductInfo(info.data);
-      }))
-  }, []);
-
-
-
-  // // functions
-  // const handleSelectStyle = (style) => {
-  //   props.setSelectedStyle(style);
-  // };
+  // useEffect(() => {
+  //   axios.all([
+  //     axios.get(`http://localhost:3001/products/${props.product_id}/styles`),
+  //     axios.get(`http://localhost:3001/products/${props.product_id}`)
+  //   ])
+  //     .catch((err) => {
+  //       console.log('error fetching data from API:', err);
+  //     })
+  //     .then(axios.spread((styles, info) => {
+  //       console.log('received data from API');
+  //       props.setSelectedStyle(styles.data.results[0]);
+  //       setAllStyles(styles.data.results);
+  //       setProductInfo(info.data);
+  //     }))
+  // }, []);
 
   return (
     <div>
@@ -63,12 +56,12 @@ const Overview = (props) => {
         <UpperColumnContainerLeft>{props.selectedStyle.photos && <ImageGallery photos={props.selectedStyle.photos}/>}</UpperColumnContainerLeft>
         <UpperColumnContainerRight>
           <ProductRating productID={props.product_id}/>
-          <ProductInfo name={productInfo.name} category={productInfo.category}/>
-          <ProductStyle selectedStyle={props.selectedStyle} allStyles={allStyles} handleSelectStyle={props.setSelectedStyle}/>
+          <ProductInfo name={props.productInfo.name} category={props.productInfo.category}/>
+          <ProductStyle selectedStyle={props.selectedStyle} allStyles={props.allStyles} handleSelectStyle={props.setSelectedStyle}/>
           <ProductShare />
         </UpperColumnContainerRight>
       </UpperContentContainer>
-      <ProductDescription slogan={productInfo.slogan} description={productInfo.description} features={productInfo.features}/>
+      <ProductDescription slogan={props.productInfo.slogan} description={props.productInfo.description} features={props.productInfo.features}/>
     </div>
   )}
 

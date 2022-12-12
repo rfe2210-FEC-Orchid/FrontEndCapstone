@@ -1,3 +1,19 @@
+/* LIST CONTAINERS */
+.related-product-list, .outfit-list {
+  display: grid;
+  place-items: center;
+}
+
+h2 {
+  text-align: left;
+  font-weight: bolder;
+}
+
+.outfit-list {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
 /* MODAL */
 .toggle-modal, .delete-icon {
   display: block;
@@ -30,7 +46,7 @@
   cursor: pointer;
 }
 
-.modal-container, .close, .modal-container.active {
+.modal-container, .modal-container.active {
   position: fixed;
   display: flex;
   width: 100%;
@@ -89,13 +105,22 @@ tr:nth-child(even) {
 
 .close {
   position: absolute;
+  margin: 15px 30px;
   top: 10px;
-  right: 10px;
-  /* background-image: url('/closex.svg'); */
-  background-size: contain;
-  background-repeat: no-repeat;
+  right: 2px;
   width: 30px;
   height: 30px;
+  font-weight: bolder;
+  font-size: 30px;
+  background-color: #F2F2F2;
+  color: black;
+  opacity: 0.5;
+  border-radius: 20px;
+}
+
+.close:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 /* CAROUSEL SLIDER */
@@ -160,6 +185,7 @@ tr:nth-child(even) {
   background-color: #F2F2F2;
   /* box-shadow: 2px 2px 2px 2px #0000001f; */
   cursor: pointer;
+  padding-bottom: 10px;
 }
 
 .card:hover {
@@ -176,12 +202,13 @@ tr:nth-child(even) {
 #image {
   width: 200px;
   height: 180px;
+  object-fit: cover;
 }
 
 .card-details {
   margin: 0px 10px;
   font-size: 14px;
-  line-height: 0.4;
+  /* line-height: 0.2; */
 }
 
 /* OUTFIT CARD */
@@ -194,7 +221,7 @@ tr:nth-child(even) {
   padding: 10px;
   opacity: 0.7;
   width: 180px;
-  height: 280px;
+  height: 350px;
   text-align: center;
   display: flex;
   justify-content: center;

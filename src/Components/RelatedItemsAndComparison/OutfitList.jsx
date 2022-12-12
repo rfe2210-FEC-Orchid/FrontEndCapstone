@@ -9,7 +9,7 @@ const OutfitList = ({setproductId, currentProductInfo, selectedStyle}) => {
 
   let localOufitList = localStorage.getItem('outfits');
 
-  const currentOutfit = {id: currentProductInfo.id, category: currentProductInfo.category, name: currentProductInfo.name, price: currentProductInfo.default_price, image: selectedStyle.photos};
+  const currentOutfit = {id: currentProductInfo.id, category: currentProductInfo.category, name: currentProductInfo.name, price: currentProductInfo.default_price, saleprice: selectedStyle.sale_price, image: selectedStyle.photos};
 
   const addOutfit = () => {
     let outfitCopy = [...outfits];
@@ -53,7 +53,7 @@ const OutfitList = ({setproductId, currentProductInfo, selectedStyle}) => {
   return (
     <div>
       <div className='outfit-list'>
-        <h3>YOUR OUTFIT</h3>
+        <h2>YOUR OUTFIT</h2>
         <div className='carousel-container'>
           <FaAngleLeft size={40} className='left-arrow' onClick={slideLeft}/>
            <div id='outfit-list-slider'>

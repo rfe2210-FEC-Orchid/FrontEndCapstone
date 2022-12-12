@@ -40,21 +40,22 @@ const App = () => {
   const [productId, setproductId] = useState(37313);
   const [productInfo, setproductInfo] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});
+  const [allStyles, setAllStyles] = useState([]);
 
   useEffect(() => {
-    getProductInfo();
-  }, [])
-
-  let getProductInfo = () => {
-    axios.get(`http://localhost:3001/products/${productId}`)
-    .then((res) => {
-      console.log('product info: ', res.data);
-      setproductInfo(res.data);
-    })
-    .catch((err) => {
-      console.log('failed to retrieve product info', err);
-    })
-  }
+    axios.all([
+      axios.get(`http://localhost:3001/products/${productId}/styles`),
+      axios.get(`http://localhost:3001/products/${productId}`)
+    ])
+      .catch((err) => {
+        console.log('error fetching data from API:', err);
+      })
+      .then(axios.spread((styles, info) => {
+        setSelectedStyle(styles.data.results[0]);
+        setAllStyles(styles.data.results);
+        setproductInfo(info.data);
+      }))
+  }, [productId]);
 
   return (
     <div>
@@ -62,8 +63,8 @@ const App = () => {
       <Header>
         <h1>Orchid</h1>
       </Header>
-      <Overview selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} product_id={productId}/>
-      <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} setproductInfo={setproductInfo} selectedStyle={selectedStyle} />
+      <Overview allStyles={allStyles} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} productInfo={productInfo} product_id={productId}/>
+      <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} selectedStyle={selectedStyle} />
       <QA />
       <RnR id=""/>
     </div>

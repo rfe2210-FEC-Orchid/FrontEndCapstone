@@ -18,7 +18,7 @@ const RelatedProductsList = ({relatedProducts,  setproductId, currentProductInfo
   return(
     <div>
       <div className='related-product-list'>
-        <h3>RELATED PRODUCTS</h3>
+        <h2>RELATED PRODUCTS</h2>
         <div className='carousel-container'>
           <FaAngleLeft size={40} className='left-arrow' onClick={slideLeft}/>
           <div id='related-products-slider'>

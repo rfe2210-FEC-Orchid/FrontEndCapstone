@@ -19,7 +19,7 @@ let Modal = ({toggle, action, comparedProduct, currentProduct}) => {
             <Comparison currentProduct={currentProduct} comparedProduct={comparedProduct}/>
           </table>
         </div>
-        {/* <div className='close' onClick={action}></div> */}
+        <div className='close' onClick={action}>X</div>
       </div>
     </div>
   )

@@ -10,7 +10,7 @@ let Comparison = ({currentProduct, comparedProduct}) => {
     result.push({feature: currentFeatures[i].feature, current: currentFeatures[i].value});
   }
 
-  let featureValues = result.map((item) => item.feature); // gives all feature values
+  let featureValues = result.map((item) => item.feature);
   let notIncluded = [];
 
   for (let j = 0; j < result.length; j++) {
