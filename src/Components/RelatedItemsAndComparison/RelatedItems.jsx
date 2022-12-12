@@ -30,7 +30,7 @@ const RelatedItems = ({productId, setproductId, productInfo, setproductInfo}) =>
         .then((res) => {
           return axios.get(`http://localhost:3001/products/${id}/styles`)
           .then((result) => {
-            let product = {id: res.data.id, category: res.data.category, name: res.data.name, price: res.data.default_price, image: result.data.results[0].photos};
+            let product = {id: res.data.id, category: res.data.category, name: res.data.name, price: res.data.default_price, image: result.data.results[0].photos, features: res.data.features};
             return product;
           })
           .catch((err) => {
@@ -44,7 +44,7 @@ const RelatedItems = ({productId, setproductId, productInfo, setproductInfo}) =>
       })
       Promise.all(relatedProductsInfo)
       .then((result) => {
-        console.log('array of related products info: ', result);
+        // console.log('array of related products info: ', result);
         setrelatedProducts(result);
       })
       .catch((err) => {
@@ -98,7 +98,7 @@ const RelatedItems = ({productId, setproductId, productInfo, setproductInfo}) =>
 
   return (
     <div>
-      <RelatedProductsList relatedProducts={relatedProducts} setproductId={setproductId} />
+      <RelatedProductsList relatedProducts={relatedProducts} setproductId={setproductId} currentProductInfo={productInfo} />
       {/* <OutfitList cart={cart} setproductId={setproductId} /> */}
     </div>
   )

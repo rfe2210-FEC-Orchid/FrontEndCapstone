@@ -1,36 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Comparison from './Comparison.jsx';
 
-let Modal = ({toggle, action}) => {
-  const modalState = toggle;
+let Modal = ({toggle, action, comparedProduct, currentProduct}) => {
   return (
-    <div className={`modal-container ${modalState ? 'active' : ''}`}>
+    <div className={`modal-container ${toggle ? 'active' : ''}`}>
       <div className='modal'>
-        <h2 style={{margin: '30px'}}>COMPARING</h2>
+        <h1 style={{margin: '30px'}}>COMPARING</h1>
         <table style={{margin: '30px'}}>
           <thead>
             <tr>
-              <th>Current Product Name</th>
+              <th>{currentProduct.name}</th>
               <th></th>
-              <th>Compared Product Name</th>
+              <th>{comparedProduct.name}</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Current Product Value</td>
-              <td>Characteristic</td>
-              <td>Compared Product Value</td>
-            </tr>
-          </tbody>
+          <Comparison currentProduct={currentProduct} comparedProduct={comparedProduct}/>
         </table>
-        <div className='close' onClick={action}></div>
+        {/* <div className='close' onClick={action}></div> */}
       </div>
     </div>
   )
 }
 
 export default Modal;
-
-
-// COMPARISON
-// star rating, product category, product title, price, product overview (some items - free form text field)

@@ -5,7 +5,7 @@ import './RelatedItems.css';
 import OutfitList from './OutfitList.jsx';
 import RelatedProductCards from './RelatedProductCards.jsx';
 
-const RelatedProductsList = ({relatedProducts,  setproductId}) => {
+const RelatedProductsList = ({relatedProducts,  setproductId, currentProductInfo}) => {
 
   const slideLeft = () => {
     const slider = document.getElementById('related-products-slider');
@@ -24,7 +24,7 @@ const RelatedProductsList = ({relatedProducts,  setproductId}) => {
           <FaAngleLeft size={40} className='left-arrow' onClick={slideLeft}/>
           <div id='related-products-slider'>
             {relatedProducts.map((product) => {
-              return ( <RelatedProductCards key={product.id} product={product} setproductId={setproductId} />)
+              return ( <RelatedProductCards key={product.id} product={product} setproductId={setproductId} currentProductInfo={currentProductInfo}/>)
             })}
           </div>
           <FaAngleRight size={40} className='right-arrow' onClick={slideRight}/>

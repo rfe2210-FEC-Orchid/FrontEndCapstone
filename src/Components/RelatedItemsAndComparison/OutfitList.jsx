@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {FaAngleRight, FaAngleLeft, FaPlusCircle} from 'react-icons/fa';
 import './RelatedItems.css';
-import postCart from './Helpers.jsx';
 import OutfitCards from './OutfitCards.jsx';
 
 // product can only be added to an outfit once when clicked on "add to outfit"
@@ -26,7 +25,7 @@ const OutfitList = ({cart, setproductId}) => {
            <div id='outfit-list-slider'>
              <div id='add-outfit'>
                <h2>Add to Outfit</h2>
-               <FaPlusCircle size={75} onClick={postCart}/>
+               <FaPlusCircle size={75}/>
              </div>
              {cart.map((product) => {
                return ( <OutfitCards key={product.id} product={product} setproductId={setproductId} /> )

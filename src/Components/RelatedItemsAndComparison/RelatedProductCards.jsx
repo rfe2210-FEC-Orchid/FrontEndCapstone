@@ -3,7 +3,7 @@ import axios from 'axios';
 import {FaRegStar} from 'react-icons/fa';
 import Modal from './Modal.jsx';
 
-const RelatedProductCards = ({product, setproductId}) => {
+const RelatedProductCards = ({product, setproductId, currentProductInfo}) => {
   const [modalState, setmodalState] = useState(false);
 
   let openModal = () => {
@@ -16,12 +16,14 @@ const RelatedProductCards = ({product, setproductId}) => {
 
   return (
     <div className='card'>
-      <FaRegStar size={20} className='toggle-modal' onClick={openModal}/>
-      <Modal toggle={modalState} action={openModal} />
-      <div onClick={refreshOverview}>
-        {product.image ? (<img src={product.image[0].url} alt={product.name} id='image'/>) : 'image not available'
-        }
-        <div className='card-details'>
+      <div>
+        <div className='image-and-modal'>
+          <FaRegStar size={20} className='toggle-modal' onClick={openModal}/>
+          <Modal toggle={modalState} action={openModal} comparedProduct={product} currentProduct={currentProductInfo}/>
+          {product.image ? (<img src={product.image[0].url} alt={product.name} id='image'/>) : 'image not available'
+          }
+        </div>
+        <div className='card-details' onClick={refreshOverview}>
           <h4>{product.category}</h4>
           <h4>{product.name}</h4>
           <h5>${product.price}</h5>
