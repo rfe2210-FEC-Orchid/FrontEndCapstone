@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
 
 const CartContainer = styled.div`
   margin: 10px 5px;
@@ -41,10 +42,22 @@ const CartButton = styled.button`
 const ErrorContainer = styled.div`
   display: inline-block;
   height: 40px;
-  margin: 5px 0;
-  width: calc(95% + 3px);
+  margin: 0;
+  width: 100%;
   color: white;
   background-color: #9c0303;
+  line-height: 40px;
+  text-align: center;
+  visibility: ${props => props.active ? 'visible' : 'hidden'};
+`;
+
+const ConfirmationContainer = styled.div`
+  display: inline-block;
+  min-height: 40px;
+  margin: 0;
+  width: 100%;
+  color: white;
+  background-color: #014A04;
   line-height: 40px;
   text-align: center;
 
@@ -52,7 +65,15 @@ const ErrorContainer = styled.div`
 
 `;
 
+const MessageContainer = styled.div`
+  height: 40px;
+  margin: 5px 0;
+  width: calc(95% + 3px);
+`;
+
 const AddToCart = (props) => {
+
+  const [confirmation, setConfirmation] = useState(false);
 
   // functions
   const handleAddToCart = (e) => {
@@ -61,6 +82,8 @@ const AddToCart = (props) => {
       props.setDisplayError(true);
       console.log('displayError', props.displayError)
     } else {
+      setConfirmation(true);
+      setTimeout(() => {setConfirmation(false)}, 2500);
       let quantity = props.options.selectedQuantity;
       let sku_id = props.options.sku_id;
 
@@ -74,18 +97,20 @@ const AddToCart = (props) => {
   const quantityArray = (quantity) => {
     let result = [];
     quantity = (quantity > 15) ? 15 : quantity;
-
     for (let i = 1; i <= quantity; i++) {
       result.push(i);
     }
-
     return result;
   }
 
+
+
   return (
     <CartContainer>
-      {/* {props.displayError && <ErrorContainer>please select a size</ErrorContainer>} */}
-      {<ErrorContainer active={props.displayError}>please select a size</ErrorContainer>}
+      <MessageContainer>
+        {props.displayError && <ErrorContainer active={props.displayError}>please select a size</ErrorContainer>}
+        {confirmation && <ConfirmationContainer active={confirmation}>Item added to cart!</ConfirmationContainer>}
+      </MessageContainer>
       <QuantityDropdown onChange={(e) => props.handleChangeQuantity(e.target.value)}>
         {props.options.selectedSize
         ? quantityArray(props.options.availableQuantity).map((num) =>

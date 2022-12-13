@@ -145,7 +145,7 @@ const RnR = ({productID, productName, handleTrack}) => {
 
 
   return (
-    <RnRContainer>
+    <RnRContainer id="RnR">
       <h2 style={{padding: "0px", margin: "100px, 0px, 0px, 0px", gridArea : "header"}}>Ratings & Reviews</h2>
       <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
       <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} handleTrack={handleTrack}/>

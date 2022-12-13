@@ -47,7 +47,6 @@ const ProductStyle = (props) => {
   };
 
   const handleChangeStyle = (style) => {
-
     props.handleSelectStyle(style);
     setOptions({
       sku_id: null,

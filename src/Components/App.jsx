@@ -38,8 +38,8 @@ const Header = styled.div`
 `;
 
 const App = () => {
-  const [productId, setproductId] = useState(37313);
-  const [productInfo, setproductInfo] = useState({});
+  const [productId, setProductId] = useState(37311);
+  const [productInfo, setProductInfo] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});
   const [allStyles, setAllStyles] = useState([]);
   const [trackData, setTrackData] = useState([]); //for user tracking
@@ -56,14 +56,14 @@ const App = () => {
       .then(axios.spread((styles, info) => {
         setSelectedStyle(styles.data.results[0]);
         setAllStyles(styles.data.results);
-        setproductInfo(info.data);
+        setProductInfo(info.data);
       }))
   }, [productId]);
 
   const handleTrack = (evt, moduleName) => { // for user tracking
       const newData = "Module: " + moduleName + " | Element: " + evt.target.dataset.name + " | " + Date().toString();
       setTrackData([...trackData, newData])
-    }
+  }
 
   return (
     <UserContext.Provider value={userTrackData}>
@@ -72,7 +72,7 @@ const App = () => {
         <h1>Orchid</h1>
       </Header>
       <Overview allStyles={allStyles} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} productInfo={productInfo} product_id={productId}/>
-      <RelatedItems productId={productId} setproductId={setproductId} productInfo={productInfo} selectedStyle={selectedStyle} />
+      <RelatedItems productId={productId} setproductId={setProductId} productInfo={productInfo} selectedStyle={selectedStyle} />
       <QA productId={productId} productName={productInfo.name} />
       <RnR productID={productId} productName={productInfo.name} handleTrack={handleTrack}/>
     </UserContext.Provider>

@@ -29,27 +29,6 @@ const UpperColumnContainerRight = styled.div`
 
 const Overview = (props) => {
 
-  // state
-  // const [selectedStyle, setSelectedStyle] = useState({});
-  // const [allStyles, setAllStyles] = useState([]);
-  // const [productInfo, setProductInfo] = useState({});
-
-  // useEffect(() => {
-  //   axios.all([
-  //     axios.get(`http://localhost:3001/products/${props.product_id}/styles`),
-  //     axios.get(`http://localhost:3001/products/${props.product_id}`)
-  //   ])
-  //     .catch((err) => {
-  //       console.log('error fetching data from API:', err);
-  //     })
-  //     .then(axios.spread((styles, info) => {
-  //       console.log('received data from API');
-  //       props.setSelectedStyle(styles.data.results[0]);
-  //       setAllStyles(styles.data.results);
-  //       setProductInfo(info.data);
-  //     }))
-  // }, []);
-
   return (
     <div>
         <UpperContentContainer>
