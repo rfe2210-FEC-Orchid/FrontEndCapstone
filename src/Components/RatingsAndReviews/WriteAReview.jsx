@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled, {css} from 'styled-components';
 import Form from './Form.jsx';
 
-const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) => {
+const WriteAReview = ({isWritingReview, onClose, characteristics, productID, productName}) => {
 
   const Overlay = styled.div`
     background-color: rgb(128, 15, 103, 0.7);
@@ -15,6 +15,7 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) =>
     justify-content: center;
     align-items: center;
     opacity: 0;
+    z-index: 1000;
     visibility: hidden;
     transform: scale(0.8);
     transition: opacity 0.8s visibility 0.8s transform 0.8s;
@@ -33,8 +34,8 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) =>
 
   const Container = styled.div`
      width: 75%;
-     height:  80%;
-     top: 15px;
+     height:  90%;
+     top: 50px;
      display: flex;
      background: white;
      position: relative;
@@ -58,7 +59,7 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID}) =>
     <Overlay isWritingReview={isWritingReview}>
       <Container >
         <Closebtn onClick={onClose}>X</Closebtn>
-        <Form characteristics={characteristics} productID={productID}/>
+        <Form characteristics={characteristics} productID={productID} onClose={onClose} productName={productName}/>
       </Container>
     </Overlay>
   )

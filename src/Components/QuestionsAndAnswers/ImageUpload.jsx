@@ -2,6 +2,7 @@
 import ReactDOM from 'react-dom';
 import axios from 'axios'
 import React, {useState} from 'react'
+import './questions.css';
 
 const ImageUpload = ({image, setImage,url,setUrl}) => {
   const uploadImage = () => {
@@ -22,12 +23,12 @@ const ImageUpload = ({image, setImage,url,setUrl}) => {
   return (
   <div>
   <div>
-  <input type="file" name = 'file[]' onChange= {(e)=> setImage(e.target.files[0])} multiple/>
-  <button onClick={uploadImage}>Upload</button>
-  <input type="file" name = 'file[]' onChange= {(e)=> setImage(e.target.files[0])} multiple/>
-  <button onClick={uploadImage}>Upload</button>
-  <input type="file" name = 'file[]' onChange= {(e)=> setImage(e.target.files[0])} multiple/>
-  <button onClick={uploadImage}>Upload</button>
+  <p><input className='font' type="file" name = 'file[]' onChange= {(e)=> setImage(e.target.files[0])} multiple/>
+  <button  onClick={uploadImage}>Upload</button></p>
+  <p><input  className='font' type="file" name = 'file[]' onChange= {(e)=> setImage(e.target.files[0])} multiple/>
+  <button  onClick={uploadImage}>Upload</button></p>
+  <p><input className='font' type="file" name = 'file[]' onChange= {(e)=> setImage(e.target.files[0])} multiple/>
+  <button  onClick={uploadImage}>Upload</button></p>
   </div>
   </div>
   )
