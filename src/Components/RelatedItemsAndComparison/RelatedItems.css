@@ -1,17 +1,16 @@
 /* LIST CONTAINERS */
 .related-product-list, .outfit-list {
-  display: grid;
-  place-items: center;
+  background-color: #F2F2F2;
+  margin: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 h2 {
   text-align: left;
   font-weight: bolder;
-}
-
-.outfit-list {
-  margin-top: 100px;
-  margin-bottom: 50px;
 }
 
 /* MODAL */
@@ -50,7 +49,7 @@ h2 {
   position: fixed;
   display: flex;
   width: 100%;
-  height: 75vh;
+  height: 60vh;
   top: 0;
   left: 0px;
   justify-content: center;
@@ -91,7 +90,8 @@ th, td {
 
 th {
   height: 100px;
-  background-color:#DBCED8;
+  background-color:#800F67;
+  color: white;
 }
 
 tr:nth-child(even) {
@@ -124,15 +124,6 @@ tr:nth-child(even) {
 }
 
 /* CAROUSEL SLIDER */
-.related-product-list, .outfit-list {
-  background-color: #F2F2F2;
-  margin: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
 .carousel-container {
   width: 90%;
   /* height: 440px; */
@@ -144,7 +135,7 @@ tr:nth-child(even) {
 }
 
 #related-products-slider, #outfit-list-slider, #product-list {
-  width: 100%;
+  width: 90%;
   height: 100%;
   white-space: nowrap;
   overflow-x: scroll;
@@ -152,11 +143,7 @@ tr:nth-child(even) {
   align-items: stretch;
   scrollbar-width: none;
   scroll-behavior: smooth;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
+  margin: 10px;
 }
 
 #related-products-slider::-webkit-scrollbar{
@@ -175,9 +162,7 @@ tr:nth-child(even) {
 .left-arrow, .right-arrow {
   background-color: #4F0B40;
   position: relative;
-  /* opacity: 0.5; */
   color: white;
-  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -3,6 +3,12 @@ import axios from 'axios';
 import Comparison from './Comparison.jsx';
 
 let Modal = ({toggle, action, comparedProduct, currentProduct}) => {
+  if (toggle === true) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+
   return (
     <div className={`modal-container ${toggle ? 'active' : ''}`}>
       <div className='related-products-modal'>
