@@ -63,7 +63,7 @@ h2 {
   z-index: 999;
 }
 
-.modal {
+.related-products-modal {
   width: 100%;
   height: 100%;
   background-color: #F8F8F8;
@@ -124,6 +124,15 @@ tr:nth-child(even) {
 }
 
 /* CAROUSEL SLIDER */
+.related-product-list, .outfit-list {
+  background-color: #F2F2F2;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .carousel-container {
   width: 90%;
   /* height: 440px; */
@@ -131,6 +140,7 @@ tr:nth-child(even) {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row;
 }
 
 #related-products-slider, #outfit-list-slider, #product-list {
@@ -143,6 +153,10 @@ tr:nth-child(even) {
   scrollbar-width: none;
   scroll-behavior: smooth;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }
 
 #related-products-slider::-webkit-scrollbar{
@@ -164,6 +178,10 @@ tr:nth-child(even) {
   /* opacity: 0.5; */
   color: white;
   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .left-arrow:hover, .right-arrow:hover {
@@ -175,6 +193,7 @@ tr:nth-child(even) {
 .right-arrow {
   right: -10px;
 }
+
 .left-arrow {
   left: 0;
 }
@@ -182,7 +201,7 @@ tr:nth-child(even) {
 /* PRODUCT CARD */
 .card {
   margin: 10px;
-  background-color: #F2F2F2;
+  background-color: white;
   /* box-shadow: 2px 2px 2px 2px #0000001f; */
   cursor: pointer;
   padding-bottom: 10px;
@@ -214,14 +233,13 @@ tr:nth-child(even) {
 /* OUTFIT CARD */
 #add-outfit {
   margin: 10px;
-  background-color: #F2F2F2;
+  background-color: white;
   /* box-shadow: 2px 2px 2px 2px #0000001f; */
   cursor: pointer;
   align-items: stretch;
   padding: 10px;
-  opacity: 0.7;
   width: 180px;
-  height: 350px;
+  height: 325px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -233,6 +251,6 @@ tr:nth-child(even) {
   color: #4F0B40;
   opacity: 0.8;
   border: 1px solid;
-  border-color: black;
+  border-color: rgb(98, 97, 97);
   cursor: pointer;
 }

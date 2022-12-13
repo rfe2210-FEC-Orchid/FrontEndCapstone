@@ -9,7 +9,7 @@ const RelatedItems = ({productId, setproductId, productInfo, selectedStyle}) => 
   useEffect(() => {
     GetRelatedProductsList();
     GetCart();
-  }, [])
+  }, [productId])
 
   let GetRelatedProductsList = () => {
     axios.get(`http://localhost:3001/products/${productId}/related`)
