@@ -5,7 +5,7 @@ import Form from './Form.jsx';
 const WriteAReview = ({isWritingReview, onClose, characteristics, productID, productName}) => {
 
   const Overlay = styled.div`
-    background-color: rgb(128, 15, 103, 0.7);
+    background-color: rgb(0, 0, 0, 0.7);
     position: fixed;
     display: flex;
     width: 100%;

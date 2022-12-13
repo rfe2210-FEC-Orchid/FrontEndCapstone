@@ -19,7 +19,7 @@ const Star = ({rating, value, handleSetOverallRating}) => {
   return (
     <Container onClick={()=> {handleSetOverallRating(value)}}>
       <FullStars>
-        <FaStar style={{color: "#FFD31A"}}/>
+        <FaStar />
       </FullStars>
       <EmptyStars>
         <FaRegStar />

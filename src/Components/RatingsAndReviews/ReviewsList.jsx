@@ -25,67 +25,21 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
     overflow-y: auto;
     height: 450px;
     /* max-height: 450px; */
-    width: 65%;
+    /* width: 100%; */
   `;
 
   const DesignButtons = styled.button`
-    align-items: center;
-    margin: 10px 0px;
-    border: 2px solid #111;
-    border-radius: 8px;
-    box-sizing: border-box;
-    color: #111;
-    cursor: pointer;
-    /* display: flex; */
-    font-family: Inter,sans-serif;
-    font-size: 14px;
-    height: 30px;
-    justify-content: center;
-    line-height: 18px;
-    max-width: 100%;
-    padding: 0 15px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
+    height: 40px;
+    width: 20%;
+    border: none;
+    background-color: #4f0b40;
+    color: white;
+    border: 1.5px solid black;
+    margin: 8px 2px;
 
-    :after {
-      background-color: #111;
-      border-radius: 8px;
-      content: "";
-      display: block;
-      height: 30px;
-      left: 0;
-      width: 100%;
-      position: absolute;
-      top: -2px;
-      transform: translate(8px, 8px);
-      transition: transform .2s ease-out;
-      z-index: -1;
-    }
-
-    :hover:after {
-      transform: translate(0, 0);
-    }
-
-    :active {
-      background-color:#800F67;
-      color: white;
-      outline: 0;
-    }
-
-    :hover {
-      outline: 0;
-      background-color:#800F67;
-      color: white;
-    }
-
-    @media (min-width: 768px) {
-      .button-56 {
-        padding: 0 40px;
-      }
+    &:hover {
+      background-color: #800f67;
+      cursor: pointer;
     }
   `;
 

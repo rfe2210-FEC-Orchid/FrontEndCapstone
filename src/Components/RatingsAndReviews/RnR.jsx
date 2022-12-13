@@ -42,7 +42,7 @@ const RnR = ({productID, productName, handleTrack}) => {
       .catch((err) => {
         console.error(err);
       })
-  },[sortBy]);
+  },[sortBy, productID]);
 
 
   useEffect(()=>{
@@ -111,7 +111,7 @@ const RnR = ({productID, productName, handleTrack}) => {
       .catch((err) => {
         console.error(err);
       })
-  },[]);
+  },[productID]);
 
   function calculateAvgRating (obj) {
     var sum = (obj[1] * 1) + (obj[2] * 2) + (obj[3] * 3) + (obj[4] * 4) + (obj[5] * 5);
@@ -136,22 +136,43 @@ const RnR = ({productID, productName, handleTrack}) => {
   }
 
   const RnRContainer = styled.div`
-    left: 20px;
+    /* left: 20px; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
     position: relative;
+    /* position: relative;
     display: grid;
     grid-template-columns: 2fr 5fr;
-    grid-template-areas: "header header";
+    grid-template-areas: "header header"; */
+  `;
+
+  const RatingsContainer = styled.div`
+    /* width: 25%; */
+  `;
+
+  const ReviewsContainer = styled.div`
+    width: 55%;
+    margin: 25px;
   `;
 
 
   return (
-    <RnRContainer id="RnR">
-      <h2 style={{padding: "0px", margin: "100px, 0px, 0px, 0px", gridArea : "header"}}>Ratings & Reviews</h2>
-      <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
-      <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} handleTrack={handleTrack}/>
-      <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
-      {trackData.map((data) => <div>{data}</div>)}
-    </RnRContainer>
+    <div>
+      <RnRContainer id="RnR">
+        <h2 style={{width: "100%", textAlign: "center"}}>Ratings & Reviews</h2>
+        <RatingsContainer>
+          <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
+        </RatingsContainer>
+        <ReviewsContainer>
+          <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} handleTrack={handleTrack}/>
+        </ReviewsContainer>
+        <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
+        {trackData.map((data) => <div>{data}</div>)}
+      </RnRContainer>
+    </div>
+
   )
 }
 

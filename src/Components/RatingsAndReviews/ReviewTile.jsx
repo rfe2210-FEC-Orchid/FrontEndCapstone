@@ -44,7 +44,7 @@ const ReviewTile = ({review}) => {
 
   const RecommendBlock = styled.div`
      margin: 25px 0px;
-     color:#BE0A00;
+     color:#9C0303;
   `;
 
   const ResponseBlock = styled.div`
@@ -57,7 +57,7 @@ const ReviewTile = ({review}) => {
     color: #0d98ba;
     background-color: white;
     :hover {
-      color: red;
+      color: #9C0303;
       text-decoration: underline;
     }
   `;
@@ -68,7 +68,7 @@ const ReviewTile = ({review}) => {
     color: ${isHelpful ? "green" : "grey"};
     background-color: white;
     :hover {
-      color: ${isHelpful ? "green" : "red"};
+      color: ${isHelpful ? "green" : "#9C0303"};
       text-decoration: ${isHelpful ? "null" : "underline"};
     }
   `;
@@ -77,7 +77,7 @@ const ReviewTile = ({review}) => {
     cursor: pointer;
     background-color: white;
     :hover {
-      color: red;
+      color: #9C0303;
       text-decoration: underline;
     }
   `;
@@ -85,7 +85,7 @@ const ReviewTile = ({review}) => {
 
   const handleHelpfulClick = () => {
     if (!isHelpful) {
-      axios.put(`http://localhost:3000/reviews/${review.review_id}/helpful`, {header: {'Access-Control-Allow-Origin': '*'}})
+      axios.put(`http://localhost:3001/reviews/${review.review_id}/helpful`, {header: {'Access-Control-Allow-Origin': '*'}})
         .then(() => {
           console.log("added helpful")
         })
@@ -97,7 +97,7 @@ const ReviewTile = ({review}) => {
   }
 
   const handleReportClick = () => {
-    axios.put(`http://localhost:3000/reviews/${review.review_id}/report`, {header: {'Access-Control-Allow-Origin': '*'}})
+    axios.put(`http://localhost:3001/reviews/${review.review_id}/report`, {header: {'Access-Control-Allow-Origin': '*'}})
         .then(() => {
           console.log("reported")
         })
