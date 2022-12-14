@@ -11,7 +11,6 @@ const RelatedProductCards = ({product, setproductId, currentProductInfo}) => {
     setmodalState(!modalState);
   }
   let refreshOverview = () => {
-    console.log('I got clicked, and I should be refreshing the page:')
     setproductId(product.id);
   }
 

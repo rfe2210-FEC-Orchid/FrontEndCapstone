@@ -10,7 +10,7 @@ const OutfitList = ({setproductId, currentProductInfo, selectedStyle}) => {
 
   let localOufitList = localStorage.getItem('outfits');
 
-  const currentOutfit = {id: selectedStyle.style_id, category: currentProductInfo.category, name: currentProductInfo.name, price: currentProductInfo.default_price, saleprice: selectedStyle.sale_price, image: selectedStyle.photos};
+  const currentOutfit = {id: selectedStyle.style_id, category: currentProductInfo.category, name: currentProductInfo.name, price: currentProductInfo.default_price, saleprice: selectedStyle.sale_price, image: selectedStyle.photos, productid: currentProductInfo.id};
 
   useEffect(() => {
     localOufitList = JSON.parse(localOufitList);
@@ -55,7 +55,6 @@ const OutfitList = ({setproductId, currentProductInfo, selectedStyle}) => {
   const addOutfit = () => {
     let outfitCopy = [...outfits];
     let {id} = currentOutfit;
-    console.log('currentOutfit: ', currentOutfit);
     let existingitem = outfitCopy.find((outfitItem) => outfitItem.id === id);
     if (!existingitem) {
       outfitCopy.push(currentOutfit);

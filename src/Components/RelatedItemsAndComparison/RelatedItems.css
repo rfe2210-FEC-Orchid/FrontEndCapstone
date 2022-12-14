@@ -12,9 +12,13 @@
 }
 
 h2 {
-  padding: 10px;
+  /* padding: 10px; */
   text-align: left;
   font-weight: bolder;
+}
+
+#rp-header {
+  padding-top: 10px;
 }
 
 /* MODAL */
@@ -136,6 +140,8 @@ tr:nth-child(even) {
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #related-products-slider, #outfit-list-slider, #product-list {
