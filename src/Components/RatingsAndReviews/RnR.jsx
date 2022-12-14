@@ -23,8 +23,8 @@ import {UserContext} from '../UserContext.jsx';
   `;
 
   const ReviewsContainer = styled.div`
-  width: 55%;
-  margin: 0 0 0 35px;
+    width: 55%;
+    margin: 0 0 0 35px;
   `;
 
 
@@ -42,6 +42,7 @@ const RnR = ({productID, productName, handleTrack}) => {
   const [characteristics, setCharacteristics] = useState("");
   const [sortBy, setSortBy] = useState(sortBy || "relevant");
   const [searchReviews, setSearchReviews] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const [isWritingReview, setIsWritingReview] = useState(false); //for Modal
   const {trackData}= useContext(UserContext); //usertracking
 
@@ -74,18 +75,24 @@ const RnR = ({productID, productName, handleTrack}) => {
   const handleRenderList = (data) => {
     const library = data || reviewLibrary;
     if (renderList.length === 0) {
-      setReviews(library);
       setSearchReviews(library);
-      setReviewCount(library.length);
+      let videoList = library
+        .filter((review) => {
+        return (review.body.toLowerCase().indexOf(searchInput) > -1) || (review.summary.toLowerCase().indexOf(searchInput) > -1)})
+      setReviews(videoList);
+      setReviewCount(videoList.length);
       // console.log(renderCount);
       // if (library.length < 2) {
       //   setRenderCount(library.length);
       // }
     } else {
-      let videoList = library.filter((review) => {return (renderList.indexOf(review.rating) > -1)});
+      let videoList = library
+        .filter((review) => {return (renderList.indexOf(review.rating) > -1)})
+        .filter((review) => {
+          return (review.body.toLowerCase().indexOf(searchInput) > -1) || (review.summary.toLowerCase().indexOf(searchInput) > -1)})
       setReviews(videoList);
-      setSearchReviews(videoList);
       setReviewCount(videoList.length);
+      setSearchReviews(videoList);
     }
   }
 
@@ -159,8 +166,9 @@ const RnR = ({productID, productName, handleTrack}) => {
     })
   }
 
-  const handleSearch = (evt) => {
-    let word = evt.target.value.toLowerCase();
+  const handleSearch = (term) => {
+    setSearchInput(term);
+    let word = term.toLowerCase();
     let searchRender = searchReviews.filter((review) => {
       return (review.body.toLowerCase().indexOf(word) > -1) || (review.summary.toLowerCase().indexOf(word) > -1)});
     let searchReturn = word.length < 3 ? searchReviews : searchRender;
@@ -176,10 +184,13 @@ const RnR = ({productID, productName, handleTrack}) => {
           <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
         </RatingsContainer>
         <ReviewsContainer>
-          <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} handleSearch={handleSearch} handleTrack={handleTrack}/>
+          <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} searchInput={searchInput} handleSearch={handleSearch} handleTrack={handleTrack}/>
         </ReviewsContainer>
         <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
         {trackData.map((data) => <div>{data}</div>)}
+        <div>{"search Reviews: " + searchReviews.length}</div>
+        <div>{"reviews: " + reviews.length}</div>
+        <div>{"library: " + reviewLibrary.length}</div>
       </RnRContainer>
     </div>
 
