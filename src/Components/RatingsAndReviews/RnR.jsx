@@ -20,12 +20,11 @@ import {UserContext} from '../UserContext.jsx';
   `;
 
   const RatingsContainer = styled.div`
-  /* width: 25%; */
   `;
 
   const ReviewsContainer = styled.div`
   width: 55%;
-  margin: 25px;
+  margin: 0 0 0 35px;
   `;
 
 
@@ -41,7 +40,8 @@ const RnR = ({productID, productName, handleTrack}) => {
   const [ratings, setRatings] = useState({});
   const [percentages, setPercentages] = useState({5: 0, 4: 0, 3: 0, 2: 0, 1:0})
   const [characteristics, setCharacteristics] = useState("");
-  const [sortBy, setSortBy] = useState(sortBy || "relevant");2
+  const [sortBy, setSortBy] = useState(sortBy || "relevant");
+  const [searchReviews, setSearchReviews] = useState([]);
   const [isWritingReview, setIsWritingReview] = useState(false); //for Modal
   const {trackData}= useContext(UserContext); //usertracking
 
@@ -75,6 +75,7 @@ const RnR = ({productID, productName, handleTrack}) => {
     const library = data || reviewLibrary;
     if (renderList.length === 0) {
       setReviews(library);
+      setSearchReviews(library);
       setReviewCount(library.length);
       // console.log(renderCount);
       // if (library.length < 2) {
@@ -83,6 +84,7 @@ const RnR = ({productID, productName, handleTrack}) => {
     } else {
       let videoList = library.filter((review) => {return (renderList.indexOf(review.rating) > -1)});
       setReviews(videoList);
+      setSearchReviews(videoList);
       setReviewCount(videoList.length);
     }
   }
@@ -157,6 +159,15 @@ const RnR = ({productID, productName, handleTrack}) => {
     })
   }
 
+  const handleSearch = (evt) => {
+    let word = evt.target.value.toLowerCase();
+    let searchRender = searchReviews.filter((review) => {
+      return (review.body.toLowerCase().indexOf(word) > -1) || (review.summary.toLowerCase().indexOf(word) > -1)});
+    let searchReturn = word.length < 3 ? searchReviews : searchRender;
+    setReviews(searchReturn);
+    setReviewCount(searchReturn.length);
+  };
+
   return (
     <div>
       <RnRContainer id="RnR">
@@ -165,7 +176,7 @@ const RnR = ({productID, productName, handleTrack}) => {
           <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
         </RatingsContainer>
         <ReviewsContainer>
-          <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} handleTrack={handleTrack}/>
+          <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} handleSearch={handleSearch} handleTrack={handleTrack}/>
         </ReviewsContainer>
         <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
         {trackData.map((data) => <div>{data}</div>)}

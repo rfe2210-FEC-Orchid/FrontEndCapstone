@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import styled from 'styled-components';
 
@@ -10,6 +10,8 @@ import styled from 'styled-components';
     font-weight: bold;
     margin: 20px 0px;
     font-size: 18px;
+    position: flex;
+    justify-content: flex-start;
   `;
 
   const SortByButton = styled.select`
@@ -41,7 +43,8 @@ import styled from 'styled-components';
     }
   `;
 
-const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, handleTrack}) => {
+const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, handleSearch, handleTrack}) => {
+  const [searchInput, setSearchInput] = useState("");
   // const bottomRef = useRef(null);
 
   // useEffect(() => {
@@ -51,17 +54,22 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
 
   return (
     <div>
-      {/* <div>For dev: Review Count {reviewCount}</div>
-      <div>For dev: Render Count {renderCount}</div> */}
       <HeaderContainer>
-        <span>{reviewCount +" reviews, sorted by "}</span>
-        <SortByButton data-testid="sort-option" name="sortBy" value={sortBy} onChange={(evt) =>{
-          handleSortBy(evt.target.value);
-        }}>
-          <option data-testid="sort-relevance" value="relevance">relevance</option>
-          <option data-testid="sort-newest" value="newest">newest</option>
-          <option data-testid="sort-helpful" value="helpful">helpfulness</option>
-        </SortByButton>
+        <input className="review-search-bar" type="text" placeholder="Search Reviews…" value={searchInput} onChange={(evt)=> {
+          evt.preventDefault();
+          setSearchInput(evt.target.value);
+          handleSearch(evt);
+        }}/><br/>
+        <label>
+          <span>{reviewCount + " reviews, sorted by "}</span>
+          <SortByButton data-testid="sort-option" name="sortBy" value={sortBy} onChange={(evt) =>{
+            handleSortBy(evt.target.value);
+          }}>
+            <option data-testid="sort-relevance" value="relevance">relevance</option>
+            <option data-testid="sort-newest" value="newest">newest</option>
+            <option data-testid="sort-helpful" value="helpful">helpfulness</option>
+          </SortByButton>
+        </label>
       </HeaderContainer>
       {renderList.map((num) => <FilterButton onClick={(evt) => {
         evt.preventDefault();
