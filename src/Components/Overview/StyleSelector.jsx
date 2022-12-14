@@ -16,6 +16,8 @@ const StyleImage = styled.img`
   }
 `;
 
+const defualt_url = 'https://images.unsplash.com/photo-1531425300797-d5dc8b021c84?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80';
+
 const StyleSelector = (props) => {
 
   return (
@@ -24,7 +26,7 @@ const StyleSelector = (props) => {
       <StyleImage
         key={style.style_id}
         selected={props.selectedStyleID === style.style_id}
-        src={style.photos[0].thumbnail_url}
+        src={style.photos[0].thumbnail_url || defualt_url}
         onClick={() => props.handleChangeStyle(style)}
       />
       )}

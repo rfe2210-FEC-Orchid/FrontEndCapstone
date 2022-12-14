@@ -42,7 +42,7 @@ const RnR = ({productID, productName, handleTrack}) => {
       .catch((err) => {
         console.error(err);
       })
-  },[sortBy]);
+  },[sortBy, productID]);
 
 
   useEffect(()=>{

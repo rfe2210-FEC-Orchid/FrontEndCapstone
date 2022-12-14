@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Star from './Star.jsx';
 
+const StarRatings = styled.div`
+display: inline-flex;
+position: relative;
+`;
+
 const Stars = ({number}) => {
   const [starMap, setStarMap] = useState([0,0,0,0,0]);
 
@@ -20,11 +25,6 @@ const Stars = ({number}) => {
 
     setStarMap(baseStarMap);
   }, [number])
-
-  const StarRatings = styled.div`
-    display: inline-flex;
-    position: relative;
-  `;
 
   return (
     <StarRatings>

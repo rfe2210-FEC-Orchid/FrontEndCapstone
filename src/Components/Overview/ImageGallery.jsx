@@ -48,40 +48,27 @@ const SelectedImageContainer = styled.div`
 `;
 
 const ExpandedImageContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 10;
+  position: relative;
+  height: 814px;
+
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-`;
-
-const CloseButton = styled.i`
-  postion: absolute;
-  margin: 5px;
-  align-self: flex-end;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const ButtonContainer = styled.div`
   position: absolute;
   width: 100%;
-  z-index: 10;
+  z-index: 4;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
 const ExpandedButtonContainer = styled.div`
-  bottom: 0;
+  position: relative;
   width: 100%;
   margin: 5px;
   display: flex;
@@ -103,17 +90,26 @@ const Placeholder = styled.div`
 
 const defualt_url = 'https://images.unsplash.com/photo-1531425300797-d5dc8b021c84?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80';
 
+const defualt_photo = {
+  thumbnail_url: defualt_url,
+  url: defualt_url
+};
+
 const ImageGallery = (props) => {
 
   // state
   const [photoIndex, setPhotoIndex] = useState(0);
   const [sliderLimits, setSliderLimits] = useState({min:0, max: 6});
   const [photos, setPhotos] = useState([]);
-  const [showExpandedImage, setShowExpandedImage] = useState(false);
   const [hoverEnabled, setHoverEnabled] = useState(false);
 
   useEffect(() => {
-    setPhotos(props.photos.slice(sliderLimits.min, sliderLimits.max + 1));
+    if (!props.photos[0].thumbnail_url || !props.photos[0].url) {
+      setPhotos([defualt_photo]);
+    } else {
+      setPhotos(props.photos.slice(sliderLimits.min, sliderLimits.max + 1));
+    }
+
     if (!props.photos[photoIndex]) {
       setPhotoIndex(0);
     }
@@ -168,76 +164,62 @@ const ImageGallery = (props) => {
     }
   };
 
-  const toggleHoverZoom = () => {
-    setHoverEnabled(!hoverEnabled);
-  }
+  useEffect(() => {
+    console.log('toggling hover enabled:', hoverEnabled);
+  }, [hoverEnabled]);
 
   return (
     <Gallery>
-      <SliderContainer>
-        {(props.photos.length > 7) && (sliderLimits.min > 0)
-          ? <Arrow><AiOutlineArrowUp onClick={sliderUp} size={25}/></Arrow>
-          : <Placeholder size={30}></Placeholder>}
+      {!props.showExpandedImage
+      ? (<><SliderContainer>
+          {(props.photos.length > 7) && (sliderLimits.min > 0)
+            ? <Arrow><AiOutlineArrowUp onClick={sliderUp} size={25}/></Arrow>
+            : <Placeholder size={30}></Placeholder>}
 
-            {photos.map((photo, index) =>
-              <SliderImage
-                src={photo.thumbnail_url}
-                selected={index === photoIndex}
-                key={index}
-                onClick={() => setPhotoIndex(index)}
-              />
-            )}
+              {photos.map((photo, index) =>
+                <SliderImage
+                  src={photo.thumbnail_url}
+                  selected={index === photoIndex}
+                  key={index}
+                  onClick={() => setPhotoIndex(index)}
+                />
+              )}
 
-        {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1)
-          ? <Arrow><AiOutlineArrowDown onClick={sliderDown} size={25}/></Arrow>
-          : <Placeholder size={30}></Placeholder>}
-      </SliderContainer>
+          {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1)
+            ? <Arrow><AiOutlineArrowDown onClick={sliderDown} size={25}/></Arrow>
+            : <Placeholder size={30}></Placeholder>}
+        </SliderContainer>
 
-      <SelectedImageContainer>
-        <SelectedImage
-          photo={photos[photoIndex]}
-          setShowExpandedImage={setShowExpandedImage}
-        />
+        <SelectedImageContainer>
+          <SelectedImage
+            photo={photos[photoIndex]}
+            setShowExpandedImage={props.setShowExpandedImage}
+          />
 
-        <ButtonContainer>
-          {(sliderLimits.min > 0 || photoIndex > 0)
-            ? <Arrow><AiOutlineArrowLeft onClick={decrementPhotoIndex} size={40}/></Arrow>
-            : <Placeholder size={40}></Placeholder>}
-          {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1)
-            ? <Arrow><AiOutlineArrowRight onClick={incrementPhotoIndex} size={40}/></Arrow>
-            : <Placeholder size={40}></Placeholder>}
-        </ButtonContainer>
-      </SelectedImageContainer>
-
-      {showExpandedImage && <ExpandedImageContainer>
-        {!hoverEnabled
-          ? <CloseButton onClick={() => setShowExpandedImage(false)}><AiOutlineClose color={'white'} size={40}/></CloseButton>
-          : <Placeholder size={40}></Placeholder>}
-
-        <ExpandedImage
-          toggleHoverZoom={toggleHoverZoom}
-          hoverEnabled={hoverEnabled}
-          photo={photos[photoIndex]}
-        />
-
-        {!hoverEnabled
-        ? <ExpandedButtonContainer>
+          <ButtonContainer>
             {(sliderLimits.min > 0 || photoIndex > 0)
-              ? <Arrow><AiOutlineArrowLeft onClick={decrementPhotoIndex} color={'white'} size={40}/></Arrow>
+              ? <Arrow><AiOutlineArrowLeft onClick={decrementPhotoIndex} size={40}/></Arrow>
               : <Placeholder size={40}></Placeholder>}
-
-            {photos.map((photo, index) => (
-              index === photoIndex
-                ? <RxDotFilled color={'white'} size={40} key={index} onClick={() => setPhotoIndex(index)}/>
-                : <RxDot color={'white'} size={40} key={index} onClick={() => setPhotoIndex(index)}/>
-            ))}
-
             {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1)
-              ? <Arrow><AiOutlineArrowRight onClick={incrementPhotoIndex} color={'white'} size={40}/></Arrow>
+              ? <Arrow><AiOutlineArrowRight onClick={incrementPhotoIndex} size={40}/></Arrow>
               : <Placeholder size={40}></Placeholder>}
-          </ExpandedButtonContainer>
-        : <Placeholder size={40}></Placeholder>}
-      </ExpandedImageContainer>}
+          </ButtonContainer>
+        </SelectedImageContainer></>)
+
+      : (<ExpandedImageContainer >
+          <ExpandedImage
+            setShowExpandedImage={props.setShowExpandedImage}
+            setHoverEnabled={setHoverEnabled}
+            hoverEnabled={hoverEnabled}
+            photo={photos[photoIndex]}
+            photos={photos}
+            sliderLimits={sliderLimits}
+            decrementPhotoIndex={decrementPhotoIndex}
+            incrementPhotoIndex={incrementPhotoIndex}
+            photoIndex={photoIndex}
+            setPhotoIndex={setPhotoIndex}
+          />
+        </ExpandedImageContainer>)}
 
     </Gallery>
   );

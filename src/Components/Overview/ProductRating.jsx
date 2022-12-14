@@ -23,20 +23,13 @@ const ProductRating = (props) => {
         console.log('error retieving RNR metadata:', err);
       })
       .then((response) => {
-        console.log('got RNR data:', response.data);
-
         let ratings = response.data.ratings;
-
-        console.log(ratings);
         let RnRdata = {n: 0, avg: 0};
-
         for (let rating in ratings) {
           RnRdata.n += parseInt(ratings[rating]);
           RnRdata.avg += parseInt(rating) * parseInt(ratings[rating]);
         }
-
         RnRdata.avg = (Math.round((RnRdata.avg / RnRdata.n) * 10) / 10);
-
         setRNRData(RnRdata);
       })
   }, []);

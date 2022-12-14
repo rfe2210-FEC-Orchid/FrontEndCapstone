@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 const DescriptionContainer = styled.div`
   position: relative;
-  margin: 100px 10%;
+  margin: 50px 10% 10% 100px;
   background-color: #f2f2f2;
   padding: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
 `;
 
@@ -29,6 +29,7 @@ const RightColumn = styled.div`
 const ProductDescription = (props) => {
 
   return (
+
     <DescriptionContainer>
       <LeftColumn>
         <h3>{props.slogan}</h3>

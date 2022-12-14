@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ImageGallery from './ImageGallery.jsx';
 import ProductRating from './ProductRating.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import ProductStyle from './ProductStyle.jsx';
 import ProductShare from './ProductShare.jsx';
 import ProductDescription from './ProductDescription.jsx';
-import axios from 'axios';
 import styled from 'styled-components';
 
-const UpperContentContainer = styled.div`
+const OverviewContainer = styled.div`
   position: relative;
   top: 80px;
   display: flex;
+  flex-direction: column;
+`;
+
+const UpperContentContainer = styled.div`
+  position: relative;
+  display: flex;
   justify-content: center;
-  align-items: flex-start;
 `;
 
 const UpperColumnContainerLeft = styled.div`
   margin: 10px;
-  width: 70%;
+  width: ${props => props.showExpandedImage ? 'calc(70% + 340px)' : '70%'};
 `;
 
 const UpperColumnContainerRight = styled.div`
@@ -27,21 +31,35 @@ const UpperColumnContainerRight = styled.div`
   min-width: 200px;
 `;
 
+const LowerContentContainer = styled.div`
+  position: relative;
+  width:100%;
+`;
+
 const Overview = (props) => {
 
+  const [showExpandedImage, setShowExpandedImage] = useState(false);
+
   return (
-    <div>
-        <UpperContentContainer>
-        <UpperColumnContainerLeft>{props.selectedStyle.photos && <ImageGallery photos={props.selectedStyle.photos}/>}</UpperColumnContainerLeft>
-        <UpperColumnContainerRight>
+    <OverviewContainer>
+      <UpperContentContainer>
+        <UpperColumnContainerLeft showExpandedImage={showExpandedImage}>
+          {props.selectedStyle.photos && <ImageGallery
+            photos={props.selectedStyle.photos}
+            showExpandedImage={showExpandedImage}
+            setShowExpandedImage={setShowExpandedImage}/>}
+        </UpperColumnContainerLeft>
+        {!showExpandedImage && <UpperColumnContainerRight>
           <ProductRating productID={props.product_id}/>
           <ProductInfo name={props.productInfo.name} category={props.productInfo.category}/>
           <ProductStyle selectedStyle={props.selectedStyle} allStyles={props.allStyles} handleSelectStyle={props.setSelectedStyle}/>
           <ProductShare />
-        </UpperColumnContainerRight>
+        </UpperColumnContainerRight>}
       </UpperContentContainer>
-      <ProductDescription slogan={props.productInfo.slogan} description={props.productInfo.description} features={props.productInfo.features}/>
-    </div>
+      <LowerContentContainer>
+        <ProductDescription slogan={props.productInfo.slogan} description={props.productInfo.description} features={props.productInfo.features}/>
+      </LowerContentContainer>
+    </OverviewContainer>
   )}
 
 export default Overview;

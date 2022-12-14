@@ -19,7 +19,9 @@ const SizeOption = styled.div`
   }
 `;
 
+
 const SizeSelector = (props) => {
+
 
   return (
     <div>
