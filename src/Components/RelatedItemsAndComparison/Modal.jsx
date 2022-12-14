@@ -3,9 +3,15 @@ import axios from 'axios';
 import Comparison from './Comparison.jsx';
 
 let Modal = ({toggle, action, comparedProduct, currentProduct}) => {
+  if (toggle === true) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+
   return (
     <div className={`modal-container ${toggle ? 'active' : ''}`}>
-      <div className='modal'>
+      <div className='related-products-modal'>
         <h1 style={{margin: '30px'}}>COMPARING</h1>
         <div id='table-container'>
           <table style={{margin: '30px'}}>
