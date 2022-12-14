@@ -1,4 +1,4 @@
-/* LIST CONTAINERS */
+LIST CONTAINERS
 .related-product-list, .outfit-list {
   display: grid;
   place-items: center;

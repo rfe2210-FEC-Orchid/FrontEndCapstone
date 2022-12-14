@@ -3,6 +3,67 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Stars from './Stars.jsx';
 
+ //styled components
+ const Container = styled.div`
+ padding: 10px;
+ position: relative;
+ border-bottom: 1px solid black;
+`;
+
+const NameBlock = styled.span`
+ position: absolute;
+ right: 0px;
+`;
+
+const ReviewSummaryBlock = styled.div`
+  font-size: 24px;
+  margin: 8px 0px;
+`;
+
+const ReviewBodyBlock = styled.div`
+  margin: 25px 0px;
+`;
+
+const RecommendBlock = styled.div`
+  margin: 25px 0px;
+  color:#9C0303;
+`;
+
+const ResponseBlock = styled.div`
+  background-color: #CFCFCF;
+`;
+
+const ShowMoreBtn = styled.button`
+ cursor: pointer;
+ border: 0px;
+ color: #0d98ba;
+ background-color: white;
+ :hover {
+   color: #9C0303;
+   text-decoration: underline;
+ }
+`;
+
+const HelpfulBtn = styled.button`
+ cursor: ${props => props.isHelpful ? null : "pointer"};
+ border: 0px;
+ color: ${props => props.isHelpful ? "green" : "grey"};
+ background-color: white;
+ :hover {
+   color: ${props => props.isHelpful ? "green" : "#9C0303"};
+   text-decoration: ${props => props.isHelpful ? "null" : "underline"};
+ }
+`;
+
+const ReportBtn = styled.button`
+ cursor: pointer;
+ background-color: white;
+ :hover {
+   color: #9C0303;
+   text-decoration: underline;
+ }
+`;
+
 const ReviewTile = ({review}) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [isHelpful, setIsHelpful] = useState(false);
@@ -21,66 +82,6 @@ const ReviewTile = ({review}) => {
     setIsShowingMore(!isShowingMore);
   };
 
-  //styled components
-  const Container = styled.div`
-    padding: 10px;
-    position: relative;
-    border-bottom: 1px solid black;
-  `;
-
-  const NameBlock = styled.span`
-    position: absolute;
-    right: 0px;
-  `;
-
-  const ReviewSummaryBlock = styled.div`
-     font-size: 24px;
-     margin: 8px 0px;
-  `;
-
-  const ReviewBodyBlock = styled.div`
-     margin: 25px 0px;
-  `;
-
-  const RecommendBlock = styled.div`
-     margin: 25px 0px;
-     color:#9C0303;
-  `;
-
-  const ResponseBlock = styled.div`
-     background-color: #CFCFCF;
-  `;
-
-  const ShowMoreBtn = styled.button`
-    cursor: pointer;
-    border: 0px;
-    color: #0d98ba;
-    background-color: white;
-    :hover {
-      color: #9C0303;
-      text-decoration: underline;
-    }
-  `;
-
-  const HelpfulBtn = styled.button`
-    cursor: ${isHelpful ? null : "pointer"};
-    border: 0px;
-    color: ${isHelpful ? "green" : "grey"};
-    background-color: white;
-    :hover {
-      color: ${isHelpful ? "green" : "#9C0303"};
-      text-decoration: ${isHelpful ? "null" : "underline"};
-    }
-  `;
-
-  const ReportBtn = styled.button`
-    cursor: pointer;
-    background-color: white;
-    :hover {
-      color: #9C0303;
-      text-decoration: underline;
-    }
-  `;
 
 
   const handleHelpfulClick = () => {
@@ -126,7 +127,7 @@ const ReviewTile = ({review}) => {
         <div>{review.response}</div>
       </ResponseBlock>}
       <div>{"Helpful? "}
-      <HelpfulBtn onClick={handleHelpfulClick}>Yes ({isHelpful ? review.helpfulness + 1 : review.helpfulness}) </HelpfulBtn>
+      <HelpfulBtn isHelpful={isHelpful} onClick={handleHelpfulClick}>Yes ({isHelpful ? review.helpfulness + 1 : review.helpfulness}) </HelpfulBtn>
       <span>  |  </span>
       <ReportBtn onClick={handleReportClick}>Report</ReportBtn>
       </div>

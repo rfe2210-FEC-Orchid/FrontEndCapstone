@@ -2,12 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-
-const ProductBreakdown = ({characteristic, category}) => {
-
-  // if(category === "Fit") {
-
-  // }
   const Container = styled.div`
     position: relative;
     width: 225px;
@@ -45,6 +39,12 @@ const ProductBreakdown = ({characteristic, category}) => {
     font-size: 12px;
   `;
 
+
+const ProductBreakdown = ({characteristic, category}) => {
+
+  // if(category === "Fit") {
+
+  // }
   return (
    <Container>
     <div>{category}</div>

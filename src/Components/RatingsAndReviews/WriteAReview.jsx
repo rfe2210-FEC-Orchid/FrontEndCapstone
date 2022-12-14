@@ -2,8 +2,6 @@ import React from 'react';
 import styled, {css} from 'styled-components';
 import Form from './Form.jsx';
 
-const WriteAReview = ({isWritingReview, onClose, characteristics, productID, productName}) => {
-
   const Overlay = styled.div`
     background-color: rgb(0, 0, 0, 0.7);
     position: fixed;
@@ -50,15 +48,18 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID, pro
     cursor: pointer;
   `;
 
+const WriteAReview = ({isWritingReview, onClose, characteristics, productID, productName}) => {
+
+
   // const ReviewForm = styled.form`
   //   /* display: block; */
   // `;
 
   // if (!isWritingReview) return <OverlayHidden>Write a Review</OverlayHidden>;
   return (
-    <Overlay isWritingReview={isWritingReview}>
-      <Container >
-        <Closebtn onClick={onClose}>X</Closebtn>
+    <Overlay data-testid="review-modal-overlay" isWritingReview={isWritingReview}>
+      <Container data-testid="form-container" >
+        <Closebtn data-testid="reviewForm-closeBtn" onClick={onClose}>X</Closebtn>
         <Form characteristics={characteristics} productID={productID} onClose={onClose} productName={productName}/>
       </Container>
     </Overlay>

@@ -6,6 +6,29 @@ import styled from 'styled-components';
 import WriteAReview from './WriteAReview.jsx';
 import {UserContext} from '../UserContext.jsx';
 
+  const RnRContainer = styled.div`
+  /* left: 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+  /* position: relative;
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-template-areas: "header header"; */
+  `;
+
+  const RatingsContainer = styled.div`
+  /* width: 25%; */
+  `;
+
+  const ReviewsContainer = styled.div`
+  width: 55%;
+  margin: 25px;
+  `;
+
+
 const RnR = ({productID, productName, handleTrack}) => {
   // const [productID, setProductID] = useState(37311);
   const [reviewLibrary, setReviewLibrary] = useState([]);
@@ -25,8 +48,7 @@ const RnR = ({productID, productName, handleTrack}) => {
   useEffect(()=>{
     axios.get(`http://localhost:3001/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
       .then((data) => {
-
-          console.log(data.data); //data.data.count has how many reviews
+          // console.log(data.data); //data.data.count has how many reviews
           setReviewLibrary(data.data.results);
           handleRenderList(data.data.results);
           if (data.data.results.length < 2) {
@@ -54,7 +76,7 @@ const RnR = ({productID, productName, handleTrack}) => {
     if (renderList.length === 0) {
       setReviews(library);
       setReviewCount(library.length);
-      console.log(renderCount);
+      // console.log(renderCount);
       // if (library.length < 2) {
       //   setRenderCount(library.length);
       // }
@@ -101,7 +123,7 @@ const RnR = ({productID, productName, handleTrack}) => {
   useEffect(()=>{
     axios.get(`http://localhost:3001/reviews/meta?product_id=${productID}`)
       .then((data) => {
-        console.log(data.data); //data.data.count has how many reviews
+        // console.log(data.data); //data.data.count has how many reviews
         setRatings(data.data.ratings);
         setCharacteristics(data.data.characteristics);
         setAvgRating(calculateAvgRating(data.data.ratings));
@@ -134,29 +156,6 @@ const RnR = ({productID, productName, handleTrack}) => {
       1: Math.round((Number(obj[1])/sum) * 100) + "%"
     })
   }
-
-  const RnRContainer = styled.div`
-    /* left: 20px; */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    position: relative;
-    /* position: relative;
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    grid-template-areas: "header header"; */
-  `;
-
-  const RatingsContainer = styled.div`
-    /* width: 25%; */
-  `;
-
-  const ReviewsContainer = styled.div`
-    width: 55%;
-    margin: 25px;
-  `;
-
 
   return (
     <div>

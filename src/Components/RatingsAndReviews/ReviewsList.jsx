@@ -2,9 +2,6 @@ import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import styled from 'styled-components';
 
-const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, handleTrack}) => {
-  // const bottomRef = useRef(null);
-
   const FilterButton = styled.button`
     cursor: pointer;
   `;
@@ -36,6 +33,7 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
     color: white;
     border: 1.5px solid black;
     margin: 8px 2px;
+    min-width: 20%;
 
     &:hover {
       background-color: #800f67;
@@ -43,7 +41,8 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
     }
   `;
 
-
+const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, handleTrack}) => {
+  // const bottomRef = useRef(null);
 
   // useEffect(() => {
   //   // 👇️ scroll to bottom every time messages change
@@ -56,12 +55,12 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
       <div>For dev: Render Count {renderCount}</div> */}
       <HeaderContainer>
         <span>{reviewCount +" reviews, sorted by "}</span>
-        <SortByButton name="sortBy" value={sortBy} onChange={(evt) =>{
+        <SortByButton data-testid="sort-option" name="sortBy" value={sortBy} onChange={(evt) =>{
           handleSortBy(evt.target.value);
         }}>
-          <option value="relevance">relevance</option>
-          <option value="newest">newest</option>
-          <option value="helpful">helpfulness</option>
+          <option data-testid="sort-relevance" value="relevance">relevance</option>
+          <option data-testid="sort-newest" value="newest">newest</option>
+          <option data-testid="sort-helpful" value="helpful">helpfulness</option>
         </SortByButton>
       </HeaderContainer>
       {renderList.map((num) => <FilterButton onClick={(evt) => {
@@ -80,8 +79,8 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
         {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review}/>)}
         {/* <div ref={bottomRef}></div> */}
       </ReviewListContainer >
-      {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons data-name="more-reviews" onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
-      <DesignButtons data-name="add-review" onClick={(evt) => {
+      {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons data-testid="more-reviews" onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
+      <DesignButtons data-testid="add-review-button" onClick={(evt) => {
         handleTrack(evt, "reviewNratings");
         setIsWritingReview(true)}}>Add a Review ➕</DesignButtons>
     </div>

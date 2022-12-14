@@ -61,8 +61,21 @@ const App = () => {
   }, [productId]);
 
   const handleTrack = (evt, moduleName) => { // for user tracking
-      const newData = "Module: " + moduleName + " | Element: " + evt.target.dataset.name + " | " + Date().toString();
-      setTrackData([...trackData, newData])
+      const timeNow = Date().toString();
+      const newData = {
+        element: evt.target.dataset.testid,
+        widget: moduleName,
+        time: timeNow
+      }
+
+      axios.post('/interactions', newData)
+        .then(() => {
+          console.log('success post to interactions: ', JSON.stringify(newData));
+          setTrackData([...trackData, "Module: " + moduleName + " | Element: " + evt.target.dataset.testid + " | " + timeNow]);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
   }
 
   return (

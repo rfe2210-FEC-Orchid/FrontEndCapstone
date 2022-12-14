@@ -4,8 +4,6 @@ import BarGraph from './BarGraph.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import styled from 'styled-components';
 
-const Ratings = ({handleBarFilter, renderList, avgRating, recommendPercentage, ratings, percentages, characteristics}) => {
-
   const RatingsContainer = styled.div`
     position: relative;
   `;
@@ -19,6 +17,8 @@ const Ratings = ({handleBarFilter, renderList, avgRating, recommendPercentage, r
   const PercentageRecommended = styled.div`
     margin: 10px 0px;
   `;
+
+const Ratings = ({handleBarFilter, renderList, avgRating, recommendPercentage, ratings, percentages, characteristics}) => {
 
   return (
     <RatingsContainer>
