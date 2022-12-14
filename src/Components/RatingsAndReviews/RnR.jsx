@@ -50,6 +50,7 @@ const RnR = ({productID, productName, handleTrack}) => {
     axios.get(`http://localhost:3001/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
       .then((data) => {
           // console.log(data.data); //data.data.count has how many reviews
+          // console.log(data.data.results);
           setReviewLibrary(data.data.results);
           handleRenderList(data.data.results);
           if (data.data.results.length < 2) {
@@ -87,12 +88,12 @@ const RnR = ({productID, productName, handleTrack}) => {
       // }
     } else {
       let videoList = library
-        .filter((review) => {return (renderList.indexOf(review.rating) > -1)})
-        .filter((review) => {
-          return (review.body.toLowerCase().indexOf(searchInput) > -1) || (review.summary.toLowerCase().indexOf(searchInput) > -1)})
-      setReviews(videoList);
-      setReviewCount(videoList.length);
+        .filter((review) => {return (renderList.indexOf(review.rating) > -1)});
       setSearchReviews(videoList);
+      let videoList2 = videoList.filter((review) => {
+          return (review.body.toLowerCase().indexOf(searchInput) > -1) || (review.summary.toLowerCase().indexOf(searchInput) > -1)})
+      setReviews(videoList2);
+      setReviewCount(videoList2.length);
     }
   }
 
@@ -188,9 +189,6 @@ const RnR = ({productID, productName, handleTrack}) => {
         </ReviewsContainer>
         <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
         {trackData.map((data) => <div>{data}</div>)}
-        <div>{"search Reviews: " + searchReviews.length}</div>
-        <div>{"reviews: " + reviews.length}</div>
-        <div>{"library: " + reviewLibrary.length}</div>
       </RnRContainer>
     </div>
 

@@ -43,7 +43,7 @@ import styled from 'styled-components';
     }
   `;
 
-const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, searchInput,handleSearch, handleTrack}) => {
+const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, searchInput, handleSearch, handleTrack}) => {
   // const bottomRef = useRef(null);
 
   // useEffect(() => {
@@ -82,7 +82,7 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
           <span>✖</span>
         </FilterButton>}
       <ReviewListContainer >
-        {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review}/>)}
+        {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review} searchInput={searchInput}/>)}
         {/* <div ref={bottomRef}></div> */}
       </ReviewListContainer >
       {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons data-testid="more-reviews" onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
