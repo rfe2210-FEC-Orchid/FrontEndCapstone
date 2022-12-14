@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import styled from 'styled-components';
 
