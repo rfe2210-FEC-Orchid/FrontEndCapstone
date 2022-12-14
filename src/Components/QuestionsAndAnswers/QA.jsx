@@ -30,7 +30,7 @@ const QAListContainer = styled.div`
 overflow-y: auto;
 height: auto;
 max-height: 450px;
-width: 82%;
+width: 100%;
 `;
 
 

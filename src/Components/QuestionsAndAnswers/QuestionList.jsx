@@ -7,7 +7,7 @@ import AnswerModal from './AnswerModal.jsx';
 const Question = styled.div`
 display: inline-block;
 vertical-align: middle;
-width: 70%;
+width: 80%;
 font-size: 20px;
 `
 
@@ -55,7 +55,20 @@ font-size: 18px;
 `
 
 const QuestionList = ({name, question}) => {
-  const [qA, setQA] = useState(Object.values(question.answers));
+
+  let sortedAnswers = Object.values(question.answers).sort((function(a,b){
+    return b.helpfulness-a.helpfulness
+  })).sort(function (a, b) {
+    if (a.answerer_name ==="Seller") {
+      return -1;
+    }
+    if (b.answerer_name == "Seller") {
+      return 1;
+    } else { return 0 }
+  })
+
+  const [qA, setQA] = useState(sortedAnswers);
+
   const [ url, setUrl ] = useState([]);
   const [moreAnswers, setMoreAnswers] = useState(true);
   const [helpful, setHelpful] = useState(question.question_helpfulness);
@@ -106,7 +119,7 @@ const QuestionList = ({name, question}) => {
         answers:{},
         helpfulness: 0,
         date: new Date(),
-        photos: []
+        photos: url
       }] )
 
       setModalA(false)
