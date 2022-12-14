@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import styled from 'styled-components';
 
@@ -43,8 +43,7 @@ import styled from 'styled-components';
     }
   `;
 
-const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, handleSearch, handleTrack}) => {
-  const [searchInput, setSearchInput] = useState("");
+const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, searchInput, handleSearch, handleTrack}) => {
   // const bottomRef = useRef(null);
 
   // useEffect(() => {
@@ -57,8 +56,7 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
       <HeaderContainer>
         <input className="review-search-bar" type="text" placeholder="Search Reviews…" value={searchInput} onChange={(evt)=> {
           evt.preventDefault();
-          setSearchInput(evt.target.value);
-          handleSearch(evt);
+          handleSearch(evt.target.value);
         }}/><br/>
         <label>
           <span>{reviewCount + " reviews, sorted by "}</span>
@@ -84,7 +82,7 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
           <span>✖</span>
         </FilterButton>}
       <ReviewListContainer >
-        {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review}/>)}
+        {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review} searchInput={searchInput}/>)}
         {/* <div ref={bottomRef}></div> */}
       </ReviewListContainer >
       {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons data-testid="more-reviews" onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
