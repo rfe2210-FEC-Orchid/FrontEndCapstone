@@ -2,16 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import Star from './Star.jsx';
 
+const StarRatings = styled.div`
+display: inline-flex;
+position: relative;
+cursor: pointer;
+`;
 
 
 const ClickableStars = ({overallRating, handleSetOverallRating}) => {
 
 
-  const StarRatings = styled.div`
-    display: inline-flex;
-    position: relative;
-    cursor: pointer;
-  `;
 
   return (
     <StarRatings>

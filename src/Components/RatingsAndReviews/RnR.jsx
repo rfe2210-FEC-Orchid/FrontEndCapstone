@@ -6,6 +6,28 @@ import styled from 'styled-components';
 import WriteAReview from './WriteAReview.jsx';
 import {UserContext} from '../UserContext.jsx';
 
+  const RnRContainer = styled.div`
+  /* left: 20px; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+  /* position: relative;
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-template-areas: "header header"; */
+  `;
+
+  const RatingsContainer = styled.div`
+  `;
+
+  const ReviewsContainer = styled.div`
+  width: 55%;
+  margin: 0 0 0 35px;
+  `;
+
+
 const RnR = ({productID, productName, handleTrack}) => {
   // const [productID, setProductID] = useState(37311);
   const [reviewLibrary, setReviewLibrary] = useState([]);
@@ -18,15 +40,15 @@ const RnR = ({productID, productName, handleTrack}) => {
   const [ratings, setRatings] = useState({});
   const [percentages, setPercentages] = useState({5: 0, 4: 0, 3: 0, 2: 0, 1:0})
   const [characteristics, setCharacteristics] = useState("");
-  const [sortBy, setSortBy] = useState(sortBy || "relevant");2
+  const [sortBy, setSortBy] = useState(sortBy || "relevant");
+  const [searchReviews, setSearchReviews] = useState([]);
   const [isWritingReview, setIsWritingReview] = useState(false); //for Modal
   const {trackData}= useContext(UserContext); //usertracking
 
   useEffect(()=>{
     axios.get(`http://localhost:3001/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
       .then((data) => {
-
-          console.log(data.data); //data.data.count has how many reviews
+          // console.log(data.data); //data.data.count has how many reviews
           setReviewLibrary(data.data.results);
           handleRenderList(data.data.results);
           if (data.data.results.length < 2) {
@@ -53,14 +75,16 @@ const RnR = ({productID, productName, handleTrack}) => {
     const library = data || reviewLibrary;
     if (renderList.length === 0) {
       setReviews(library);
+      setSearchReviews(library);
       setReviewCount(library.length);
-      console.log(renderCount);
+      // console.log(renderCount);
       // if (library.length < 2) {
       //   setRenderCount(library.length);
       // }
     } else {
       let videoList = library.filter((review) => {return (renderList.indexOf(review.rating) > -1)});
       setReviews(videoList);
+      setSearchReviews(videoList);
       setReviewCount(videoList.length);
     }
   }
@@ -101,7 +125,7 @@ const RnR = ({productID, productName, handleTrack}) => {
   useEffect(()=>{
     axios.get(`http://localhost:3001/reviews/meta?product_id=${productID}`)
       .then((data) => {
-        console.log(data.data); //data.data.count has how many reviews
+        // console.log(data.data); //data.data.count has how many reviews
         setRatings(data.data.ratings);
         setCharacteristics(data.data.characteristics);
         setAvgRating(calculateAvgRating(data.data.ratings));
@@ -111,7 +135,7 @@ const RnR = ({productID, productName, handleTrack}) => {
       .catch((err) => {
         console.error(err);
       })
-  },[]);
+  },[productID]);
 
   function calculateAvgRating (obj) {
     var sum = (obj[1] * 1) + (obj[2] * 2) + (obj[3] * 3) + (obj[4] * 4) + (obj[5] * 5);
@@ -135,23 +159,30 @@ const RnR = ({productID, productName, handleTrack}) => {
     })
   }
 
-  const RnRContainer = styled.div`
-    left: 20px;
-    position: relative;
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    grid-template-areas: "header header";
-  `;
-
+  const handleSearch = (evt) => {
+    let word = evt.target.value.toLowerCase();
+    let searchRender = searchReviews.filter((review) => {
+      return (review.body.toLowerCase().indexOf(word) > -1) || (review.summary.toLowerCase().indexOf(word) > -1)});
+    let searchReturn = word.length < 3 ? searchReviews : searchRender;
+    setReviews(searchReturn);
+    setReviewCount(searchReturn.length);
+  };
 
   return (
-    <RnRContainer id="RnR">
-      <h2 style={{padding: "0px", margin: "100px, 0px, 0px, 0px", gridArea : "header"}}>Ratings & Reviews</h2>
-      <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
-      <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} handleTrack={handleTrack}/>
-      <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
-      {trackData.map((data) => <div>{data}</div>)}
-    </RnRContainer>
+    <div>
+      <RnRContainer id="RnR">
+        <h2 style={{width: "100%", textAlign: "center"}}>RATINGS & REVIEWS</h2>
+        <RatingsContainer>
+          <Ratings handleBarFilter={handleBarFilter} renderList={renderList} avgRating={avgRating} recommendPercentage={recommendPercentage} ratings={ratings} percentages={percentages} characteristics={characteristics}/>
+        </RatingsContainer>
+        <ReviewsContainer>
+          <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} handleSearch={handleSearch} handleTrack={handleTrack}/>
+        </ReviewsContainer>
+        <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
+        {trackData.map((data) => <div>{data}</div>)}
+      </RnRContainer>
+    </div>
+
   )
 }
 

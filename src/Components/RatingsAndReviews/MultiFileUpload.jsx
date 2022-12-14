@@ -2,17 +2,19 @@ import React, { useState} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
+const ImagePreviewContainer = styled.div`
+  background-color: #CFCFCF;
+  width: 50%;
+  min-height: 60px;
+  border-radius: 10px;
+  position: relative;
+`;
+
 const MultiFileUpload = ({imageURLS, handleImageUrls}) => {
   const [selectedFile, setSelectedFile] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const ImagePreviewContainer = styled.div`
-    background-color: #CFCFCF;
-    width: 50%;
-    min-height: 60px;
-    border-radius: 10px;
-    position: relative;
-  `;
+
   const fileSelectHandler = (evt) => {
     setSelectedFile(evt.target.files[0]);
     console.log(selectedFile);

@@ -74,7 +74,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
     <h4>{"About " + productName}</h4>
   </header>
 
-  <form className="review-form" onSubmit={handleSubmit}>
+  <form className="review-form" data-testid="review-form" onSubmit={handleSubmit}>
     <div className="question-container">
       <label><span className="number">1</span>Overall Rating<span style={{color: "red"}}>*</span></label><br/>
       <div className="clickable-stars">
@@ -85,12 +85,12 @@ const Form = ({characteristics, productID, onClose, productName}) => {
     <div className="question-container">
       <label><span className="number">2</span>Do you recommend this product?<span style={{color: "red"}}>*</span></label><br/>
       <div className="yes-no-container">
-        <label className="radio-choice">
+        <label className="radio-choice" data-testid="doRecommendBtn">
           <input required defaultChecked type="radio" value={true} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/>
           <span className="radio-span" >Yes</span>
         </label>
 
-        <label className="radio-choice">
+        <label className="radio-choice" data-testid="noRecommendBtn">
           <input required type="radio" value={false} name="ifRecommend" onChange={(evt) => setIfRecommend(evt.target.value)}/>
           <span className="radio-span" >No</span>
         </label>
@@ -108,19 +108,17 @@ const Form = ({characteristics, productID, onClose, productName}) => {
 
     <div className="question-container">
       <label><span className="number">4</span>Review Summary<span style={{color: "red"}}>*</span></label><br/>
-      <textarea className="text-input" required maxLength="60" rows="2" cols="50" placeholder="Example: Best purchase ever!" value={summary} onChange={(evt) => {
-
-        console.log(summary);
+      <textarea className="text-input" name="reviewSummary" required maxLength="60" rows="2" cols="50" placeholder="Example: Best purchase ever!" value={summary} onChange={(evt) => {
         setSummary(evt.target.value);
       }}/>
     </div>
 
     <div className="question-container">
       <label><span className="number">5</span>Review Body<span style={{color: "red"}}>*</span></label><br/>
-        <textarea className="text-input" required minLength="50" maxLength="1000" rows="4" cols="50" placeholder="Why did you like the product or not?" value={body} onChange={(evt) => {
+        <textarea className="text-input" name="reviewBody" required minLength={50} maxLength={1000} rows="4" cols="50" placeholder="Why did you like the product or not?" value={body} onChange={(evt) => {
           setBody(evt.target.value);
         }}/>
-      <div className="text-below-input">{body.length < 50 ? "Minimum required characters left: " + (50 - body.length) : "Minimum Reached"}</div>
+      <div className="text-below-input" data-testid="textBelowBodyInput">{body.length < 50 ? "Minimum required characters left: " + (50 - body.length) : "Minimum Reached"}</div>
     </div>
 
     <div className="question-container">
@@ -133,7 +131,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
     <div className="question-container">
       <label><span className="number">7</span>What is your nickname<span style={{color: "red"}}>*</span></label>
       <div>
-        <input className="text-input" required type="text" maxLength="60" placeholder="Example: jackson11!" value={nickname} onChange={(evt) => {
+        <input className="text-input" name="reviewNickname" required type="text" maxLength="60" placeholder="Example: jackson11!" value={nickname} onChange={(evt) => {
           setNickname(evt.target.value);
         }} />
         <div className="text-below-input">For privacy reasons, do not use your full name or email address</div>
@@ -143,7 +141,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
     <div className="question-container">
       <label><span className="number">8</span>You email<span style={{color: "red"}}>*</span></label>
       <div>
-        <input className="text-input" required type="email" placeholder="Example: jackson11@email.com" value={email} onChange={(evt) => {
+        <input className="text-input" name="reviewEmail" required type="email" placeholder="Example: jackson11@email.com" value={email} onChange={(evt) => {
           setEmail(evt.target.value);
         }} />
         <div className="text-below-input">For authentication reasons, you will not be emailed</div>

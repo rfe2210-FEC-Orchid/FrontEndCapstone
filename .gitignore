@@ -1,12 +1,5 @@
 ./node_modules
 .env
 node_modules
-<<<<<<< HEAD
 public/bundle.js
-=======
-<<<<<<< HEAD
-public/bundle.js
-=======
-bundle.js
->>>>>>> development
->>>>>>> Feature-RNR
+coverage

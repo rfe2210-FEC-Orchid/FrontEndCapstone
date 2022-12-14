@@ -9,17 +9,19 @@ import {FaRegStar, FaStar} from 'react-icons/fa';
   const EmptyStars = styled.div`
   `;
 
-const Star = ({rating, value, handleSetOverallRating}) => {
   const FullStars = styled.div`
-  width: ${rating + "%"};
+  width: ${props => props.rating + "%"};
   overflow: hidden;
   position: absolute;
   `;
 
+const Star = ({rating, value, handleSetOverallRating}) => {
+
+
   return (
     <Container onClick={()=> {handleSetOverallRating(value)}}>
-      <FullStars>
-        <FaStar style={{color: "#FFD31A"}}/>
+      <FullStars rating={rating}>
+        <FaStar />
       </FullStars>
       <EmptyStars>
         <FaRegStar />
