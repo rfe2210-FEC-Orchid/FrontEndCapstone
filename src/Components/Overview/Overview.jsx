@@ -41,7 +41,7 @@ const Overview = (props) => {
   const [showExpandedImage, setShowExpandedImage] = useState(false);
 
   return (
-    <OverviewContainer>
+    <OverviewContainer id="overview">
       <UpperContentContainer>
         <UpperColumnContainerLeft showExpandedImage={showExpandedImage}>
           {props.selectedStyle.photos && <ImageGallery

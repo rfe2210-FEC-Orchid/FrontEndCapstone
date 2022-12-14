@@ -196,6 +196,8 @@ tr:nth-child(even) {
   /* box-shadow: 2px 2px 2px 2px #0000001f; */
   cursor: pointer;
   padding-bottom: 10px;
+  border: 1px solid;
+  border-color: #F2F2F2;
 }
 
 .card:hover {
