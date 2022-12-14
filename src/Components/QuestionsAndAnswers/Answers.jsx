@@ -1,9 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Photo from './Photo.jsx'
-import './questions.css';
 
+const Container = styled.div`
+width: 100%;
+display: flex;  flex-wrap: wrap;  align-content: stretch;
+`
+
+const Row = styled.div`
+&after:
+{
+content: "";
+clear: both;
+display: table;
+};
+`
 
 const Answers = ({answer}) => {
   const [helpfulA, setHelpfulA] = useState(answer.helpfulness)
@@ -21,25 +33,6 @@ const Answers = ({answer}) => {
     setHelpfulA(helpfulA+1)
   }
 
-  const Button = styled.div`
-    font-size: 13px;
-    padding: 0;
-    border: none;
-    background: none;
-    color: rgb(150, 141, 141);
-    cursor:pointer;
-    &:hover {
-      color:#080707;
-      transition: 0.7s;
-  }
-  `
-   const Container = styled.div`
-   width: 100%;
-   display: flex;  flex-wrap: wrap;  align-content: stretch;
-  `
-
-
-
   return(
     <div>
       <b className ='fonttwo'>A: </b>
@@ -48,9 +41,9 @@ const Answers = ({answer}) => {
       {answer.photos.length > 0 &&
           answer.photos.map((photo,key) => {
           return(
-            <div key={key}>
+            <Row key={key}>
               <Photo photo={photo}/>
-            </div>
+            </Row>
           )})
         }
       <Container>
@@ -72,9 +65,6 @@ const Answers = ({answer}) => {
       <button className ='smallbtn' onClick={handleAReport}><u>{reportA}</u></button>
       </p>
       </Container>
-
-
-
     </div>
     )
 };

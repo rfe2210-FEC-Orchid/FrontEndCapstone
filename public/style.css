@@ -163,4 +163,91 @@ input[type=text], input[type=email] {
 	height: 80px;
 }
 
+<<<<<<< HEAD
 
+=======
+/* Nika's Styles */
+
+.smallGrey {
+  color:rgb(150, 141, 141);
+  font-size: 13px
+}
+
+.smallbtn:hover {
+	color:#080707;
+	cursor:pointer;
+}
+
+.red {
+  color: red
+}
+
+.fonttwo {
+  font-family: Nunito Sans, sans-serif, Daniel;
+  font-size: 20px;
+}
+
+.font {
+  font-family: Nunito Sans, sans-serif, Daniel;
+}
+
+.smallbtn {
+  font-size: 13px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: rgb(150, 141, 141);
+  font-family: Nunito Sans, sans-serif, Daniel;
+}
+
+.topnav input{
+	font-family: Nunito Sans, sans-serif, Daniel;
+	background: transparent;
+	outline: none;
+	width: 80%;
+	height: 40px;
+	border-radius: 3px;
+	border: 1px solid black;
+	margin: auto;
+	background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/55/Magnifying_glass_icon.svg");
+	background-size: 13px;
+	padding: 0.25em 1em;
+	background-repeat: no-repeat;
+	background-position: 95% center;
+	}
+
+	.container {
+	width: 80%;
+	padding: 10px;
+	position: relative;
+	/* border: 3px solid black; */
+	margin: 0;
+	}
+
+	.divider {
+	width:5px;
+	height:auto;
+	display:inline-block;
+	}
+
+	.text-input-nik {
+		padding: 10px;
+		margin: 10px 0 0 0;
+		box-shadow:0 0 15px 4px rgba(0,0,0,0.1);
+		border-radius:10px;
+		border: 0;
+		width: 80%;
+		font-family:inherit;
+		font-size: inherit;
+	}
+
+	.text-input-nik:focus {
+		outline: none;
+		border: 2px solid #800F67;
+	}
+
+	.text-input-nik:invalid:focus {
+		outline: none;
+		border: 2px solid red;
+	}
+>>>>>>> feature-q-a
