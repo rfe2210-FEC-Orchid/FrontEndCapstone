@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 const OverviewContainer = styled.div`
   position: relative;
-  top: 80px;
+  top: 130px;
   display: flex;
   flex-direction: column;
 `;

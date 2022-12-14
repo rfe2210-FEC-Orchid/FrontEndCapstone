@@ -25,7 +25,7 @@ const OutfitCards = ({product, setproductId, deleteOutfit}) => {
           <h4>{product.category}</h4>
           <h4>{product.name}</h4>
           {product.saleprice ? <h5><s style={{color: '#9c0303'}}>${product.price}</s>  ${product.saleprice}</h5> : <h5>${product.price}</h5>}
-          <Rating productID={product.productid} />
+          <Rating productID={product.id} />
         </div>
       </div>
     </div>

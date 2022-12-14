@@ -32,7 +32,7 @@ const ProductRating = (props) => {
         RnRdata.avg = (Math.round((RnRdata.avg / RnRdata.n) * 10) / 10);
         setRNRData(RnRdata);
       })
-  }, []);
+  }, [props.productID]);
 
   return (
     <ProductRatingsContainer>

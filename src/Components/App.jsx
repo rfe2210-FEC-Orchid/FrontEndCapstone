@@ -37,6 +37,26 @@ const Header = styled.div`
   }
 `;
 
+const Footer = styled.div`
+  position: absolute;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #F2F2F2;
+`;
+
+const Banner = styled.div`
+  position: absolute;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  width: 100%;
+  margin-top: 80px;
+  background-color: #F2F2F2;
+`;
+
 const App = () => {
   const [productId, setProductId] = useState(37319);
   const [productInfo, setProductInfo] = useState({});
@@ -84,10 +104,16 @@ const App = () => {
       <Header>
         <h1>Orchid</h1>
       </Header>
+      <Banner>
+      Last Day: The Winter Faves Event: 30% Off Select Styles | GET IT BY DECEMBER 25th: Order with standard shipping, for a limited time only!
+      </Banner>
       <Overview allStyles={allStyles} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} productInfo={productInfo} product_id={productId}/>
       <RelatedItems productId={productId} setproductId={setProductId} productInfo={productInfo} selectedStyle={selectedStyle} />
       <QA productId={productId} productName={productInfo.name} />
       <RnR productID={productId} productName={productInfo.name} handleTrack={handleTrack}/>
+      <Footer>
+        Copyright © Orchidcrombie & Fetch, Ltd. All rights reserved.
+      </Footer>
     </UserContext.Provider>
   );
 };

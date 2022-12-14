@@ -165,7 +165,6 @@ const ImageGallery = (props) => {
   };
 
   useEffect(() => {
-    console.log('toggling hover enabled:', hoverEnabled);
   }, [hoverEnabled]);
 
   return (

@@ -14,11 +14,9 @@ const Rating = ({productID}) => {
         console.log('error retieving RNR metadata:', err);
       })
       .then((response) => {
-        console.log('got RNR data:', response.data);
 
         let ratings = response.data.ratings;
 
-        console.log(ratings);
         let RnRdata = {n: 0, avg: 0};
 
         for (let rating in ratings) {
@@ -34,7 +32,7 @@ const Rating = ({productID}) => {
 
   return (
     <div>
-      <Link activeClass="active" to="RnR" smooth={true}>{RNRData && <Stars number={RNRData.avg}/>} {RNRData.avg}</Link>
+      <Link activeClass="active" to="RnR" smooth={true}>{RNRData.avg && <Stars number={RNRData.avg}/>} {RNRData.avg}</Link>
     </div>
   );
 };
