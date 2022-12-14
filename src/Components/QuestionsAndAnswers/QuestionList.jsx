@@ -4,7 +4,58 @@ import styled from 'styled-components';
 import Answers from './Answers.jsx';
 import AnswerModal from './AnswerModal.jsx';
 
+const Question = styled.div`
+display: inline-block;
+vertical-align: middle;
+width: 70%;
+font-size: 20px;
+`
+
+const QuestionButton = styled.div`
+ display: flex;  flex-wrap: wrap;  align-content: stretch;
+`
+
+const Container = styled.div`
+width: 100%;
+display: flex;  flex-wrap: wrap;  align-content: stretch;
+`
+const Helpful = styled.div`
+font-size: 13px;
+color:rgb(150, 141, 141);
+`
+const Button = styled.div`
+font-size: 13px;
+padding: 0;
+border: none;
+background: none;
+color: rgb(150, 141, 141);
+&:hover {
+  color:#080707;
+  cursor:pointer;
+}
+`
+
+const Divider = styled.div`
+width:5px;
+height:auto;
+display:inline-block;
+`
+
+const AButton = styled.div`
+font-family: Nunito Sans, sans-serif, Daniel;
+background-color:#fefef;
+border: none;
+outline: none;
+color:#800F67;
+font-size: 18px;
+&:hover {
+  color:#070101;
+  cursor:pointer;
+}
+`
+
 const QuestionList = ({name, question}) => {
+  const [qA, setQA] = useState(Object.values(question.answers));
   const [ url, setUrl ] = useState([]);
   const [moreAnswers, setMoreAnswers] = useState(true);
   const [helpful, setHelpful] = useState(question.question_helpfulness);
@@ -12,13 +63,16 @@ const QuestionList = ({name, question}) => {
   const [modalFormA, setModalFormA] = useState({});
   const [formErrorA, setFormErrorA] = useState(false);
   const [numberOfA, setNumberOfA] = useState(2)
-  const [questionList, setQuestionList] = useState(Object.values(question.answers).slice(0,numberOfA))
+  const [questionList, setQuestionList] = useState([])
 
+  useEffect(()=> {
+    setQuestionList(qA.slice(0,numberOfA))
+    },[question])
 
 
   const handleMoreAnswers = () => {
-    setQuestionList(Object.values(question.answers).slice(0,numberOfA+2))
-    if (numberOfA+2 >= Object.values(question.answers).length) {
+    setQuestionList(qA.slice(0,numberOfA+2))
+    if (numberOfA+2 >= qA.length) {
       setMoreAnswers(false);
     }
 
@@ -34,8 +88,8 @@ const QuestionList = ({name, question}) => {
   const handleAddAnswer = () => {
     setModalA(!modalA)  }
 
-  const handleAFormSubmit = () => {
-    event.preventDefault();
+  const handleAFormSubmit = (e) => {
+    e.preventDefault()
     if (Object.values(modalFormA).length >= 3) {
       axios.post(`http://localhost:3001/qa/questions/${question.question_id}/answers`,
         {
@@ -45,66 +99,22 @@ const QuestionList = ({name, question}) => {
           photos: url
         }
       )
-      .then(res =>console.log(res))
+      .then(res => console.log(res))
+      setQA([...qA, {
+        body: modalFormA.answer,
+        answerer_name: modalFormA.nickname,
+        answers:{},
+        helpfulness: 0,
+        date: new Date(),
+        photos: []
+      }] )
+
       setModalA(false)
     }
     else {
       setFormErrorA(true)
    }
   }
-
-  const Question = styled.div`
-    display: inline-block;
-    //border: 1px solid red;
-    //padding: 1rem 1rem;
-    vertical-align: middle;
-    width: 70%;
-    font-size: 20px;
- `
- const QuestionButton = styled.div`
-     display: flex;  flex-wrap: wrap;  align-content: stretch;
-  `
-
-
-  const Container = styled.div`
-    width: 100%;
-    display: flex;  flex-wrap: wrap;  align-content: stretch;
-   `
-   const Helpful = styled.div`
-    font-size: 13px;
-    color:rgb(150, 141, 141);
-  `
-  const Button = styled.div`
-    font-size: 13px;
-    padding: 0;
-    border: none;
-    background: none;
-    color: rgb(150, 141, 141);
-    cursor:pointer;
-    &:hover {
-      color:#080707;
-      transition: 0.7s;
-  }
-  `
-  const Divider = styled.div`
-    width:5px;
-    height:auto;
-    display:inline-block;
-`
-const AButton = styled.div`
-font-family: Nunito Sans, sans-serif, Daniel;
-background-color:#fefef;
-border: none;
-outline: none;
-color:#800F67;
-font-size: 18px;
-cursor:pointer;
-&:hover {
-      color:#070101;
-      transition: 0.7s;
-  }
-`
-
 
 return(
   <div>
@@ -141,7 +151,7 @@ return(
 
   })}
     <p>
-  {(Object.values(question.answers).length>2 && moreAnswers)  && <AButton onClick={handleMoreAnswers}><b>LOAD MORE ANSWERS</b></AButton>}
+  {(qA.length>2 && moreAnswers)  && <AButton onClick={handleMoreAnswers}><b>LOAD MORE ANSWERS</b></AButton>}
   </p>
   </div>
 )
