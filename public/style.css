@@ -1,3 +1,7 @@
+body {
+	margin: 0;
+}
+
 .number {
   background: #800F67;
 	color: #fff;
@@ -163,11 +167,6 @@ input[type=text], input[type=email] {
 	height: 80px;
 }
 
-<<<<<<< HEAD
-
-=======
-/* Nika's Styles */
-
 .smallGrey {
   color:rgb(150, 141, 141);
   font-size: 13px
@@ -250,4 +249,3 @@ input[type=text], input[type=email] {
 		outline: none;
 		border: 2px solid red;
 	}
->>>>>>> feature-q-a
