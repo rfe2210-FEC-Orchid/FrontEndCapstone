@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Column = styled.div`
   float: left;
-  width: 25%;
+  width: 19%;
   padding: 2px;
 `
 const Photo = ({photo}) => {

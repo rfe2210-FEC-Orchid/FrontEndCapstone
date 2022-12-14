@@ -47,7 +47,7 @@ const Answers = ({answer}) => {
           )})
         }
       <Container>
-      <p className ='smallGrey'>by {answer.answerer_name},
+      <p className ='smallGrey'>by {answer.answerer_name === "Seller" ? <b>{answer.answerer_name}</b> : answer.answerer_name},
       <span className='divider'></span>
       {new Date(answer.date).toLocaleString('en-US',{
         //january 1, 2019
