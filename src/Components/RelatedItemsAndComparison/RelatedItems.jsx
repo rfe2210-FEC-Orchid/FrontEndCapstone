@@ -8,7 +8,6 @@ const RelatedItems = ({productId, setproductId, productInfo, selectedStyle}) => 
 
   useEffect(() => {
     GetRelatedProductsList();
-    GetCart();
   }, [productId])
 
   let GetRelatedProductsList = () => {
@@ -50,19 +49,8 @@ const RelatedItems = ({productId, setproductId, productInfo, selectedStyle}) => 
       })
     }
 
-  let GetCart = () => {
-    axios.get('http://localhost:3001/cart')
-    .then((res) => {
-      console.log('cart: ', res.data); // res.data = [{sku_id, count}]
-      // GetCartInfo(res.data);
-    })
-    .catch((err) => {
-      console.log('failed to retrieve cart: ', err);
-    })
-  }
-
   return (
-    <div>
+    <div id='related-items'>
       <RelatedProductsList relatedProducts={relatedProducts} setproductId={setproductId} currentProductInfo={productInfo} />
       <OutfitList setproductId={setproductId} currentProductInfo={productInfo} selectedStyle={selectedStyle}/>
     </div>

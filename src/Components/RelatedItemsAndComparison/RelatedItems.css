@@ -1,7 +1,10 @@
 /* LIST CONTAINERS */
+/* #related-items {
+  margin: 10px;
+} */
+
 .related-product-list, .outfit-list {
   background-color: #F2F2F2;
-  margin: 75px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,6 +12,7 @@
 }
 
 h2 {
+  padding: 10px;
   text-align: left;
   font-weight: bolder;
 }
@@ -125,7 +129,7 @@ tr:nth-child(even) {
 
 /* CAROUSEL SLIDER */
 .carousel-container {
-  width: 90%;
+  width: 80%;
   /* height: 440px; */
   position: relative;
   display: flex;
@@ -223,7 +227,7 @@ tr:nth-child(even) {
   cursor: pointer;
   align-items: stretch;
   padding: 10px;
-  width: 180px;
+  min-width: 180px;
   height: 325px;
   text-align: center;
   display: flex;

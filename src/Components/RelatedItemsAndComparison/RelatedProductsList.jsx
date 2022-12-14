@@ -6,9 +6,10 @@ import OutfitList from './OutfitList.jsx';
 import RelatedProductCards from './RelatedProductCards.jsx';
 
 const RelatedProductsList = ({relatedProducts,  setproductId, currentProductInfo}) => {
-  const slideLeft = () => {
+  const [checkScroll, setcheckScroll] = useState(false);
+
+  useEffect(() => {
     const slider = document.getElementById('related-products-slider');
-    slider.scrollLeft = slider.scrollLeft - 500;
     let rightScrollMax = slider.scrollWidth - slider.clientWidth;
     const leftArrow = document.getElementById('left-related');
     const rightArrow = document.getElementById('right-related');
@@ -24,26 +25,22 @@ const RelatedProductsList = ({relatedProducts,  setproductId, currentProductInfo
     } else if (slider.scrollLeft > 0) {
       leftArrow.style.visibility = "visible";
     }
+  }, [checkScroll, relatedProducts])
+
+  const slideLeft = () => {
+    const slider = document.getElementById('related-products-slider');
+    slider.scrollLeft = slider.scrollLeft - 500;
+    setTimeout(() => {
+      setcheckScroll(!checkScroll);
+    }, 350)
   }
 
   const slideRight = () => {
     const slider = document.getElementById('related-products-slider');
     slider.scrollLeft = slider.scrollLeft + 500;
-    let leftScrollMax = slider.scrollWidth - slider.clientWidth;
-    let rightScrollMax = slider.scrollWidth - slider.clientWidth;
-    const leftArrow = document.getElementById('left-related');
-    const rightArrow = document.getElementById('right-related');
-
-    if (slider.scrollLeft === rightScrollMax) {
-      rightArrow.style.visibility = "hidden";
-    } else if (slider.scrollLeft < rightScrollMax) {
-      rightArrow.style.visibility = "visible";
-    }
-    if (slider.scrollLeft === 0) {
-      leftArrow.style.visibility = "hidden";
-    } else if (slider.scrollLeft > 0) {
-      leftArrow.style.visibility = "visible";
-    }
+    setTimeout(() => {
+      setcheckScroll(!checkScroll);
+    }, 350)
   }
 
   return(
