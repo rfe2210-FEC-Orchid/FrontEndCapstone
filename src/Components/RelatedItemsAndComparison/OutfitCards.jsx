@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import {FaRegTrashAlt} from 'react-icons/fa';
 import Rating from './Rating.jsx';
 import {Link} from 'react-scroll';

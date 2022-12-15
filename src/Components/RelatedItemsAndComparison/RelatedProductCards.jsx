@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import {FaStar} from 'react-icons/fa';
 import Modal from './Modal.jsx';
 import Rating from './Rating.jsx';
