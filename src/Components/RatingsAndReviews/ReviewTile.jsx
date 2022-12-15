@@ -67,6 +67,8 @@ const ReportBtn = styled.button`
 const ReviewTile = ({review, searchInput}) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [isHelpful, setIsHelpful] = useState(false);
+  const [report, setReport] = useState("Report");
+
 
   //for date
   let revDate = review.date.split("T")[0].split("-")
@@ -126,7 +128,8 @@ const ReviewTile = ({review, searchInput}) => {
   const handleReportClick = () => {
     axios.put(`http://localhost:3001/reviews/${review.review_id}/report`, {header: {'Access-Control-Allow-Origin': '*'}})
         .then(() => {
-          console.log("reported")
+          console.log("reported");
+          setReport("Reported");
         })
         .catch((err) => {
           console.error(err);
@@ -155,7 +158,7 @@ const ReviewTile = ({review, searchInput}) => {
       <div>{"Helpful? "}
       <HelpfulBtn isHelpful={isHelpful} onClick={handleHelpfulClick}>Yes ({isHelpful ? review.helpfulness + 1 : review.helpfulness}) </HelpfulBtn>
       <span>  |  </span>
-      <ReportBtn onClick={handleReportClick}>Report</ReportBtn>
+      <ReportBtn onClick={handleReportClick}>{report}</ReportBtn>
       </div>
     </Container>
   )
