@@ -251,3 +251,8 @@ tr:nth-child(even) {
   border-color: rgb(98, 97, 97);
   cursor: pointer;
 }
+
+#related-items {
+  position: relative;
+  margin-top: 50px;
+}
