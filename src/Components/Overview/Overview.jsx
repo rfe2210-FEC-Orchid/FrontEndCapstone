@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 const OverviewContainer = styled.div`
   position: relative;
-  top: 130px;
+  // margin-bottom: 50px;
   display: flex;
   flex-direction: column;
 `;
@@ -32,6 +32,7 @@ const UpperColumnContainerRight = styled.div`
 `;
 
 const LowerContentContainer = styled.div`
+  display: inline-block;
   position: relative;
   width:100%;
 `;

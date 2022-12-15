@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const DescriptionContainer = styled.div`
   position: relative;
-  margin: 50px 10% 10% 100px;
+  margin: 20px 8%;
   background-color: #f2f2f2;
   padding: 20px;
   display: flex;
