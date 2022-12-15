@@ -62,6 +62,7 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
         <label>
           <span>{reviewCount + " reviews, sorted by "}</span>
           <SortByButton data-testid="sort-option" name="sortBy" value={sortBy} onChange={(evt) =>{
+            handleTrack(evt, "reviewNratings");
             handleSortBy(evt.target.value);
           }}>
             <option data-testid="sort-relevance" value="relevance">relevance</option>
@@ -83,7 +84,7 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
           <span>✖</span>
         </FilterButton>}
       <ReviewListContainer >
-        {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review} searchInput={searchInput}/>)}
+        {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review} searchInput={searchInput} handleTrack={handleTrack}/>)}
         {/* <div ref={bottomRef}></div> */}
       </ReviewListContainer >
       {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons data-testid="more-reviews" onClick={handleMoreReviews}>MORE REVIEWS</DesignButtons> : null}
