@@ -58,7 +58,7 @@ const Banner = styled.div`
 `;
 
 const App = () => {
-  const [productId, setProductId] = useState(37311);
+  const [productId, setProductId] = useState(37319);
   const [productInfo, setProductInfo] = useState({});
   const [selectedStyle, setSelectedStyle] = useState({});
   const [allStyles, setAllStyles] = useState([]);
