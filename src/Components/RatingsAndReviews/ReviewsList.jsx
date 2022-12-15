@@ -45,12 +45,6 @@ import styled from 'styled-components';
   `;
 
 const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, renderList, handleBarFilter, handleSortBy, sortBy, setIsWritingReview, searchInput, handleSearch, handleTrack}) => {
-  // const bottomRef = useRef(null);
-
-  // useEffect(() => {
-  //   // 👇️ scroll to bottom every time messages change
-  //   bottomRef.current?.scrollIntoView({behavior: "smooth", block: "start"});
-  // }, [renderCount]);
 
   return (
     <div>
