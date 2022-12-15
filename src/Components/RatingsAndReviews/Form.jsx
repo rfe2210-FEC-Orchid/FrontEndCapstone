@@ -4,7 +4,7 @@ import MultiFileUpload from './MultiFileUpload.jsx';
 import ClickableStars from './ClickableStars.jsx';
 import axios from 'axios';
 
-const Form = ({characteristics, productID, onClose, productName}) => {
+const Form = ({characteristics, productID, onClose, productName, obtainReviews}) => {
   const [overallRating, setOverallRating] = useState(0);
   const [summary, setSummary] = useState("");
   const [ifRecommend, setIfRecommend] = useState(true);
@@ -57,6 +57,7 @@ const Form = ({characteristics, productID, onClose, productName}) => {
       setEmail("");
       setCharacteristicsChosen({});
       setImageURLS([]);
+      obtainReviews();
     })
     .catch((err) =>  {
       console.error(err.response.data);
