@@ -24,10 +24,14 @@ const StyleSelector = (props) => {
     <div>
       {props.styles && props.styles.map((style) =>
       <StyleImage
+        data-testid='style-option'
         key={style.style_id}
         selected={props.selectedStyleID === style.style_id}
         src={style.photos[0].thumbnail_url || defualt_url}
-        onClick={() => props.handleChangeStyle(style)}
+        onClick={(e) => {
+          props.handleChangeStyle(style);
+          props.handleTrack(e, 'StyleSelector');
+        }}
       />
       )}
     </div>

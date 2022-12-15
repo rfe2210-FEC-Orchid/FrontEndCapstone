@@ -172,7 +172,10 @@ const ImageGallery = (props) => {
       {!props.showExpandedImage
       ? (<><SliderContainer>
           {(props.photos.length > 7) && (sliderLimits.min > 0)
-            ? <Arrow><AiOutlineArrowUp onClick={sliderUp} size={25}/></Arrow>
+            ? <Arrow><AiOutlineArrowUp data-testid='slider-up' onClick={(e) => {
+                sliderUp();
+                props.handleTrack(e, 'ImageGallery');
+              }} size={25}/></Arrow>
             : <Placeholder size={30}></Placeholder>}
 
               {photos.map((photo, index) =>
@@ -180,27 +183,41 @@ const ImageGallery = (props) => {
                   src={photo.thumbnail_url}
                   selected={index === photoIndex}
                   key={index}
-                  onClick={() => setPhotoIndex(index)}
+                  data-testid='slider-image'
+                  onClick={(e) => {
+                    setPhotoIndex(index);
+                    props.handleTrack(e, 'ImageGallery');
+                  }}
                 />
               )}
 
           {(props.photos.length > 7) && (sliderLimits.max < props.photos.length - 1)
-            ? <Arrow><AiOutlineArrowDown onClick={sliderDown} size={25}/></Arrow>
+            ? <Arrow><AiOutlineArrowDown data-testid='slider-down' onClick={(e) => {
+              sliderDown();
+              props.handleTrack(e, 'ImageGallery');
+            }} size={25}/></Arrow>
             : <Placeholder size={30}></Placeholder>}
         </SliderContainer>
 
         <SelectedImageContainer>
           <SelectedImage
+            handleTrack={props.handleTrack}
             photo={photos[photoIndex]}
             setShowExpandedImage={props.setShowExpandedImage}
           />
 
           <ButtonContainer>
             {(sliderLimits.min > 0 || photoIndex > 0)
-              ? <Arrow><AiOutlineArrowLeft onClick={decrementPhotoIndex} size={40}/></Arrow>
+              ? <Arrow><AiOutlineArrowLeft data-testid='previous-arrow' onClick={(e) => {
+                  decrementPhotoIndex();
+                  props.handleTrack(e, 'ImageGallery');
+                }} size={40}/></Arrow>
               : <Placeholder size={40}></Placeholder>}
             {(sliderLimits.max < props.photos.length - 1 || photoIndex < photos.length - 1)
-              ? <Arrow><AiOutlineArrowRight onClick={incrementPhotoIndex} size={40}/></Arrow>
+              ? <Arrow><AiOutlineArrowRight data-testid='next-arrow' onClick={(e) => {
+                incrementPhotoIndex();
+                props.handleTrack(e, 'ImageGallery');
+              }} size={40}/></Arrow>
               : <Placeholder size={40}></Placeholder>}
           </ButtonContainer>
         </SelectedImageContainer></>)
@@ -217,6 +234,7 @@ const ImageGallery = (props) => {
             incrementPhotoIndex={incrementPhotoIndex}
             photoIndex={photoIndex}
             setPhotoIndex={setPhotoIndex}
+            handleTrack={props.handleTrack}
           />
         </ExpandedImageContainer>)}
 

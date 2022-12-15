@@ -94,6 +94,7 @@ const App = () => {
   }, [productId]);
 
   const handleTrack = (evt, moduleName) => { // for user tracking
+    if (evt.target.dataset.testid) {
       const timeNow = Date().toString();
       const newData = {
         element: evt.target.dataset.testid,
@@ -109,6 +110,7 @@ const App = () => {
         .catch((err) => {
           console.log(err);
         })
+    }
   }
 
   return (
@@ -121,7 +123,7 @@ const App = () => {
       Last Day: The Winter Faves Event: 30% Off Select Styles | GET IT BY DECEMBER 25th: Order with standard shipping, for a limited time only!
       </Banner>
       <Body>
-        <Overview allStyles={allStyles} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} productInfo={productInfo} product_id={productId}/>
+        <Overview allStyles={allStyles} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} productInfo={productInfo} product_id={productId} handleTrack={handleTrack}/>
         <RelatedItems productId={productId} setproductId={setProductId} productInfo={productInfo} selectedStyle={selectedStyle} />
         <QA productId={productId} productName={productInfo.name} />
         <RnR productID={productId} productName={productInfo.name} handleTrack={handleTrack}/>

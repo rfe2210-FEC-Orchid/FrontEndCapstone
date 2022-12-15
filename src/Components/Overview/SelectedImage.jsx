@@ -17,8 +17,12 @@ const SelectedImage = (props) => {
     <>
       {props.photo &&
       <MainImage
+        data-testid='main-image'
         src={props.photo.url}
-        onClick={() => props.setShowExpandedImage(true)}
+        onClick={(e) => {
+          props.setShowExpandedImage(true);
+          props.handleTrack(e, 'SelectedImage');
+        }}
       />
       }
     </>

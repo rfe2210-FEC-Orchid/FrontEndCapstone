@@ -77,10 +77,8 @@ const AddToCart = (props) => {
 
   // functions
   const handleAddToCart = (e) => {
-    e.preventDefault();
     if (!props.options.sku_id) {
       props.setDisplayError(true);
-      console.log('displayError', props.displayError)
     } else {
       setConfirmation(true);
       setTimeout(() => {setConfirmation(false)}, 2500);
@@ -88,7 +86,6 @@ const AddToCart = (props) => {
       let sku_id = props.options.sku_id;
 
       for (let i = 0; i < quantity; i++) {
-        console.log('sending post to cart:', i);
         axios.post(`http://localhost:3001/cart`, { sku_id });
     }
     }
@@ -111,7 +108,10 @@ const AddToCart = (props) => {
         {props.displayError && <ErrorContainer active={props.displayError}>please select a size</ErrorContainer>}
         {confirmation && <ConfirmationContainer active={confirmation}>Item added to cart!</ConfirmationContainer>}
       </MessageContainer>
-      <QuantityDropdown onChange={(e) => props.handleChangeQuantity(e.target.value)}>
+      <QuantityDropdown data-testid='quantity-dropdown' onChange={(e) => {
+        props.handleChangeQuantity(e.target.value);
+        props.handleTrack(e, 'AddToCart')
+      }}>
         {props.options.selectedSize
         ? quantityArray(props.options.availableQuantity).map((num) =>
             <QuantityOption key={num} value={num}>{num}</QuantityOption>
@@ -119,7 +119,10 @@ const AddToCart = (props) => {
         : <option> -- </option>
         }
       </QuantityDropdown>
-      <CartButton onClick={handleAddToCart}>Add To Cart</CartButton>
+      <CartButton data-testid='cart-button' onClick={(e) => {
+        handleAddToCart();
+        props.handleTrack(e, 'AddToCart');
+      }}>Add To Cart</CartButton>
     </CartContainer>
   );
 };

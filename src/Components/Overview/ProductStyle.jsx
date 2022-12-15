@@ -65,9 +65,9 @@ const ProductStyle = (props) => {
         }
       </PriceContainer>
       <p><b>Style > </b>{props.selectedStyle.name}</p>
-      <StyleSelector styles={props.allStyles} selectedStyleID={props.selectedStyle.style_id} handleChangeStyle={handleChangeStyle}/>
-      <SizeSelector skus={props.selectedStyle.skus} options={options} handleSelectSize={handleSelectSize}/>
-      <AddToCart options={options} handleChangeQuantity={handleChangeQuantity} displayError={displayError} setDisplayError={setDisplayError}/>
+      <StyleSelector styles={props.allStyles} selectedStyleID={props.selectedStyle.style_id} handleChangeStyle={handleChangeStyle} handleTrack={props.handleTrack}/>
+      <SizeSelector skus={props.selectedStyle.skus} options={options} handleSelectSize={handleSelectSize} handleTrack={props.handleTrack}/>
+      <AddToCart options={options} handleChangeQuantity={handleChangeQuantity} displayError={displayError} setDisplayError={setDisplayError} handleTrack={props.handleTrack}/>
     </div>
   );
 };

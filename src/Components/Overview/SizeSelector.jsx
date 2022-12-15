@@ -28,7 +28,11 @@ const SizeSelector = (props) => {
       {props.skus
       ? Object.keys(props.skus).filter((sku) => props.skus[sku].quantity > 0).map((sku) =>
         <SizeOption
-          onClick={() => props.handleSelectSize(sku, props.skus[sku].size, props.skus[sku].quantity)}
+          data-testid='size-option'
+          onClick={(e) => {
+            props.handleSelectSize(sku, props.skus[sku].size, props.skus[sku].quantity);
+            props.handleTrack(e, 'SizeSelector');
+          }}
           selected={props.options.sku_id === sku}
           key={sku}
         >

@@ -9,7 +9,6 @@ import styled from 'styled-components';
 
 const OverviewContainer = styled.div`
   position: relative;
-  // margin-bottom: 50px;
   display: flex;
   flex-direction: column;
 `;
@@ -46,6 +45,7 @@ const Overview = (props) => {
       <UpperContentContainer>
         <UpperColumnContainerLeft showExpandedImage={showExpandedImage}>
           {props.selectedStyle.photos && <ImageGallery
+            handleTrack={props.handleTrack}
             photos={props.selectedStyle.photos}
             showExpandedImage={showExpandedImage}
             setShowExpandedImage={setShowExpandedImage}/>}
@@ -53,7 +53,7 @@ const Overview = (props) => {
         {!showExpandedImage && <UpperColumnContainerRight>
           <ProductRating productID={props.product_id}/>
           <ProductInfo name={props.productInfo.name} category={props.productInfo.category}/>
-          <ProductStyle selectedStyle={props.selectedStyle} allStyles={props.allStyles} handleSelectStyle={props.setSelectedStyle}/>
+          <ProductStyle selectedStyle={props.selectedStyle} allStyles={props.allStyles} handleSelectStyle={props.setSelectedStyle} handleTrack={props.handleTrack}/>
           <ProductShare />
         </UpperColumnContainerRight>}
       </UpperContentContainer>

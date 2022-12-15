@@ -14,11 +14,11 @@ const ProductShare = (props) => {
 
       <a href="https://www.instagram.com/" style={{color: 'black'}}><AiFillInstagram id="instagram" size={30}/></a>
 
-      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" className="twitter-share-button" data-show-count="false">
         <AiFillTwitterCircle id="twitter" style={{color: 'black'}} size={30}/>
       </a>
 
-      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
   </ShareContainer>
   );
 };

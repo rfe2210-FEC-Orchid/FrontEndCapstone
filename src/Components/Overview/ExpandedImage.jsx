@@ -73,7 +73,11 @@ const ExpandedImage = (props) => {
 
       <ExpandedViewImage
         src={props.photo.url}
-        onClick={() => props.setHoverEnabled(!props.hoverEnabled)}
+        data-testid='expanded-image-view'
+        onClick={(e) => {
+          props.setHoverEnabled(!props.hoverEnabled);
+          props.handleTrack(e, 'ExpandedImageView')
+        }}
         hoverEnabled={props.hoverEnabled}
         onMouseMove={props.hoverEnabled ? handleMouseMove : undefined}
       />

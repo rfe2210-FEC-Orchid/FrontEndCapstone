@@ -32,7 +32,7 @@ const Rating = ({productID}) => {
 
   return (
     <div>
-      <Link activeClass="active" to="RnR" smooth={true}>{RNRData.avg && <Stars number={RNRData.avg}/>} {RNRData.avg}</Link>
+      <Link to="RnR" smooth={true}>{RNRData.avg && <Stars number={RNRData.avg}/>} {RNRData.avg}</Link>
     </div>
   );
 };
