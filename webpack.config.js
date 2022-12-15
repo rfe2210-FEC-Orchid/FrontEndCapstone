@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 const path = require("path");
 
 module.exports = {
-=======
-// const BundleAnalyzerPlugin =
-//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin
-const path = require("path");
-
-module.exports = {
-  // plugins: [new BundleAnalyzerPlugin()],
->>>>>>> cebf794c65a8d2ac22e62b1273bbbdb8909e1b74
   mode: "production",
   entry: "./src/index.jsx",
   output: {
