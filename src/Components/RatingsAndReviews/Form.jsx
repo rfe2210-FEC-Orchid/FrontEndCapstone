@@ -35,7 +35,7 @@ const Form = ({characteristics, productID, onClose, productName, obtainReviews})
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    axios.post(`http://localhost:3001/reviews`, {
+    axios.post(`/reviews`, {
       product_id : productID,
       rating : overallRating,
       summary: summary,
