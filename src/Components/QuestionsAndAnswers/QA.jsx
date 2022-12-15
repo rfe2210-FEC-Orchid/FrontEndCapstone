@@ -34,7 +34,7 @@ width: 100%;
 `;
 
 
-const QA = ({productId,productName}) => {
+const QA = ({productId,productName,handleTrack}) => {
 
   const [questionSearch, setQuestionSearch] = useState('');
   const [questionData, setQuestionData] = useState([]);
@@ -59,11 +59,13 @@ const QA = ({productId,productName}) => {
     )
     .catch((err) => console.log(err))},[productId])
 
-  const handleAddQ = () => {
+  const handleAddQ = (evt) => {
+    handleTrack(evt, "QA");
     setOpenQModal(!openQModal )
   }
 
-  const handleMoreQ = () => {
+  const handleMoreQ = (evt) => {
+    handleTrack(evt, "QA");
     setQuestionData(originalData.slice(0,questionNumber+2))
     if (questionNumber+2 >= originalData.length) {
       setMoreQs(false);
@@ -122,16 +124,17 @@ const QA = ({productId,productName}) => {
       {questionData.map((question, index) => {
         return (
         <div key={index}>
-        <QuestionList name = {productName} question={question}/>
+        <QuestionList name = {productName} question={question} handleTrack={handleTrack}/>
         </div>
       )
     }
   )}
   </QAListContainer>
   <p></p>
-    {(originalData.length >4 && moreQs)  && <Button onClick={handleMoreQ}>MORE QUESTIONS</Button>}
+    {(originalData.length >4 && moreQs)  && <Button data-testid="add-more-questions" onClick={handleMoreQ}>MORE QUESTIONS</Button>}
     <Divider></Divider>
-    <Button onClick ={handleAddQ}>ADD A QUESTION +</Button>
+    <Button data-testid="add-question-button" onClick ={handleAddQ}>
+      ADD A QUESTION +</Button>
     {openQModal &&
     <div>
       <QuestionModal handleAddQ={handleAddQ} formError={formError} name={productName}handleQFormSubmit={handleQFormSubmit} modalFormQ={modalFormQ} setModalFormQ={setModalFormQ}/>

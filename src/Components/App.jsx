@@ -120,16 +120,13 @@ const App = () => {
       <Banner>
       Last Day: The Winter Faves Event: 30% Off Select Styles | GET IT BY DECEMBER 25th: Order with standard shipping, for a limited time only!
       </Banner>
-      <Body>
-        <Overview allStyles={allStyles} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} productInfo={productInfo} product_id={productId}/>
-        <RelatedItems productId={productId} setproductId={setProductId} productInfo={productInfo} selectedStyle={selectedStyle} />
-        <QA productId={productId} productName={productInfo.name} />
-        <RnR productID={productId} productName={productInfo.name} handleTrack={handleTrack}/>
-        <Footer>
-          Copyright © Orchidcrombie & Fetch, Ltd. All rights reserved.
-        </Footer>
-      </Body>
-
+      <Overview allStyles={allStyles} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} productInfo={productInfo} product_id={productId}/>
+      <RelatedItems productId={productId} setproductId={setProductId} productInfo={productInfo} selectedStyle={selectedStyle} />
+      <QA handleTrack={handleTrack} productId={productId} productName={productInfo.name} />
+      <RnR productID={productId} productName={productInfo.name} handleTrack={handleTrack}/>
+      <Footer>
+        Copyright © Orchidcrombie & Fetch, Ltd. All rights reserved.
+      </Footer>
     </UserContext.Provider>
   );
 };
