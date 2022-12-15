@@ -185,7 +185,7 @@ const RnR = ({productID, productName, handleTrack}) => {
           <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} searchInput={searchInput} handleSearch={handleSearch} handleTrack={handleTrack}/>
         </ReviewsContainer>
         <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName} obtainReviews={obtainReviews}/>
-        {trackData.map((data) => <div>{data}</div>)}
+        {/* {trackData.map((data) => <div>{data}</div>)} */}
       </RnRContainer>
     </div>
 
