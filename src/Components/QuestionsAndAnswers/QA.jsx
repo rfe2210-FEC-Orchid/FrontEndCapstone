@@ -5,8 +5,8 @@ import QuestionList from './QuestionList.jsx';
 import QuestionModal from './QuestionModal.jsx';
 
 const Button = styled.button`
-height: 50px ;
-width: 30%;
+height: 45px ;
+width: 25%;
 color: #FFFFFF;
 font-size: 1em;
 //margin: 1em;
@@ -108,7 +108,7 @@ const QA = ({productId,productName}) => {
 
   return (
     <div className = "container">
-      <h2>QUESTIONS & ANSWERS</h2>
+      <h2 style={{width: "100%", textAlign: "center"}}>QUESTIONS & ANSWERS</h2>
       <form className = "topnav" onChange={handleChange}>
       <input
       // value= {questionSearch}

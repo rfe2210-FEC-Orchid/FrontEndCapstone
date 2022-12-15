@@ -109,7 +109,7 @@ const QuestionList = ({name, question}) => {
           body:modalFormA.answer,
           name:modalFormA.nickname,
           email:modalFormA.email,
-          photos: url
+          photos: []
         }
       )
       .then(res => console.log(res))
