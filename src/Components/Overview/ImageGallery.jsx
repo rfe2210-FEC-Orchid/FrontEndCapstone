@@ -29,11 +29,11 @@ const SliderImage = styled.img`
   object-fit: cover;
   padding: 2.5px;
   margin: 2.5px;
-  border-bottom: ${props => props.selected ? "2px solid #4F0B40" : "2px solid white"};
+  border: ${props => props.selected ? "2px solid #4F0B40" : "2px solid white"};
 
   &:hover {
     cursor: pointer;
-    border-bottom: 2px solid #4F0B40;
+    border: 2px solid #4F0B40;
   }
 `;
 
