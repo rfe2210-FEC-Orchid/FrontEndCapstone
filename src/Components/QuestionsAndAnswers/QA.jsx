@@ -110,9 +110,7 @@ const QA = ({productId,productName,handleTrack}) => {
 
   return (
     <div className = "container">
-      <h2
-      // style={{width: "100%", textAlign: "center"}}
-      >
+      <h2 style={{width: "100%", textAlign: "center"}}>
         QUESTIONS & ANSWERS</h2>
       <form className = "topnav" onChange={handleChange}>
       <input
