@@ -10,9 +10,16 @@ import Stars from './Stars.jsx';
  border-bottom: 1px solid black;
 `;
 
-const NameBlock = styled.span`
- position: absolute;
- right: 0px;
+ const TopRowContainer = styled.div`
+ position: relative;
+ display: flex;
+`;
+
+const NameBlock = styled.div`
+ position: relative;
+ margin-left: auto;
+ margin-right: 0;
+ /* right: 0px; */
 `;
 
 const ReviewSummaryBlock = styled.div`
@@ -138,11 +145,13 @@ const ReviewTile = ({review, searchInput, handleTrack}) => {
   }
   return (
     <Container data-name="review-tile">
-      <Stars number={review.rating}/>
-      <NameBlock data-name="review-tile">
-        <span>{review.reviewer_name + ", "}</span>
-        <span>{dateFormatted.month + " " + dateFormatted.day + ", " + dateFormatted.year}</span>
-      </NameBlock>
+      <TopRowContainer>
+        <Stars number={review.rating}/>
+        <NameBlock data-name="review-tile">
+          <span>{review.reviewer_name + ", "}</span>
+          <span>{dateFormatted.month + " " + dateFormatted.day + ", " + dateFormatted.year}</span>
+        </NameBlock>
+      </TopRowContainer>
       <ReviewSummaryBlock data-name="review-tile">{highlightSummaryText(searchInput)}</ReviewSummaryBlock>
       <ReviewBodyBlock data-name="review-tile">
         {highlightBodyText(searchInput)}
