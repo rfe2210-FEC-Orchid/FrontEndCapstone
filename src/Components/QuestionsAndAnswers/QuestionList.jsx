@@ -163,9 +163,9 @@ return(
     )
 
   })}
-    <p>
+    <p></p>
   {(qA.length>2 && moreAnswers)  && <AButton onClick={handleMoreAnswers}><b>LOAD MORE ANSWERS</b></AButton>}
-  </p>
+
   </div>
 )
 };

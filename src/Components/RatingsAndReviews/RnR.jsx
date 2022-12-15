@@ -47,25 +47,7 @@ const RnR = ({productID, productName, handleTrack}) => {
   const {trackData}= useContext(UserContext); //usertracking
 
   useEffect(()=>{
-    axios.get(`http://localhost:3001/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
-      .then((data) => {
-          // console.log(data.data); //data.data.count has how many reviews
-          // console.log(data.data.results);
-          setReviewLibrary(data.data.results);
-          handleRenderList(data.data.results);
-          if (data.data.results.length < 2) {
-            setRenderCount(data.data.results.length);
-          }
-          // return new Promise((resolve) => {resolve(data.data.results)})
-      })
-      // .then((data) => {
-      //   console.log("I'm in the promise");
-      //   handleRenderList(data);
-      //   // handleRenderList();
-      // })
-      .catch((err) => {
-        console.error(err);
-      })
+    obtainReviews();
   },[sortBy, productID]);
 
 
@@ -73,6 +55,21 @@ const RnR = ({productID, productName, handleTrack}) => {
     handleRenderList();
   },[renderList]);
 
+  const obtainReviews = () => {
+    axios.get(`http://localhost:3001/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
+    .then((data) => {
+        // console.log(data.data); //data.data.count has how many reviews
+        // console.log(data.data.results);
+        setReviewLibrary(data.data.results);
+        handleRenderList(data.data.results);
+        if (data.data.results.length < 2) {
+          setRenderCount(data.data.results.length);
+        }
+    })
+    .catch((err) => {
+      console.error(err);
+    })
+  }
   const handleRenderList = (data) => {
     const library = data || reviewLibrary;
     if (renderList.length === 0) {
@@ -178,7 +175,7 @@ const RnR = ({productID, productName, handleTrack}) => {
   };
 
   return (
-    <div>
+    <div style={{margin: "50px 0 0 0"}}>
       <RnRContainer id="RnR">
         <h2 style={{width: "100%", textAlign: "center"}}>RATINGS & REVIEWS</h2>
         <RatingsContainer>
@@ -187,8 +184,8 @@ const RnR = ({productID, productName, handleTrack}) => {
         <ReviewsContainer>
           <ReviewsList reviews={reviews} reviewCount={reviewCount} renderCount={renderCount} handleMoreReviews={handleMoreReviews} renderList={renderList} handleBarFilter={handleBarFilter} handleSortBy={handleSortBy} sortBy={sortBy} setIsWritingReview={setIsWritingReview} searchInput={searchInput} handleSearch={handleSearch} handleTrack={handleTrack}/>
         </ReviewsContainer>
-        <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName}/>
-        {trackData.map((data) => <div>{data}</div>)}
+        <WriteAReview isWritingReview={isWritingReview} onClose={() => setIsWritingReview(false)} characteristics={characteristics} productID={productID} productName={productName} obtainReviews={obtainReviews}/>
+        {/* {trackData.map((data) => <div>{data}</div>)} */}
       </RnRContainer>
     </div>
 

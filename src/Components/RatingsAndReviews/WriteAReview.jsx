@@ -48,7 +48,7 @@ import Form from './Form.jsx';
     cursor: pointer;
   `;
 
-const WriteAReview = ({isWritingReview, onClose, characteristics, productID, productName}) => {
+const WriteAReview = ({isWritingReview, onClose, characteristics, productID, productName, obtainReviews}) => {
 
 
   // const ReviewForm = styled.form`
@@ -60,7 +60,7 @@ const WriteAReview = ({isWritingReview, onClose, characteristics, productID, pro
     <Overlay data-testid="review-modal-overlay" isWritingReview={isWritingReview}>
       <Container data-testid="form-container" >
         <Closebtn data-testid="reviewForm-closeBtn" onClick={onClose}>X</Closebtn>
-        <Form characteristics={characteristics} productID={productID} onClose={onClose} productName={productName}/>
+        <Form characteristics={characteristics} productID={productID} onClose={onClose} productName={productName} obtainReviews={obtainReviews}/>
       </Container>
     </Overlay>
   )
