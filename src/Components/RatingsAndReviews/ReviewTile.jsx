@@ -64,7 +64,7 @@ const ReportBtn = styled.button`
  }
 `;
 
-const ReviewTile = ({review, searchInput}) => {
+const ReviewTile = ({review, searchInput, handleTrack}) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [isHelpful, setIsHelpful] = useState(false);
   const [report, setReport] = useState("Report");
@@ -125,7 +125,8 @@ const ReviewTile = ({review, searchInput}) => {
     setIsHelpful(true);
   }
 
-  const handleReportClick = () => {
+  const handleReportClick = (evt) => {
+    handleTrack(evt, "reviewNratings");
     axios.put(`http://localhost:3001/reviews/${review.review_id}/report`, {header: {'Access-Control-Allow-Origin': '*'}})
         .then(() => {
           console.log("reported");
@@ -156,9 +157,11 @@ const ReviewTile = ({review, searchInput}) => {
         <div>{review.response}</div>
       </ResponseBlock>}
       <div>{"Helpful? "}
-      <HelpfulBtn isHelpful={isHelpful} onClick={handleHelpfulClick}>Yes ({isHelpful ? review.helpfulness + 1 : review.helpfulness}) </HelpfulBtn>
+      <HelpfulBtn data-testid="helpful-btn" isHelpful={isHelpful} onClick={(evt) => {
+        handleTrack(evt, "reviewNratings");
+        handleHelpfulClick();}}>Yes ({isHelpful ? review.helpfulness + 1 : review.helpfulness}) </HelpfulBtn>
       <span>  |  </span>
-      <ReportBtn onClick={handleReportClick}>{report}</ReportBtn>
+      <ReportBtn data-testid="report-btn" onClick={handleReportClick}>{report}</ReportBtn>
       </div>
     </Container>
   )
