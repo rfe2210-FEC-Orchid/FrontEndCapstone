@@ -2,7 +2,7 @@ import React from 'react';
 import '@testing-library/jest-dom';
 import '@testing-library/react/dont-cleanup-after-each'
 import userEvent from '@testing-library/user-event'
-import {render, screen, waitFor} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import App from '../src/components/App.jsx'
 import axios from 'axios';
 
