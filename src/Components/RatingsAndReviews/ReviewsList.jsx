@@ -28,8 +28,9 @@ import styled from 'styled-components';
   `;
 
   const DesignButtons = styled.button`
-    height: 40px;
-    width: 20%;
+    font-family: Nunito Sans, sans-serif, Daniel;
+    height: 45px;
+    width: 25%;
     border: none;
     background-color: #4f0b40;
     color: white;
@@ -85,10 +86,10 @@ const ReviewsList = ({reviews, reviewCount, renderCount, handleMoreReviews, rend
         {reviews.slice(0, renderCount).map((review) => <ReviewTile key={review.review_id} review={review} searchInput={searchInput}/>)}
         {/* <div ref={bottomRef}></div> */}
       </ReviewListContainer >
-      {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons data-testid="more-reviews" onClick={handleMoreReviews}>More Reviews</DesignButtons> : null}
+      {(reviewCount > renderCount) && (reviewCount > 2) ? <DesignButtons data-testid="more-reviews" onClick={handleMoreReviews}>MORE REVIEWS</DesignButtons> : null}
       <DesignButtons data-testid="add-review-button" onClick={(evt) => {
         handleTrack(evt, "reviewNratings");
-        setIsWritingReview(true)}}>Add a Review ➕</DesignButtons>
+        setIsWritingReview(true)}}>ADD A REVIEW +</DesignButtons>
     </div>
   )
 }
