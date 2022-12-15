@@ -91,11 +91,6 @@ const ReviewTile = ({review, searchInput, handleTrack}) => {
     setIsShowingMore(!isShowingMore);
   };
 
-  // const reviewBod = review.body
-  //   .split(new RegExp(`(${"this"})`, 'gi'))
-  //   .map((word) => word.toLowerCase() === "this" ? `<b>${word}<b/>` : word)
-  //   .join("");
-
   const highlightSummaryText = (text) => {
     if (text.length >= 3) {
       let reviewSum = review.summary.split(new RegExp(`(${text})`, 'gi'))

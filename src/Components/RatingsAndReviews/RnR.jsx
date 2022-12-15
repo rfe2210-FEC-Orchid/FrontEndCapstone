@@ -7,16 +7,11 @@ import WriteAReview from './WriteAReview.jsx';
 import {UserContext} from '../UserContext.jsx';
 
   const RnRContainer = styled.div`
-  /* left: 20px; */
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
   position: relative;
-  /* position: relative;
-  display: grid;
-  grid-template-columns: 2fr 5fr;
-  grid-template-areas: "header header"; */
   `;
 
   const RatingsContainer = styled.div`
@@ -29,7 +24,6 @@ import {UserContext} from '../UserContext.jsx';
 
 
 const RnR = ({productID, productName, handleTrack}) => {
-  // const [productID, setProductID] = useState(37311);
   const [reviewLibrary, setReviewLibrary] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(0);
@@ -79,10 +73,6 @@ const RnR = ({productID, productName, handleTrack}) => {
         return (review.body.toLowerCase().indexOf(searchInput) > -1) || (review.summary.toLowerCase().indexOf(searchInput) > -1)})
       setReviews(videoList);
       setReviewCount(videoList.length);
-      // console.log(renderCount);
-      // if (library.length < 2) {
-      //   setRenderCount(library.length);
-      // }
     } else {
       let videoList = library
         .filter((review) => {return (renderList.indexOf(review.rating) > -1)});
