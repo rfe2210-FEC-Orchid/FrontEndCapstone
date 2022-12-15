@@ -122,7 +122,7 @@ const QA = ({productId,productName}) => {
       {questionData.map((question, index) => {
         return (
         <div key={index}>
-        <QuestionList name ={productName} question={question}/>
+        <QuestionList name = {productName} question={question}/>
         </div>
       )
     }

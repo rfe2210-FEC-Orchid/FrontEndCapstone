@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import Stars from './Stars.jsx';
@@ -64,17 +64,19 @@ const ReportBtn = styled.button`
  }
 `;
 
-const ReviewTile = ({review}) => {
+const ReviewTile = ({review, searchInput}) => {
   const [isShowingMore, setIsShowingMore] = useState(false);
   const [isHelpful, setIsHelpful] = useState(false);
+  const [report, setReport] = useState("Report");
+
 
   //for date
-  let date = new Date(review.date);
+  let revDate = review.date.split("T")[0].split("-")
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   let dateFormatted = {
-    month: monthNames[date.getMonth()],
-    day: date.getDay(),
-    year: date.getFullYear()
+    month: monthNames[Number(revDate[1]) - 1],
+    day: Number(revDate[2]),
+    year: revDate[0]
   }
 
   //Show More in Body
@@ -82,7 +84,33 @@ const ReviewTile = ({review}) => {
     setIsShowingMore(!isShowingMore);
   };
 
+  // const reviewBod = review.body
+  //   .split(new RegExp(`(${"this"})`, 'gi'))
+  //   .map((word) => word.toLowerCase() === "this" ? `<b>${word}<b/>` : word)
+  //   .join("");
 
+  const highlightSummaryText = (text) => {
+    if (text.length >= 3) {
+      let reviewSum = review.summary.split(new RegExp(`(${text})`, 'gi'))
+      return <span>{reviewSum.map((word, i) =>
+        <span key={i} style={word.toLowerCase() === text.toLowerCase() ? {backgroundColor: "yellow"} : {}}>{word}</span>
+      )}</span>;
+    } else {
+      return review.summary;
+    }
+  }
+
+  const highlightBodyText = (text) => {
+    const bod = isShowingMore ? review.body : (review.body.substring(0, 251) + (review.body.length > 250 ? "..." : ""));
+    if (text.length >= 3) {
+      let reviewBod = bod.split(new RegExp(`(${text})`, 'gi'));
+      return <span>{reviewBod.map((word, i) =>
+        <span key={i} style={word.toLowerCase() === text.toLowerCase() ? {backgroundColor: "yellow"} : {}}>{word}</span>
+      )}</span>;
+    } else {
+      return bod;
+    }
+  }
 
   const handleHelpfulClick = () => {
     if (!isHelpful) {
@@ -100,7 +128,8 @@ const ReviewTile = ({review}) => {
   const handleReportClick = () => {
     axios.put(`http://localhost:3001/reviews/${review.review_id}/report`, {header: {'Access-Control-Allow-Origin': '*'}})
         .then(() => {
-          console.log("reported")
+          console.log("reported");
+          setReport("Reported");
         })
         .catch((err) => {
           console.error(err);
@@ -113,9 +142,9 @@ const ReviewTile = ({review}) => {
         <span>{review.reviewer_name + ", "}</span>
         <span>{dateFormatted.month + " " + dateFormatted.day + ", " + dateFormatted.year}</span>
       </NameBlock>
-      <ReviewSummaryBlock data-name="review-tile">{review.summary}</ReviewSummaryBlock>
+      <ReviewSummaryBlock data-name="review-tile">{highlightSummaryText(searchInput)}</ReviewSummaryBlock>
       <ReviewBodyBlock data-name="review-tile">
-        {isShowingMore ? review.body : (review.body.substring(0, 251) + (review.body.length > 250 ? "..." : ""))}
+        {highlightBodyText(searchInput)}
         <div> {review.body.length > 250 &&
           <ShowMoreBtn onClick={handleShowMore}>{isShowingMore ? "^ Show Less" : "v Show More"}</ShowMoreBtn>
         }</div>
@@ -129,7 +158,7 @@ const ReviewTile = ({review}) => {
       <div>{"Helpful? "}
       <HelpfulBtn isHelpful={isHelpful} onClick={handleHelpfulClick}>Yes ({isHelpful ? review.helpfulness + 1 : review.helpfulness}) </HelpfulBtn>
       <span>  |  </span>
-      <ReportBtn onClick={handleReportClick}>Report</ReportBtn>
+      <ReportBtn onClick={handleReportClick}>{report}</ReportBtn>
       </div>
     </Container>
   )

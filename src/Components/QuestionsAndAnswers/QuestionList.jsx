@@ -55,20 +55,7 @@ font-size: 18px;
 `
 
 const QuestionList = ({name, question}) => {
-
-  let sortedAnswers = Object.values(question.answers).sort((function(a,b){
-    return b.helpfulness-a.helpfulness
-  })).sort(function (a, b) {
-    if (a.answerer_name ==="Seller") {
-      return -1;
-    }
-    if (b.answerer_name == "Seller") {
-      return 1;
-    } else { return 0 }
-  })
-
-  const [qA, setQA] = useState(sortedAnswers);
-
+  const [qA, setQA] = useState([]);
   const [ url, setUrl ] = useState([]);
   const [moreAnswers, setMoreAnswers] = useState(true);
   const [helpful, setHelpful] = useState(question.question_helpfulness);
@@ -79,7 +66,19 @@ const QuestionList = ({name, question}) => {
   const [questionList, setQuestionList] = useState([])
 
   useEffect(()=> {
-    setQuestionList(qA.slice(0,numberOfA))
+    let sortedAnswers = Object.values(question.answers).sort((function(a,b){
+      return b.helpfulness-a.helpfulness
+    })).sort(function (a, b) {
+      if (a.answerer_name ==="Seller") {
+        return -1;
+      }
+      if (b.answerer_name == "Seller") {
+        return 1;
+      } else { return 0 }
+    });
+    setQA(sortedAnswers);
+    // console.log(qA);
+    // setQuestionList(qA.slice(0,numberOfA))
     },[question])
 
 
@@ -112,17 +111,18 @@ const QuestionList = ({name, question}) => {
           photos: []
         }
       )
-      .then(res => console.log(res))
-      setQA([...qA, {
-        body: modalFormA.answer,
-        answerer_name: modalFormA.nickname,
-        answers:{},
-        helpfulness: 0,
-        date: new Date(),
-        photos: url
-      }] )
-
-      setModalA(false)
+      .then(res => {
+        console.log(res)
+        setQA([...qA, {
+          body: modalFormA.answer,
+          answerer_name: modalFormA.nickname,
+          answers:{},
+          helpfulness: 0,
+          date: new Date(),
+          photos: url
+        }] )
+        setModalA(false)
+      })
     }
     else {
       setFormErrorA(true)
@@ -155,7 +155,7 @@ return(
   }
 
   {
-  questionList.map((answer,index) => {
+  qA.slice(0,numberOfA).map((answer,index) => {
     return(
       <div key={index}>
         <Answers answer = {answer}/>

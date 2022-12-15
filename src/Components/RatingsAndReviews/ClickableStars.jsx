@@ -11,8 +11,6 @@ cursor: pointer;
 
 const ClickableStars = ({overallRating, handleSetOverallRating}) => {
 
-
-
   return (
     <StarRatings>
       {[...Array(5)].map((rating, index) => <Star key={" " + index} rating={index < overallRating ? 100 : 0} value={index + 1} handleSetOverallRating={handleSetOverallRating}/>)}
