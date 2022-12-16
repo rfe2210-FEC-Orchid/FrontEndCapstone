@@ -21,6 +21,7 @@ const MultiFileUpload = ({imageURLS, handleImageUrls}) => {
   }
 
   const fileUploadHandler = (evt) => {
+    evt.preventDefault();
     const formData = new FormData();
     formData.append('file', selectedFile);
     formData.append('tags', `codeinfuse, medium, gist`);

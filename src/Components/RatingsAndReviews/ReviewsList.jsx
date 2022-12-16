@@ -15,6 +15,7 @@ import styled from 'styled-components';
   `;
 
   const SortByButton = styled.select`
+    outline: none;
     border: 0;
     border-bottom: 1px solid black;
     cursor: pointer;

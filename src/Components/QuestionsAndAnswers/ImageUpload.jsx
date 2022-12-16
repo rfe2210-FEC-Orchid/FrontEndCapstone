@@ -22,6 +22,7 @@ const [selectedFile, setSelectedFile] = useState({});
   }
 
   const fileUploadHandler = (evt) => {
+    evt.preventDefault();
     const formData = new FormData();
     formData.append('file', selectedFile);
     formData.append('tags', `codeinfuse, medium, gist`);
