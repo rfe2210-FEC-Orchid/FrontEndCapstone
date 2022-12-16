@@ -80,8 +80,8 @@ const App = () => {
 
   useEffect(() => {
     axios.all([
-      axios.get(`http://localhost:3001/products/${productId}/styles`),
-      axios.get(`http://localhost:3001/products/${productId}`)
+      axios.get(`/products/${productId}/styles`),
+      axios.get(`/products/${productId}`)
     ])
       .catch((err) => {
         console.log('error fetching data from API:', err);

@@ -11,7 +11,7 @@ const RelatedItems = ({productId, setproductId, productInfo, selectedStyle}) => 
   }, [productId])
 
   let GetRelatedProductsList = () => {
-    axios.get(`http://localhost:3001/products/${productId}/related`)
+    axios.get(`/products/${productId}/related`)
     .then((res) => {
       // console.log('related products: ', res.data);
       GetRelatedProductsInfo(res.data);
@@ -24,9 +24,9 @@ const RelatedItems = ({productId, setproductId, productInfo, selectedStyle}) => 
 
   let GetRelatedProductsInfo = (req) => {
       let relatedProductsInfo = req.map((id) => {
-        return axios.get(`http://localhost:3001/products/${id}`)
+        return axios.get(`/products/${id}`)
         .then((res) => {
-          return axios.get(`http://localhost:3001/products/${id}/styles`)
+          return axios.get(`/products/${id}/styles`)
           .then((result) => {
             let product = {id: res.data.id, category: res.data.category, name: res.data.name, price: res.data.default_price, saleprice: result.data.results[0].sales_price, image: result.data.results[0].photos, features: res.data.features};
             return product;

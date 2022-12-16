@@ -48,7 +48,7 @@ const QA = ({productId,productName,handleTrack}) => {
   useEffect(()=> {
     axios({
       method: "get",
-      url: "http://localhost:3001/qa/questions",
+      url: "/qa/questions",
       params: {
         product_id: productId,
         count: 1000
@@ -83,7 +83,7 @@ const QA = ({productId,productName,handleTrack}) => {
   const handleQFormSubmit = () => {
 
     if (Object.values(modalFormQ).length === 3) {
-      axios.post("http://localhost:3001/qa/questions",
+      axios.post("/qa/questions",
         {
           body:modalFormQ.question,
           name:modalFormQ.nickname,

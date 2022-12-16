@@ -7,16 +7,11 @@ import WriteAReview from './WriteAReview.jsx';
 import {UserContext} from '../UserContext.jsx';
 
   const RnRContainer = styled.div`
-  /* left: 20px; */
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
   position: relative;
-  /* position: relative;
-  display: grid;
-  grid-template-columns: 2fr 5fr;
-  grid-template-areas: "header header"; */
   `;
 
   const RatingsContainer = styled.div`
@@ -29,7 +24,6 @@ import {UserContext} from '../UserContext.jsx';
 
 
 const RnR = ({productID, productName, handleTrack}) => {
-  // const [productID, setProductID] = useState(37311);
   const [reviewLibrary, setReviewLibrary] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [reviewCount, setReviewCount] = useState(0);
@@ -56,7 +50,7 @@ const RnR = ({productID, productName, handleTrack}) => {
   },[renderList]);
 
   const obtainReviews = () => {
-    axios.get(`http://localhost:3001/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
+    axios.get(`/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
     .then((data) => {
         // console.log(data.data); //data.data.count has how many reviews
         // console.log(data.data.results);
@@ -79,10 +73,6 @@ const RnR = ({productID, productName, handleTrack}) => {
         return (review.body.toLowerCase().indexOf(searchInput) > -1) || (review.summary.toLowerCase().indexOf(searchInput) > -1)})
       setReviews(videoList);
       setReviewCount(videoList.length);
-      // console.log(renderCount);
-      // if (library.length < 2) {
-      //   setRenderCount(library.length);
-      // }
     } else {
       let videoList = library
         .filter((review) => {return (renderList.indexOf(review.rating) > -1)});
@@ -128,7 +118,7 @@ const RnR = ({productID, productName, handleTrack}) => {
 
   //for reviews.meta
   useEffect(()=>{
-    axios.get(`http://localhost:3001/reviews/meta?product_id=${productID}`)
+    axios.get(`/reviews/meta?product_id=${productID}`)
       .then((data) => {
         // console.log(data.data); //data.data.count has how many reviews
         setRatings(data.data.ratings);

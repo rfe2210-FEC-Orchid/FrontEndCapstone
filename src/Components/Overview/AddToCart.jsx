@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 
 const CartContainer = styled.div`
@@ -86,7 +86,7 @@ const AddToCart = (props) => {
       let sku_id = props.options.sku_id;
 
       for (let i = 0; i < quantity; i++) {
-        axios.post(`http://localhost:3001/cart`, { sku_id });
+        axios.post(`/cart`, { sku_id });
     }
     }
   };
