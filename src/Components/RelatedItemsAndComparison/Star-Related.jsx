@@ -15,12 +15,12 @@ position: absolute;
 const EmptyStars = styled.div`
 `;
 
-const Star = ({rating}) => {
+const Star = (props) => {
 
   return (
     <Container>
-      <FullStars>
-        <FaStar rating={rating} width="15" height="15"/>
+      <FullStars rating={props.rating}>
+        <FaStar width="15" height="15"/>
       </FullStars>
       <EmptyStars>
         <FaRegStar width="15" height="15"/>
