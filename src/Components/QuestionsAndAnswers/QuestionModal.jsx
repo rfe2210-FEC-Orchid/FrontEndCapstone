@@ -50,7 +50,7 @@ const QuestionModal = ({modalFormQ,setModalFormQ,handleQFormSubmit,name,formErro
         <label>
         <span className="number">1</span>
           Question*
-
+          <p></p>
           <span className ='divider'></span>
         <textarea className="text-input-nik" maxLength="1000" rows="4" cols="50" name='question' placeholder='Example: How cozy is this?'/>
         </label>

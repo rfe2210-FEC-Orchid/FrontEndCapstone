@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-// import fullStar from './stars/fullStar.png';
-// import emptyStar from './stars/emptyStar.png';
-
-import { IoStarOutline, IoStar } from 'react-icons/io5';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 
 const Container = styled.div`

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import {FaAngleRight, FaAngleLeft} from 'react-icons/fa';
 import './RelatedItems.css';
-import OutfitList from './OutfitList.jsx';
 import RelatedProductCards from './RelatedProductCards.jsx';
 
 const RelatedProductsList = ({relatedProducts,  setproductId, currentProductInfo}) => {

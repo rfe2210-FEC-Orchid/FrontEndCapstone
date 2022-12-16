@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 
 const CartContainer = styled.div`

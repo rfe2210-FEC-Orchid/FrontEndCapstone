@@ -3,8 +3,7 @@ import SelectedImage from'./SelectedImage.jsx';
 import ExpandedImage from './ExpandedImage.jsx';
 
 import styled from 'styled-components';
-import { AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp, AiOutlineClose } from 'react-icons/ai';
-import { RxDot, RxDotFilled } from 'react-icons/rx';
+import { AiOutlineArrowDown, AiOutlineArrowLeft, AiOutlineArrowRight, AiOutlineArrowUp } from 'react-icons/ai';
 
 // styles
 const Gallery = styled.div`
