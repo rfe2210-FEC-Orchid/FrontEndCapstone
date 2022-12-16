@@ -9,7 +9,7 @@ const Rating = ({productID}) => {
   const [RNRData, setRNRData] = useState({n: null, avg: null});
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/reviews/meta?product_id=${productID}`)
+    axios.get(`/reviews/meta?product_id=${productID}`)
       .catch((err) => {
         console.log('error retieving RNR metadata:', err);
       })

@@ -116,7 +116,7 @@ const ReviewTile = ({review, searchInput, handleTrack}) => {
 
   const handleHelpfulClick = () => {
     if (!isHelpful) {
-      axios.put(`http://localhost:3001/reviews/${review.review_id}/helpful`, {header: {'Access-Control-Allow-Origin': '*'}})
+      axios.put(`/reviews/${review.review_id}/helpful`, {header: {'Access-Control-Allow-Origin': '*'}})
         .then(() => {
           console.log("added helpful")
         })
@@ -129,7 +129,7 @@ const ReviewTile = ({review, searchInput, handleTrack}) => {
 
   const handleReportClick = (evt) => {
     handleTrack(evt, "reviewNratings");
-    axios.put(`http://localhost:3001/reviews/${review.review_id}/report`, {header: {'Access-Control-Allow-Origin': '*'}})
+    axios.put(`/reviews/${review.review_id}/report`, {header: {'Access-Control-Allow-Origin': '*'}})
         .then(() => {
           console.log("reported");
           setReport("Reported");

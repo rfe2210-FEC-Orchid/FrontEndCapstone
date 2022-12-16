@@ -50,7 +50,7 @@ const RnR = ({productID, productName, handleTrack}) => {
   },[renderList]);
 
   const obtainReviews = () => {
-    axios.get(`http://localhost:3001/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
+    axios.get(`/reviews?product_id=${productID}&count=2000&sort=${sortBy}`)
     .then((data) => {
         // console.log(data.data); //data.data.count has how many reviews
         // console.log(data.data.results);
@@ -118,7 +118,7 @@ const RnR = ({productID, productName, handleTrack}) => {
 
   //for reviews.meta
   useEffect(()=>{
-    axios.get(`http://localhost:3001/reviews/meta?product_id=${productID}`)
+    axios.get(`/reviews/meta?product_id=${productID}`)
       .then((data) => {
         // console.log(data.data); //data.data.count has how many reviews
         setRatings(data.data.ratings);

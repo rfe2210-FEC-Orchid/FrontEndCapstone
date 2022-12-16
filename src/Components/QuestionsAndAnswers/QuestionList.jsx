@@ -92,7 +92,7 @@ const QuestionList = ({name, question}) => {
   }
 
   const handleHelpfulQ = () => {
-    axios.put(`http://localhost:3001/qa/questions/${question.question_id}/helpful`)
+    axios.put(`/qa/questions/${question.question_id}/helpful`)
     .then(res => console.log(res))
     setHelpful(helpful+1)
   }
@@ -103,7 +103,7 @@ const QuestionList = ({name, question}) => {
   const handleAFormSubmit = (e) => {
     e.preventDefault()
     if (Object.values(modalFormA).length >= 3) {
-      axios.post(`http://localhost:3001/qa/questions/${question.question_id}/answers`,
+      axios.post(`/qa/questions/${question.question_id}/answers`,
         {
           body:modalFormA.answer,
           name:modalFormA.nickname,
