@@ -7,6 +7,7 @@ import RnR from './RatingsAndReviews/RnR.jsx';
 import RelatedItems from './RelatedItemsAndComparison/RelatedItems.jsx';
 import QA from './QuestionsAndAnswers/QA.jsx';
 import {UserContext} from './UserContext.jsx';
+import Marquee from 'react-fast-marquee';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -120,7 +121,9 @@ const App = () => {
         <Link to='overview' smooth={true}><h1>Orchid</h1></Link>
       </Header>
       <Banner>
-      Last Day: The Winter Faves Event: 30% Off Select Styles | GET IT BY DECEMBER 25th: Order with standard shipping, for a limited time only!
+        <Marquee gradient={false} speed={55}>
+          Last Day: The Winter Faves Event: 30% Off Select Styles | GET IT BY DECEMBER 25th: Order with standard shipping, for a limited time only!
+        </Marquee>
       </Banner>
       <Body>
         <Overview allStyles={allStyles} selectedStyle={selectedStyle} setSelectedStyle={setSelectedStyle} productInfo={productInfo} product_id={productId} handleTrack={handleTrack}/>
