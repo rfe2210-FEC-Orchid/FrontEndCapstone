@@ -20,16 +20,19 @@ Orchid is a minimalistic yet elegant single-page shopping website designed to pr
 ## Component Details
 ### Product Overview
 This component will guide the customer through selecting a specific style and size to add to their cart. For each product, an image gallery, the product information, a style/size selector, and an add to cart button is displayed.
-<iframe src="https://giphy.com/embed/06e6DZE83HxnseLcgF" width="480" height="456" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/06e6DZE83HxnseLcgF"></a></p>
+![]()
 
 ### Related Items & Comparison
 This component displays a related product list consisting of products related to the currently viewed product and an outfit list consisting of the products that the user added. Each related product card renders a comparison modal window, and each outfit card can be deleted from the outfit list. For both lists, clicking on a card navigates to the detail page for that product.
+![]()
 
 ### Questions & Answers
 This component gives the user the ability to view and search questions, ask questions, answer questions, and provide feedback on questions about the current product.
+![]()
 
 ### Ratings & Reviews
 This component gives users the ability to see ratings breakdown and all reviews for the product chosen. Reviews can be filtered by stars, searching keywords or choosing a sort by value. Users can also write a new review or provide feedback (vote as helpful or report) on existing reviews by interacting with the action buttons.
+![]()
 
 
 ## Installation & Use
