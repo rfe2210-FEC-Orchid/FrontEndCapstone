@@ -10,3 +10,24 @@
 ![Express](https://img.shields.io/badge/-Express-DCDCDC?logo=express&logoColor=black&style=for-the-badge)
 ![Axios](https://img.shields.io/badge/-Axios-671ddf?logo=axios&logoColor=black&style=for-the-badge)
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
+
+## Installation & Use
+1. Clone the repo
+		```
+    git clone https://github.com/rfe2210-FEC-Orchid/FrontEndCapstone.git
+    ```
+2. Install all required packages
+    ```
+		npm install
+    ```
+3. Rename `example.config.js` to `config.js`
+4. Create a github personal access token to acquire access to the API and insert the token into `config.js`
+5. Compile the client-side code with webpack
+   ```
+   npm run client-dev
+   ```
+6. Start the server
+   ```
+   npm run server-dev
+   ```
+7. Navigate to [localhost:3001](localhost:3001)
