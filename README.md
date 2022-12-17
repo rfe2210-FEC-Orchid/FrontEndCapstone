@@ -4,7 +4,7 @@ Orchid is a minimalistic yet elegant single-page shopping website designed to pr
 
 ## Demo
 
-https://drive.google.com/file/d/1dhfGn0p-fU3Mlaq7jKNEv1orUJrICoo3/view?usp=share_link
+[demo](https://drive.google.com/file/d/1dhfGn0p-fU3Mlaq7jKNEv1orUJrICoo3/view?usp=share_link)
 
 ## Tech Stack
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
