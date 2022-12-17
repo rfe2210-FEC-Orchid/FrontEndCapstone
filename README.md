@@ -2,6 +2,7 @@
 
 Orchid is a minimalistic yet elegant single-page shopping website designed to promote an intuitive, straightforward user experience. This project was completed over the course of three weeks by a team of 4 students for the front end capstone portion of Hack Reactor’s software engineering immersive program.
 
+
 ## Tech Stack
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![React](https://img.shields.io/badge/-React-61DAFB?logo=react&logoColor=white&style=for-the-badge)
@@ -11,8 +12,10 @@ Orchid is a minimalistic yet elegant single-page shopping website designed to pr
 ![Axios](https://img.shields.io/badge/-Axios-671ddf?logo=axios&logoColor=black&style=for-the-badge)
 ![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
 
+
 ## Demo
 [Demo video](https://drive.google.com/file/d/1dhfGn0p-fU3Mlaq7jKNEv1orUJrICoo3/view?usp=share_link)
+
 
 ## Component Details
 ### Product Overview
@@ -26,6 +29,7 @@ This component gives the user the ability to view and search questions, ask ques
 
 ### Ratings & Reviews
 This component gives users the ability to see ratings breakdown and all reviews for the product chosen. Reviews can be filtered by stars, searching keywords or choosing a sort by value. Users can also write a new review or provide feedback (vote as helpful or report) on existing reviews by interacting with the action buttons.
+
 
 ## Installation & Use
 1. Clone the repo
