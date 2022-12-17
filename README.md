@@ -1,6 +1,10 @@
 # Orchid
 
-## Table of Contents
+Orchid is a minimalistic yet elegant single-page shopping website designed to promote an intuitive, straightforward user experience. This project was completed over the course of three weeks by a team of 4 students for the front end capstone portion of Hack Reactor’s software engineering immersive program.
+
+## Demo
+
+https://drive.google.com/file/d/1dhfGn0p-fU3Mlaq7jKNEv1orUJrICoo3/view?usp=share_link
 
 ## Tech Stack
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
