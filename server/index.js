@@ -2,10 +2,9 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 const cors = require('cors')
+const config = require('../config.js');
 
-const PORT = process.env.PORT || 3001;
-
-require('dotenv').config();
+const PORT = config.PORT || 3001;
 
 const app = express();
 
@@ -17,14 +16,11 @@ app.use(express.json());
 
 // routes
 app.all('/*', (req, res) => {
-  // console.log('request body:', req.body);
-  // console.log('full url:', process.env.API_URL + req.url);
-
   return axios({
     method: req.method,
-    url: process.env.API_URL + req.url,
+    url: config.API_URL + req.url,
     headers: {
-      Authorization: process.env.API_TOKEN
+      Authorization: config.API_TOKEN
     },
     data: req.body
   })

@@ -17,6 +17,7 @@ const UpperContentContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 const UpperColumnContainerLeft = styled.div`
