@@ -13,12 +13,12 @@
 
 ## Installation & Use
 1. Clone the repo
-		```
+    ```
     git clone https://github.com/rfe2210-FEC-Orchid/FrontEndCapstone.git
     ```
 2. Install all required packages
     ```
-		npm install
+    npm install
     ```
 3. Rename `example.config.js` to `config.js`
 4. Create a github personal access token to acquire access to the API and insert the token into `config.js`
@@ -30,4 +30,4 @@
    ```
    npm run server-dev
    ```
-7. Navigate to [localhost:3001](localhost:3001)
+7. Navigate to localhost:3001
