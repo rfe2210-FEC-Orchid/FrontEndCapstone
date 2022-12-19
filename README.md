@@ -24,15 +24,15 @@ This component will guide the customer through selecting a specific style and si
 
 ### Related Items & Comparison
 This component displays a related product list consisting of products related to the currently viewed product and an outfit list consisting of the products that the user added. Each related product card renders a comparison modal window, and each outfit card can be deleted from the outfit list. For both lists, clicking on a card navigates to the detail page for that product.
-![]()
+![](./demos/related.gif)
 
 ### Questions & Answers
 This component gives the user the ability to view and search questions, ask questions, answer questions, and provide feedback on questions about the current product.
-![]()
+![](./demos/QnA.gif)
 
 ### Ratings & Reviews
 This component gives users the ability to see ratings breakdown and all reviews for the product chosen. Reviews can be filtered by stars, searching keywords or choosing a sort by value. Users can also write a new review or provide feedback (vote as helpful or report) on existing reviews by interacting with the action buttons.
-![]()
+![](./RnR.gif)
 
 
 ## Installation & Use
