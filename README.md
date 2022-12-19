@@ -36,7 +36,7 @@ This component gives the user the ability to view and search questions, ask ques
 ### Ratings & Reviews
 This component gives users the ability to see ratings breakdown and all reviews for the product chosen. Reviews can be filtered by stars, searching keywords or choosing a sort by value. Users can also write a new review or provide feedback (vote as helpful or report) on existing reviews by interacting with the action buttons.
 
-![](./RnR.gif)
+![](./demos/RnR.gif)
 
 
 ## Installation & Use
